@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
+import { SignupComponent } from './components/pages/signup/signup.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

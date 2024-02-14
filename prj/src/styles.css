@@ -1,10 +1,91 @@
 :root {
+  --main_bg_color: radial-gradient(
+    47.2% 124.55% at 49.54% 53.47%,
+    rgba(0, 122, 150) 1%,
+    rgba(7, 67, 81) 47%,
+    rgba(7, 62, 74) 54.5%,
+    #061e23 100%
+  );
+  /* --darker_bg_color: linear-gradient(
+    270deg,
+    rgba(0, 123, 151, 0) 0%,
+    #01242c 0.01%
+  ); */
+  --darker_bg_color: #01242c;
+  --card_bg_color: #020707;
+  --main_font_family: "Poppins", sans-serif;
+  --main_font_light_color: whitesmoke;
+  --button_bg_color: #074b57;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+ul {
+  list-style: none;
+}
 body {
-  background-color: rgb(15, 24, 49);
+  width: 100%;
+  height: 300vh;
+  background: var(--main_bg_color);
+  color: var(--main_font_light_color);
+  font-family: var(--main_font_family);
+}
+button {
+  outline: none;
+  border-radius: 1.25rem;
+  background-color: var(--button_bg_color);
+  border: 0;
+  color: var(--main_font_light_color);
+  width: 242px;
+  max-width: 100%;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+button p {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--main_font_light_color);
+  font-weight: 500;
+  transition: all 0.5s;
+}
+button::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  transition: all 0.5s;
+  opacity: 0;
+}
+button:hover::before {
+  z-index: 0;
+  animation: btn_anim 0.5s linear;
+  opacity: 1;
+}
+button:hover p {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main_font_light_color);
+}
+
+@keyframes btn_anim {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 105%;
+  }
 }
