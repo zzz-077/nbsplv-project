@@ -76,7 +76,16 @@
             </li>
           </div>
         </div>
-        <button [ngClass]="isSidebarfolded ? 'active' : null">
+        <button
+          routerLink="/signup"
+          [ngClass]="isSidebarfolded ? 'active' : null"
+        >
+          <p>signUp</p>
+        </button>
+        <button
+          routerLink="/login"
+          [ngClass]="isSidebarfolded ? 'active' : null"
+        >
           <p>signIn</p>
         </button>
       </div>

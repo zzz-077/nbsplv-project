@@ -9,9 +9,10 @@ import { environment } from 'src/environments/environment.development';
 import { SignupComponent } from './components/pages/signup/signup.component';
 import { MainComponent } from './components/pages/main/main.component';
 import { UndefinedpageComponent } from './components/pages/undefinedpage/undefinedpage.component';
+import { SiginComponent } from './components/pages/sigin/sigin.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, MainComponent, UndefinedpageComponent],
+  declarations: [AppComponent, SignupComponent, MainComponent, UndefinedpageComponent, SiginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
