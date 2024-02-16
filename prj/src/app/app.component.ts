@@ -56,9 +56,6 @@ export class AppComponent {
       return;
     }
 
-    event.preventDefault();
-    event.stopPropagation();
-
     const handleElement = event.target as HTMLElement;
 
     if (!handleElement.parentElement) {

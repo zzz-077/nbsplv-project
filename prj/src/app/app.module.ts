@@ -7,9 +7,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
 import { SignupComponent } from './components/pages/signup/signup.component';
+import { MainComponent } from './components/pages/main/main.component';
+import { UndefinedpageComponent } from './components/pages/undefinedpage/undefinedpage.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent],
+  declarations: [AppComponent, SignupComponent, MainComponent, UndefinedpageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

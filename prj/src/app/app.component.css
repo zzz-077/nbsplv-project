@@ -6,27 +6,29 @@
 .container {
   height: 100vh;
   overflow: hidden;
-  position: fixed;
+  display: flex;
+  width: 100%;
 }
-nav {
-  width: 100px;
-}
-
 .container > nav {
   overflow: hidden;
   padding: 0.25rem;
 }
 nav {
+  width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: var(--regular_cards_distance);
+}
+main {
+  padding: 0.25rem;
+  overflow-x: hidden;
 }
 .top_content,
 .bottom_content {
   padding: 0.875rem 1rem;
   background-color: var(--card_bg_color);
-  border-radius: 0.45rem;
+  border-radius: var(--regular_cards_radius);
 }
 .top_content {
   display: flex;
@@ -74,7 +76,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--regular_cards_distance);
 }
 .navbar_bottom_col2 .user_link {
   display: flex;
@@ -88,6 +90,7 @@ nav {
   height: 35px;
   border-radius: 50%;
   overflow: hidden;
+  user-select: none;
 }
 .navbar_bottom_col2 .user_link .link_icons img {
   width: 100%;
@@ -96,6 +99,7 @@ nav {
 }
 .navbar_bottom_col2 .user_link a {
   display: none;
+  user-select: none;
 }
 .navbar_bottom_col2 .user_link a.active {
   display: flex;
@@ -126,9 +130,9 @@ nav {
 }
 .bottom_content .links li {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--regular_cards_distance);
   padding: 0.75rem 0.85rem;
-  border-radius: 0.45rem;
+  border-radius: var(--regular_cards_radius);
   border: 1px solid whitesmoke;
   width: 48px;
   justify-content: center;
@@ -145,6 +149,7 @@ nav {
 }
 .bottom_content .links li a {
   display: none;
+  user-select: none;
 }
 .bottom_content .links li a.active {
   display: flex;
@@ -212,12 +217,12 @@ nav {
   border-right-color: black;
   cursor: grab;
 
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
+  /* -webkit-touch-callout: none; */
+  /* -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; */
 
   &:before {
     content: "";
@@ -279,7 +284,7 @@ nav {
 .language_selector .Display_lang li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--regular_cards_distance);
   border: 1px solid var(--main_font_light_color);
   color: white;
   padding: 0.25rem 0.45rem;
@@ -288,6 +293,7 @@ nav {
   transition: all 0.2s;
   justify-content: center;
   position: relative;
+  user-select: none;
 }
 .language_selector ul li {
   background-color: var(--main_font_light_color);

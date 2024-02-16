@@ -3,6 +3,7 @@
     <div
       [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
       class="top_content"
+      routerLink=""
     >
       <div
         [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
@@ -82,5 +83,5 @@
     </div>
   </nav>
   <div class="resize-handle--x" data-target="nav"></div>
-  <main></main>
+  <main><router-outlet></router-outlet></main>
 </div>
