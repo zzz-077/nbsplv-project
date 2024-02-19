@@ -1,0 +1,163 @@
+.infoPopUp_content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: hsla(0, 0%, 0%, 0.68);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info_box {
+  padding: 1.25rem 1rem;
+  border-radius: var(--regular_cards_radius);
+  background-color: var(--darker_bg_color);
+  display: flex;
+  gap: var(--regular_cards_distance);
+  align-items: center;
+  justify-content: space-around;
+  width: 860px;
+  max-width: 860px;
+  height: 328px;
+}
+.info_left_col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-around;
+  position: relative;
+}
+.info_left_col .img_edit_btn {
+  position: absolute;
+  bottom: 35px;
+  left: 10px;
+  width: 100%;
+  display: flex;
+}
+.info_left_col .img_edit_btn button {
+  border-radius: 0.125rem;
+  width: 100px;
+  max-width: 100px;
+  height: 30px;
+}
+.img_box {
+  width: 200px;
+  height: 200px;
+  max-width: 220px;
+  overflow: hidden;
+  border-radius: 50rem;
+}
+.img_box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buttons_box div {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.buttons_box div button {
+  border-radius: 0.125rem;
+  width: 140px;
+  max-width: 140px;
+  height: 40px;
+}
+
+.buttons_box div button:nth-child(1) {
+  background-color: rgba(0, 128, 0, 0);
+  border: 1px solid var(--button_green_color);
+}
+.buttons_box div button:nth-child(2) {
+  background-color: rgba(0, 128, 0, 0);
+  border: 1px solid var(--button_red_color);
+}
+.info_right_col {
+  width: 40%;
+  height: 100%;
+}
+.info_right_col form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.input_col div label {
+  margin-bottom: 0.25rem;
+  display: flex;
+  font-size: 0.875rem;
+}
+.input_col input {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--card_bg_color);
+  width: 100%;
+  color: var(--main_font_light_color);
+  height: 40px;
+}
+.input_col h3 {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--card_bg_color);
+  width: 100%;
+  color: var(--main_font_light_color);
+  font-size: 0.875rem;
+  font-weight: 300;
+  height: 40px;
+}
+.input_col input {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--card_bg_color);
+  width: 100%;
+  color: var(--main_font_light_color);
+}
+.pass_input {
+  display: flex;
+  flex-direction: column;
+}
+.password_box {
+  display: flex;
+  align-items: center;
+}
+.pass_input .pass_col1 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.pass_input .pass_col2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pass_input div .fa-solid {
+  margin-left: 0.125rem;
+  cursor: pointer;
+  height: 100%;
+}
+.submit_edit_info_btn {
+  display: flex;
+  justify-content: end;
+}
+.submit_edit_info_btn button {
+  border-radius: 0.125rem;
+  width: 140px;
+  max-width: 140px;
+  height: 40px;
+}
+
+.input_error {
+  display: none;
+}
+.input_col mat-error {
+  display: flex;
+  flex-direction: column;
+  color: rgba(230, 36, 36, 0.99);
+  font-size: 0.75rem;
+}

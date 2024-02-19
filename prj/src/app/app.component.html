@@ -41,7 +41,11 @@
         </li>
       </ul>
       <div class="navbar_bottom_col2">
-        <div [ngClass]="isSidebarfolded ? 'active' : null" class="user_link">
+        <div
+          (click)="userClick()"
+          [ngClass]="isSidebarfolded ? 'active' : null"
+          class="user_link"
+        >
           <div class="link_icons">
             <img src="assets/userLogo.jpg" alt="" />
           </div>
@@ -93,4 +97,8 @@
   </nav>
   <div class="resize-handle--x" data-target="nav"></div>
   <main><router-outlet></router-outlet></main>
+</div>
+
+<div *ngIf="isUserInfoclicked">
+  <app-userinfo (closeInfopopUp)="closePopup($event)"></app-userinfo>
 </div>

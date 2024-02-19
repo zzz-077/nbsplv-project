@@ -26,6 +26,24 @@ export class AppComponent {
   DefaultLangSelectorFlag = 'langEng.png';
   DefaultLangSelectorName = this.localStg.getLang();
   DefaultLangSelectorFullName = '';
+  isUserInfoclicked = false;
+  /*======================================*/
+  /*======================================*/
+  /*============POPUP FUNCTIONS===========*/
+  /*======================================*/
+  /*======================================*/
+  userClick() {
+    this.isUserInfoclicked = true;
+    console.log(this.isUserInfoclicked);
+  }
+  closePopup(event: any) {
+    console.log('fromchild: ' + event);
+    this.isUserInfoclicked = event;
+  }
+
+  selectTarget(fromElement: HTMLElement, selector: string): HTMLElement | null {
+    return fromElement.querySelector(selector);
+  }
   /*=======================================*/
   /*=======================================*/
   /*============RESIZABLE NAVBAR===========*/
@@ -44,10 +62,6 @@ export class AppComponent {
       this.DefaultLangSelectorName = this.localStg.getLang();
       this.DefaultLangSelectorFullName = 'Georgian';
     }
-  }
-
-  selectTarget(fromElement: HTMLElement, selector: string): HTMLElement | null {
-    return fromElement.querySelector(selector);
   }
 
   @HostListener('document:mousedown', ['$event'])

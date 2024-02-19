@@ -16,6 +16,8 @@
   --main_font_family: "Poppins", sans-serif;
   --main_font_light_color: whitesmoke;
   --button_bg_color: #074b57;
+  --button_green_color: #119a3a;
+  --button_red_color: #ce2525;
   --regular_cards_radius: 0.45rem;
   --regular_cards_distance: 0.5rem;
 }
@@ -45,6 +47,10 @@ body {
     border-radius: var(--regular_cards_radius);
   }
 }
+input {
+  border: 0;
+  outline: none;
+}
 button {
   outline: none;
   border-radius: 1.25rem;
@@ -59,6 +65,10 @@ button {
   position: relative;
   overflow: hidden;
   user-select: none;
+}
+button:disabled {
+  cursor: not-allowed;
+  background-color: #3d5458a2;
 }
 button p {
   position: absolute;

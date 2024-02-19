@@ -1,0 +1,89 @@
+<div class="infoPopUp_content">
+  <div class="info_box">
+    <div class="info_left_col">
+      <div class="img_box"><img src="assets/userLogo.jpg" alt="" /></div>
+      <div class="img_edit_btn">
+        <button><p>Change</p></button>
+      </div>
+    </div>
+    <div class="info_right_col">
+      <form>
+        <div class="input_col">
+          <div>
+            <label>Name</label>
+            <input *ngIf="isEditClicked" type="text" placeholder="zzz-077" />
+            <h3 *ngIf="!isEditClicked">zzz-077</h3>
+          </div>
+          <div class="input_error">
+            <mat-error>
+              <span>Name is required</span>
+              <span>Name form is incorrect</span>
+            </mat-error>
+          </div>
+        </div>
+        <div class="input_col">
+          <div>
+            <label>Email</label>
+            <input
+              *ngIf="isEditClicked"
+              type="text"
+              placeholder="zzz@gmail.com"
+            />
+            <h3 *ngIf="!isEditClicked">{{ "zzz@gmail.com" }}</h3>
+          </div>
+          <div class="input_error">
+            <mat-error>
+              <span>Email is required</span>
+              <span>Email form is incorrect</span>
+            </mat-error>
+          </div>
+        </div>
+        <div class="input_col">
+          <div class="pass_input">
+            <label>Password</label>
+            <div class="password_box">
+              <div class="pass_col1">
+                <input
+                  *ngIf="isEditClicked || showPass"
+                  type="text"
+                  placeholder="123456"
+                />
+                <h3 *ngIf="!isEditClicked && !showPass">********</h3>
+              </div>
+              <div class="pass_col2">
+                <i
+                  *ngIf="!showPass"
+                  (click)="showPassword('show')"
+                  class="fa-solid fa-eye"
+                ></i>
+                <i
+                  *ngIf="showPass"
+                  (click)="showPassword('hide')"
+                  class="fa-solid fa-eye-slash"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="input_error">
+            <mat-error>
+              <span>Email is required</span>
+              <span>Email form is incorrect</span>
+            </mat-error>
+          </div>
+        </div>
+        <div class="submit_edit_info_btn">
+          <div class="buttons_box">
+            <div *ngIf="!isEditClicked" class="btns_firstRow">
+              <button (click)="editClick($event)"><p>Edit</p></button>
+              <button (click)="exitClick($event)"><p>Exit</p></button>
+            </div>
+            <div *ngIf="isEditClicked" class="btns_secondRow">
+              <button (click)="saveClick($event)"><p>Save</p></button>
+              <button (click)="cancelClick($event)"><p>Cancel</p></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

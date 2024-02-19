@@ -1,30 +1,115 @@
 <div class="sign_content">
-  <form>
+  <form [formGroup]="userForm">
     <div class="header">
       <h3>Sign up to <span>NBSPLV</span></h3>
       <p>discover more</p>
     </div>
-
     <div class="input_box">
       <div class="input_col">
         <label>Name</label>
-        <input type="text" />
-        <div class="input_error"></div>
+        <input formControlName="name" type="text" placeholder="zzz077" />
+        <div
+          *ngIf="
+            userForm.get('name')?.invalid &&
+            (userForm.get('name')?.dirty || userForm.get('name')?.touched)
+          "
+          class="input_error"
+        >
+          <mat-error>
+            <span *ngIf="userForm.get('name')?.hasError('required')"
+              >Name is required</span
+            >
+            <span *ngIf="userForm.get('name')?.hasError('minlength')"
+              >Name must be minimum 4 character</span
+            >
+            <span *ngIf="userForm.get('name')?.hasError('maxlength')"
+              >Name must be maximum 15 character</span
+            >
+            <span *ngIf="userForm.get('name')?.hasError('pattern')"
+              >Name form is incorrect</span
+            >
+          </mat-error>
+        </div>
       </div>
       <div class="input_col">
         <label>Email</label>
-        <input type="email" />
-        <div class="input_error"></div>
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="zzz@gmail.com"
+        />
+        <div
+          *ngIf="
+            userForm.get('email')?.invalid &&
+            (userForm.get('email')?.dirty || userForm.get('email')?.touched)
+          "
+          class="input_error"
+        >
+          <mat-error>
+            <span *ngIf="userForm.get('email')?.hasError('required')"
+              >Email is required</span
+            >
+            <span *ngIf="userForm.get('email')?.hasError('pattern')"
+              >Email form is incorrect</span
+            >
+          </mat-error>
+        </div>
       </div>
       <div class="input_col">
         <label>Password</label>
-        <input type="password" />
-        <div class="input_error"></div>
+        <input formControlName="password" type="password" />
+        <div
+          *ngIf="
+            userForm.get('password')?.invalid &&
+            (userForm.get('password')?.dirty ||
+              userForm.get('password')?.touched)
+          "
+          class="input_error"
+        >
+          <mat-error>
+            <span *ngIf="userForm.get('password')?.hasError('required')"
+              >Password is required</span
+            >
+            <span *ngIf="userForm.get('password')?.hasError('minlength')"
+              >Password must be minimum 6 character</span
+            >
+            <span *ngIf="userForm.get('password')?.hasError('pattern')"
+              >Password form is incorrect</span
+            >
+          </mat-error>
+        </div>
       </div>
       <div class="input_col">
         <label>Confirm password</label>
-        <input type="password" />
-        <div class="input_error"></div>
+        <input formControlName="confirmpassword" type="password" />
+
+        <div
+          *ngIf="
+            userForm.get('confirmpassword')?.invalid &&
+            (userForm.get('confirmpassword')?.dirty ||
+              userForm.get('confirmpassword')?.touched)
+          "
+          class="input_error"
+        >
+          <mat-error>
+            <span *ngIf="userForm.get('confirmpassword')?.hasError('required')"
+              >Password confirmation is required</span
+            >
+            <span *ngIf="userForm.get('confirmpassword')?.hasError('minlength')"
+              >Password must be minimum 6 character</span
+            >
+            <span *ngIf="userForm.get('confirmpassword')?.hasError('pattern')"
+              >Password form is incorrect</span
+            >
+            <span
+              *ngIf="
+                userForm.get('confirmpassword')?.hasError('passwordMismatch') ==
+                true
+              "
+              >Password do not match</span
+            >
+          </mat-error>
+        </div>
       </div>
       <div class="input_col google_sign">
         <button>
@@ -33,7 +118,9 @@
         </button>
       </div>
       <div class="input_col click_btn">
-        <button><p>Sign Up</p></button>
+        <button (click)="signUp()" [disabled]="!userForm.valid">
+          <p>Sign Up</p>
+        </button>
         <p class="have_account">
           Already have an account? <a routerLink="/login">log in here</a>
         </p>
