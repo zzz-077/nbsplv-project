@@ -42,6 +42,7 @@
       </ul>
       <div class="navbar_bottom_col2">
         <div
+          *ngIf="isUserLogged"
           (click)="userClick()"
           [ngClass]="isSidebarfolded ? 'active' : null"
           class="user_link"
@@ -80,17 +81,27 @@
             </li>
           </div>
         </div>
+
         <button
+          *ngIf="!isUserLogged"
           routerLink="/signup"
           [ngClass]="isSidebarfolded ? 'active' : null"
         >
           <p>signUp</p>
         </button>
         <button
+          *ngIf="!isUserLogged"
           routerLink="/login"
           [ngClass]="isSidebarfolded ? 'active' : null"
         >
           <p>signIn</p>
+        </button>
+        <button
+          (click)="logOutClick()"
+          *ngIf="isUserLogged"
+          [ngClass]="isSidebarfolded ? 'active' : null"
+        >
+          <p>LogOut</p>
         </button>
       </div>
     </div>

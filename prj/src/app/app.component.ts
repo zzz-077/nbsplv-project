@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { LocalstoragesService } from './shared/services/localstorages/localstorages.service';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,6 +29,20 @@ export class AppComponent {
   DefaultLangSelectorName = this.localStg.getLang();
   DefaultLangSelectorFullName = '';
   isUserInfoclicked = false;
+  isUserLogged = false;
+
+  constructor(private router: Router, private localStg: LocalstoragesService) {
+    if (localStg.getLang() === 'eng') {
+      this.DefaultLangSelectorFlag = 'langEng.png';
+      this.DefaultLangSelectorName = this.localStg.getLang();
+      this.DefaultLangSelectorFullName = 'English';
+    } else {
+      this.DefaultLangSelectorFlag = 'langGeo.png';
+      this.DefaultLangSelectorName = this.localStg.getLang();
+      this.DefaultLangSelectorFullName = 'Georgian';
+    }
+  }
+
   /*======================================*/
   /*======================================*/
   /*============POPUP FUNCTIONS===========*/
@@ -34,10 +50,8 @@ export class AppComponent {
   /*======================================*/
   userClick() {
     this.isUserInfoclicked = true;
-    console.log(this.isUserInfoclicked);
   }
   closePopup(event: any) {
-    console.log('fromchild: ' + event);
     this.isUserInfoclicked = event;
   }
 
@@ -49,20 +63,6 @@ export class AppComponent {
   /*============RESIZABLE NAVBAR===========*/
   /*=======================================*/
   /*=======================================*/
-  constructor(
-    private elementRef: ElementRef,
-    private localStg: LocalstoragesService
-  ) {
-    if (localStg.getLang() === 'eng') {
-      this.DefaultLangSelectorFlag = 'langEng.png';
-      this.DefaultLangSelectorName = this.localStg.getLang();
-      this.DefaultLangSelectorFullName = 'English';
-    } else {
-      this.DefaultLangSelectorFlag = 'langGeo.png';
-      this.DefaultLangSelectorName = this.localStg.getLang();
-      this.DefaultLangSelectorFullName = 'Georgian';
-    }
-  }
 
   @HostListener('document:mousedown', ['$event'])
   onMouseDown(event: MouseEvent) {
@@ -133,7 +133,6 @@ export class AppComponent {
   onMouseUp(event: MouseEvent) {
     if (this.tracking) {
       this.tracking = false;
-      console.log('tracking stopped');
     }
   }
   /*========================================*/
@@ -157,5 +156,10 @@ export class AppComponent {
     }
     this.DefaultLangSelectorName = this.localStg.getLang();
     this.isLanguageSelectorClicked = false;
+  }
+  logOutClick() {
+    this.localStg.setSign(false);
+    this.isUserLogged = this.localStg.getSign();
+    this.router.navigate(['']);
   }
 }

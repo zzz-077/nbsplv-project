@@ -16,7 +16,10 @@
   width: 600px;
   max-width: 550px;
 }
-.sign_content form h3 {
+.sign_content form .header {
+  height: 57px;
+}
+.sign_content form .header h3 {
   font-family: "Inter";
   font-style: normal;
   font-weight: 800;
@@ -24,13 +27,20 @@
   line-height: 36px;
   color: var(--main_font_light_color);
 }
-.sign_content form h3 span {
+.sign_content form .header h3 span {
   font-family: "Inter";
   font-style: italic;
   font-weight: 300;
   font-size: 30px;
   line-height: 36px;
   color: var(--main_font_light_color);
+}
+.sign_content form .header p {
+  text-align: center;
+  color: var(--button_red_color);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  border-bottom: 1px solid var(--button_red_color);
 }
 .sign_content form .input_box {
   display: flex;

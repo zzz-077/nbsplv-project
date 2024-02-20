@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { user } from 'src/app/shared/models/userModel';
 
 @Injectable({
@@ -8,13 +8,25 @@ import { user } from 'src/app/shared/models/userModel';
 })
 export class UsersService {
   constructor(private firestore: AngularFirestore) {}
-  // Method to add a user to Firestore
+
   addUser(newUser: user): Promise<void> {
     const id = this.firestore.createId();
     return this.firestore.collection('users').doc(id).set(newUser);
   }
-  // Method to get all users from Firestore
+
   getUsers(): Observable<user[]> {
     return this.firestore.collection<user>('users').valueChanges();
+  }
+  userExist(email: string, password: string): Observable<boolean> {
+    return this.firestore
+      .collection<user>('users')
+      .valueChanges()
+      .pipe(
+        map((users) =>
+          users.some(
+            (user) => user.email === email && user.password === password
+          )
+        )
+      );
   }
 }

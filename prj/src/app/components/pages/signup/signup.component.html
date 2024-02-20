@@ -37,7 +37,20 @@
           formControlName="email"
           type="email"
           placeholder="zzz@gmail.com"
+          #email
+          (input)="checkEmailExists(email.value)"
         />
+        <div
+          *ngIf="
+            userForm.get('email')?.valid &&
+            (userForm.get('email')?.dirty || userForm.get('email')?.touched)
+          "
+          class="input_error"
+        >
+          <mat-error>
+            <span *ngIf="isEmailExist">Email is already used</span>
+          </mat-error>
+        </div>
         <div
           *ngIf="
             userForm.get('email')?.invalid &&
@@ -46,6 +59,7 @@
           class="input_error"
         >
           <mat-error>
+            <span *ngIf="isEmailExist">Email is already used</span>
             <span *ngIf="userForm.get('email')?.hasError('required')"
               >Email is required</span
             >
@@ -118,11 +132,11 @@
         </button>
       </div>
       <div class="input_col click_btn">
-        <button (click)="signUp()" [disabled]="!userForm.valid">
+        <button (click)="signUp()" [disabled]="!userForm.valid || isEmailExist">
           <p>Sign Up</p>
         </button>
         <p class="have_account">
-          Already have an account? <a routerLink="/login">log in here</a>
+          Already have an account? <a href="/login">log in here</a>
         </p>
       </div>
     </div>

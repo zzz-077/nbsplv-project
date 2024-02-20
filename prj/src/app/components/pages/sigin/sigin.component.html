@@ -1,6 +1,9 @@
 <div class="sign_content">
   <form [formGroup]="userForm">
-    <h3>Log in to <span>NBSPLV</span></h3>
+    <div class="header">
+      <h3>Log in to <span>NBSPLV</span></h3>
+      <p *ngIf="isLoginError">Incorrect email or password</p>
+    </div>
     <div class="input_box">
       <div class="input_col">
         <label>Email</label>
@@ -57,9 +60,11 @@
         </button>
       </div>
       <div class="input_col click_btn">
-        <button><p>Log in</p></button>
+        <button (click)="submitSignIn()" [disabled]="!userForm.valid">
+          <p>Log in</p>
+        </button>
         <p class="have_account">
-          Do't have an account? <a routerLink="/signup">Sign up here</a>
+          Do't have an account? <a href="/signup">Sign up here</a>
         </p>
       </div>
     </div>
