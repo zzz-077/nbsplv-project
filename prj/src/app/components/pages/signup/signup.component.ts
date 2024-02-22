@@ -28,7 +28,6 @@ export class SignupComponent {
       .ref('userDefImg/userDefaultImg.png')
       .getDownloadURL()
       .subscribe((url) => {
-        console.log(url);
         this.userDefaultImg = url;
       });
   }
@@ -83,12 +82,4 @@ export class SignupComponent {
     });
     this.router.navigate(['/login']);
   }
-
-  // async userDefaultImg() {
-  //   const img = 'userDefaultImg.png';
-  //   const path = `userDefImg/${img}`;
-  //   const uploadImg = await this.firestorage.upload(path, img);
-  //   const getUrl = await uploadImg.ref.getDownloadURL();
-  //   console.log(getUrl);
-  // }
 }

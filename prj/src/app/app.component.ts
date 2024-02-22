@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { LocalstoragesService } from './shared/services/localstorages/localstorages.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UsersService } from './shared/services/pageServices/pageServices/users.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,8 +31,18 @@ export class AppComponent {
   DefaultLangSelectorFullName = '';
   isUserInfoclicked = false;
   isUserLogged = false;
-
-  constructor(private router: Router, private localStg: LocalstoragesService) {
+  UserData = {
+    id: '',
+    name: '',
+    email: '',
+    password: '',
+    img: '',
+  };
+  constructor(
+    private usersServ: UsersService,
+    private router: Router,
+    private localStg: LocalstoragesService
+  ) {
     if (localStg.getLang() === 'eng') {
       this.DefaultLangSelectorFlag = 'langEng.png';
       this.DefaultLangSelectorName = this.localStg.getLang();
@@ -41,6 +52,25 @@ export class AppComponent {
       this.DefaultLangSelectorName = this.localStg.getLang();
       this.DefaultLangSelectorFullName = 'Georgian';
     }
+    this.localStg.islogged$.subscribe((isLogged) => {
+      this.isUserLogged = isLogged;
+    });
+    this.localStg.isUserdata$.subscribe((data) => {
+      if (data) {
+        this.UserData = {
+          id: data.documentId,
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          img: data.img,
+        };
+      }
+    });
+  }
+  logOutClick() {
+    this.localStg.setSign(false);
+    this.isUserLogged = this.localStg.getSign();
+    this.router.navigate(['']);
   }
 
   /*======================================*/
@@ -156,10 +186,5 @@ export class AppComponent {
     }
     this.DefaultLangSelectorName = this.localStg.getLang();
     this.isLanguageSelectorClicked = false;
-  }
-  logOutClick() {
-    this.localStg.setSign(false);
-    this.isUserLogged = this.localStg.getSign();
-    this.router.navigate(['']);
   }
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { user } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
 import { UsersService } from 'src/app/shared/services/pageServices/pageServices/users.service';
 
@@ -15,7 +16,9 @@ export class SiginComponent {
   /*============VARIABLES===========*/
   /*================================*/
   /*================================*/
+  // @Output() LoginedUser = new EventEmitter<user>();
   isLoginError = false;
+  LoginedUser: user[] = [];
   constructor(
     private localStg: LocalstoragesService,
     private router: Router,
@@ -45,20 +48,22 @@ export class SiginComponent {
   submitSignIn() {
     const email = this.userForm.value?.email as string,
       password = this.userForm.value?.password as string;
-    this.usersServ.userExist(email, password).subscribe((bool) => {
-      // console.log(bool);
-      if (bool) {
-        // console.log('Logined');
-        this.localStg.setSign(true);
-        this.router.navigate(['']);
-      } else {
-        this.isLoginError = true;
-        setTimeout(() => {
-          this.isLoginError = false;
-        }, 3000);
-      }
-    });
+    this.usersServ
+      .findUserByEmailAndPassword(email, password)
+      .subscribe((user) => {
+        // console.log(user);
+        if (user) {
+          this.localStg.setSign(true);
+          this.localStg.setUserData(user);
+          this.router.navigate(['']);
+        } else {
+          this.isLoginError = true;
+          setTimeout(() => {
+            this.isLoginError = false;
+          }, 3000);
+        }
+      });
   }
 }
 
-// vaska@gmail.com
+// mebo123@gmail.com

@@ -48,11 +48,11 @@
           class="user_link"
         >
           <div class="link_icons">
-            <img src="assets/userLogo.jpg" alt="" />
+            <img [src]="UserData.img" alt="" />
           </div>
           <a [ngClass]="isSidebarfoldedForLogo ? 'active' : null" href="#"
-            >zzz077dadadadad</a
-          >
+            >{{ UserData.name }}
+          </a>
         </div>
         <div class="language_selector">
           <ul *ngIf="isLanguageSelectorClicked">
@@ -107,9 +107,10 @@
     </div>
   </nav>
   <div class="resize-handle--x" data-target="nav"></div>
-  <main><router-outlet></router-outlet></main>
+  <main>
+    <router-outlet> </router-outlet>
+  </main>
 </div>
-
 <div *ngIf="isUserInfoclicked">
   <app-userinfo (closeInfopopUp)="closePopup($event)"></app-userinfo>
 </div>

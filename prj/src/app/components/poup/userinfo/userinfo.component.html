@@ -1,9 +1,17 @@
 <div class="infoPopUp_content">
   <div class="info_box">
     <div class="info_left_col">
-      <div class="img_box"><img src="assets/userLogo.jpg" alt="" /></div>
+      <div class="img_box"><img [src]="userInfo.img" alt="" /></div>
       <div class="img_edit_btn">
-        <button><p>Change</p></button>
+        <label for="imgId">
+          Change
+          <input
+            (change)="useImgChange($event)"
+            style="display: none"
+            type="file"
+            id="imgId"
+          />
+        </label>
       </div>
     </div>
     <div class="info_right_col">
@@ -11,8 +19,12 @@
         <div class="input_col">
           <div>
             <label>Name</label>
-            <input *ngIf="isEditClicked" type="text" placeholder="zzz-077" />
-            <h3 *ngIf="!isEditClicked">zzz-077</h3>
+            <input
+              *ngIf="isEditClicked"
+              type="text"
+              placeholder="{{ userInfo.name }}"
+            />
+            <h3 *ngIf="!isEditClicked">{{ userInfo.name }}</h3>
           </div>
           <div class="input_error">
             <mat-error>
@@ -27,9 +39,9 @@
             <input
               *ngIf="isEditClicked"
               type="text"
-              placeholder="zzz@gmail.com"
+              placeholder="{{ userInfo.email }}"
             />
-            <h3 *ngIf="!isEditClicked">{{ "zzz@gmail.com" }}</h3>
+            <h3 *ngIf="!isEditClicked">{{ userInfo.email }}</h3>
           </div>
           <div class="input_error">
             <mat-error>
@@ -46,7 +58,7 @@
                 <input
                   *ngIf="isEditClicked || showPass"
                   type="text"
-                  placeholder="123456"
+                  placeholder="{{ userInfo.password }}"
                 />
                 <h3 *ngIf="!isEditClicked && !showPass">********</h3>
               </div>
