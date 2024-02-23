@@ -15,38 +15,38 @@
       </div>
     </div>
     <div class="info_right_col">
-      <form>
+      <form [formGroup]="userForm">
         <div class="input_col">
           <div>
             <label>Name</label>
             <input
+              formControlName="name"
               *ngIf="isEditClicked"
               type="text"
               placeholder="{{ userInfo.name }}"
             />
             <h3 *ngIf="!isEditClicked">{{ userInfo.name }}</h3>
           </div>
-          <div class="input_error">
+          <div
+            *ngIf="
+              userForm.get('name')?.invalid &&
+              (userForm.get('name')?.dirty || userForm.get('name')?.touched)
+            "
+            class="input_error"
+          >
             <mat-error>
-              <span>Name is required</span>
-              <span>Name form is incorrect</span>
-            </mat-error>
-          </div>
-        </div>
-        <div class="input_col">
-          <div>
-            <label>Email</label>
-            <input
-              *ngIf="isEditClicked"
-              type="text"
-              placeholder="{{ userInfo.email }}"
-            />
-            <h3 *ngIf="!isEditClicked">{{ userInfo.email }}</h3>
-          </div>
-          <div class="input_error">
-            <mat-error>
-              <span>Email is required</span>
-              <span>Email form is incorrect</span>
+              <span *ngIf="userForm.get('name')?.hasError('required')"
+                >Name is required</span
+              >
+              <span *ngIf="userForm.get('name')?.hasError('minlength')"
+                >Name must be minimum 4 character</span
+              >
+              <span *ngIf="userForm.get('name')?.hasError('maxlength')"
+                >Name must be maximum 15 character</span
+              >
+              <span *ngIf="userForm.get('name')?.hasError('pattern')"
+                >Name form is incorrect</span
+              >
             </mat-error>
           </div>
         </div>
@@ -56,6 +56,7 @@
             <div class="password_box">
               <div class="pass_col1">
                 <input
+                  formControlName="password"
                   *ngIf="isEditClicked || showPass"
                   type="text"
                   placeholder="{{ userInfo.password }}"
@@ -76,10 +77,24 @@
               </div>
             </div>
           </div>
-          <div class="input_error">
+          <div
+            *ngIf="
+              userForm.get('password')?.invalid &&
+              (userForm.get('password')?.dirty ||
+                userForm.get('password')?.touched)
+            "
+            class="input_error"
+          >
             <mat-error>
-              <span>Email is required</span>
-              <span>Email form is incorrect</span>
+              <span *ngIf="userForm.get('password')?.hasError('required')"
+                >Password is required</span
+              >
+              <span *ngIf="userForm.get('password')?.hasError('minlength')"
+                >Password must be minimum 6 character</span
+              >
+              <span *ngIf="userForm.get('password')?.hasError('pattern')"
+                >Password form is incorrect</span
+              >
             </mat-error>
           </div>
         </div>
@@ -90,7 +105,13 @@
               <button (click)="exitClick($event)"><p>Exit</p></button>
             </div>
             <div *ngIf="isEditClicked" class="btns_secondRow">
-              <button (click)="saveClick($event)"><p>Save</p></button>
+              <button
+                [disabled]="!userForm.valid"
+                class="save_btn"
+                (click)="saveClick($event)"
+              >
+                <p>Save</p>
+              </button>
               <button (click)="cancelClick($event)"><p>Cancel</p></button>
             </div>
           </div>

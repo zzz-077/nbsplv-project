@@ -92,7 +92,7 @@ button::before {
 }
 button:hover::before {
   z-index: 0;
-  animation: btn_anim 0.5s linear;
+  animation: btn_anim 0.3s linear;
   opacity: 1;
 }
 button:hover p {

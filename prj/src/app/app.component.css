@@ -76,13 +76,19 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: var(--regular_cards_distance);
 }
 .navbar_bottom_col2 .user_link {
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 0.25rem;
   cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+.navbar_bottom_col2 .user_link.active {
+  justify-content: left;
 }
 
 .navbar_bottom_col2 .user_link .link_icons {
@@ -100,6 +106,9 @@ main {
 .navbar_bottom_col2 .user_link a {
   display: none;
   user-select: none;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .navbar_bottom_col2 .user_link a.active {
   display: flex;
@@ -108,7 +117,6 @@ main {
   border-radius: 4px;
   height: 30px;
   background-color: rgba(0, 0, 0, 0);
-  border: 0.5px solid var(--main_font_light_color);
 }
 .navbar_bottom_col2 button.active {
   width: 80%;
@@ -133,7 +141,6 @@ main {
   gap: var(--regular_cards_distance);
   padding: 0.75rem 0.85rem;
   border-radius: var(--regular_cards_radius);
-  border: 1px solid whitesmoke;
   width: 48px;
   justify-content: center;
   align-self: center;
@@ -141,8 +148,7 @@ main {
   transition: all 0.2s;
 }
 .bottom_content .links li:hover {
-  background-color: var(--darker_bg_color);
-  border: 1px solid rgba(245, 245, 245, 0);
+  background-color: #03171c;
 }
 .bottom_content .links li .link_icons {
   font-size: 1.25rem;
@@ -263,7 +269,12 @@ main {
   position: relative;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
+/* .language_selector.active {
+  justify-content: left;
+  align-items: left;
+} */
 .language_selector ul {
   display: flex;
   flex-direction: column;
@@ -271,7 +282,14 @@ main {
   position: absolute;
   top: -80px;
   left: 0;
+  justify-content: center;
+  width: 100%;
 }
+.language_selector.active ul {
+  justify-content: left;
+  width: auto;
+}
+
 .Display_lang {
   display: flex;
   flex-direction: column;
@@ -285,7 +303,6 @@ main {
   display: flex;
   align-items: center;
   gap: var(--regular_cards_distance);
-  border: 1px solid var(--main_font_light_color);
   color: white;
   padding: 0.25rem 0.45rem;
   border-radius: 0.3rem;
@@ -295,9 +312,16 @@ main {
   position: relative;
   user-select: none;
 }
+.language_selector.active ul li {
+  justify-content: space-around;
+}
+.language_selector.active .Display_lang li {
+  padding: 0;
+  justify-content: left;
+}
 .language_selector ul li {
-  background-color: var(--main_font_light_color);
-  color: var(--card_bg_color);
+  background-color: var(--darker_bg_color);
+  color: var(--main_font_light_color);
   border: 0;
 }
 .language_selector ul li:hover {

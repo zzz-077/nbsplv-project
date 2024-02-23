@@ -18,9 +18,9 @@
   gap: var(--regular_cards_distance);
   align-items: center;
   justify-content: space-around;
-  width: 860px;
-  max-width: 860px;
-  height: 328px;
+  width: 750px;
+  max-width: 750px;
+  height: 300px;
 }
 .info_left_col {
   display: flex;
@@ -66,7 +66,7 @@
 }
 .info_left_col .img_edit_btn label:hover::before {
   z-index: -1;
-  animation: btn_anim 0.5s linear;
+  animation: btn_anim 0.3s linear;
   opacity: 1;
 }
 .info_left_col .img_edit_btn label:hover {
@@ -184,12 +184,12 @@
   height: 40px;
 }
 
-.input_error {
-  display: none;
-}
 .input_col mat-error {
   display: flex;
   flex-direction: column;
   color: rgba(230, 36, 36, 0.99);
   font-size: 0.75rem;
+}
+.buttons_box .btns_secondRow button:nth-child(1):disabled {
+  border: 1px solid #3d5458a2;
 }

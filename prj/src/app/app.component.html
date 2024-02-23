@@ -44,7 +44,7 @@
         <div
           *ngIf="isUserLogged"
           (click)="userClick()"
-          [ngClass]="isSidebarfolded ? 'active' : null"
+          [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
           class="user_link"
         >
           <div class="link_icons">
@@ -54,7 +54,10 @@
             >{{ UserData.name }}
           </a>
         </div>
-        <div class="language_selector">
+        <div
+          [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
+          class="language_selector"
+        >
           <ul *ngIf="isLanguageSelectorClicked">
             <li (click)="languageSelectedClick('eng')">
               <span class="flag"><img src="assets/langEng.png" alt="" /></span>
@@ -67,7 +70,11 @@
               <p *ngIf="isSidebarfoldedForLang">Georgian</p>
             </li>
           </ul>
-          <div (click)="langSelectorClick()" class="Display_lang">
+          <div
+            [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
+            (click)="langSelectorClick()"
+            class="Display_lang"
+          >
             <li>
               <span class="flag"
                 ><img src="assets/{{ DefaultLangSelectorFlag }}" alt=""
@@ -81,7 +88,6 @@
             </li>
           </div>
         </div>
-
         <button
           *ngIf="!isUserLogged"
           routerLink="/signup"

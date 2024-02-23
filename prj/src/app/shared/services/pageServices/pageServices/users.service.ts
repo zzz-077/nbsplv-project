@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 import { user } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from '../../localstorages/localstorages.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class UsersService {
 
   constructor(
     private localStg: LocalstoragesService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private firestorage: AngularFireStorage
   ) {}
 
   addUser(newUser: user): Promise<void> {
@@ -45,13 +47,38 @@ export class UsersService {
   }
 
   async updateUserImg(userId: string, userImgUrl: string): Promise<void> {
-    console.log('userId&userimgUrl:' + userId, userImgUrl);
     try {
       await this.firestore.collection('users').doc(userId).update({
         img: userImgUrl,
       });
     } catch (error) {
-      console.log('Error while updating img: ', error);
+      console.log('ERROR WHILE UPDATING USER IMG: ', error);
+    }
+  }
+
+  deleteUserImgFromStorage(img: string): Promise<void> {
+    return this.firestorage.ref(`userImgBase/${img}`).delete().toPromise();
+  }
+
+  getImageNameFromUrl(url: string): string {
+    const parts = url.split('/');
+    const imageNameWithToken = parts[parts.length - 1];
+    const imageWithQuestionMark = imageNameWithToken.split('?');
+    const changedname = imageWithQuestionMark[0];
+    return changedname.slice(14);
+  }
+  async updateUser(
+    userId: string,
+    name: string,
+    password: string
+  ): Promise<void> {
+    try {
+      await this.firestore.collection('users').doc(userId).update({
+        name: name,
+        password: password,
+      });
+    } catch (error) {
+      console.log('ERROR WHILE UPDATING USER NAME&PASSWORD: ', error);
     }
   }
 }

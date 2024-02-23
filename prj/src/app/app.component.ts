@@ -70,6 +70,16 @@ export class AppComponent {
   logOutClick() {
     this.localStg.setSign(false);
     this.isUserLogged = this.localStg.getSign();
+    localStorage.setItem(
+      'userInfo',
+      JSON.stringify({
+        id: '',
+        name: '',
+        email: '',
+        password: '',
+        img: '',
+      })
+    );
     this.router.navigate(['']);
   }
 
