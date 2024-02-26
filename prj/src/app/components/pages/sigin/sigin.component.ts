@@ -18,7 +18,13 @@ export class SiginComponent {
   /*================================*/
   // @Output() LoginedUser = new EventEmitter<user>();
   isLoginError = false;
-  LoginedUser: user[] = [];
+  LoginedUser = {
+    email: '',
+    id: '',
+    img: '',
+    name: '',
+    password: '',
+  };
   constructor(
     private localStg: LocalstoragesService,
     private router: Router,
@@ -48,13 +54,20 @@ export class SiginComponent {
   submitSignIn() {
     const email = this.userForm.value?.email as string,
       password = this.userForm.value?.password as string;
+    this.usersServ;
+
+    this.usersServ
+      .GetUserByEmailAndPassword(email, password)
+      .subscribe((user) => {
+        this.LoginedUser = user;
+      });
+
     this.usersServ
       .findUserByEmailAndPassword(email, password)
-      .subscribe((user) => {
-        // console.log(user);
-        if (user) {
+      .then((isUser) => {
+        if (isUser) {
           this.localStg.setSign(true);
-          this.localStg.setUserData(user);
+          this.localStg.setUserData(this.LoginedUser);
           this.router.navigate(['']);
         } else {
           this.isLoginError = true;
@@ -64,6 +77,7 @@ export class SiginComponent {
         }
       });
   }
+  signinWithGoogle() {}
 }
 
 // mebo123@gmail.com

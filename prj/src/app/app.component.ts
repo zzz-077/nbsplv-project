@@ -26,7 +26,6 @@ export class AppComponent {
   isSidebarfoldedForLogo = false;
   isSidebarfoldedForLang = false;
   isLanguageSelectorClicked = false;
-  DefaultLangSelectorFlag = 'langEng.png';
   DefaultLangSelectorName = this.localStg.getLang();
   DefaultLangSelectorFullName = '';
   isUserInfoclicked = false;
@@ -43,12 +42,10 @@ export class AppComponent {
     private router: Router,
     private localStg: LocalstoragesService
   ) {
-    if (localStg.getLang() === 'eng') {
-      this.DefaultLangSelectorFlag = 'langEng.png';
+    if (localStg.getLang() === 'Eng') {
       this.DefaultLangSelectorName = this.localStg.getLang();
       this.DefaultLangSelectorFullName = 'English';
     } else {
-      this.DefaultLangSelectorFlag = 'langGeo.png';
       this.DefaultLangSelectorName = this.localStg.getLang();
       this.DefaultLangSelectorFullName = 'Georgian';
     }
@@ -187,11 +184,9 @@ export class AppComponent {
 
   languageSelectedClick(lang: string) {
     this.localStg.setLang(lang);
-    if (lang == 'eng') {
-      this.DefaultLangSelectorFlag = 'langEng.png';
+    if (lang == 'Eng') {
       this.DefaultLangSelectorFullName = 'English';
     } else {
-      this.DefaultLangSelectorFlag = 'langGeo.png';
       this.DefaultLangSelectorFullName = 'Georgian';
     }
     this.DefaultLangSelectorName = this.localStg.getLang();

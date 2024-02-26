@@ -64,10 +64,11 @@
 .sign_content form .input_box .input_col input {
   outline: none;
   border: 0;
-  padding: 0.5rem 0.5rem;
+  padding: 0.875rem 0.5rem;
   background-color: var(--darker_bg_color);
-  border-radius: 10vh;
+  border-radius: var(--regular_cards_radius);
   color: var(--main_font_light_color);
+  font-size: 0.875rem;
 }
 .sign_content form .google_sign,
 .click_btn {

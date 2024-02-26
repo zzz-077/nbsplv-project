@@ -13,6 +13,10 @@ import { SiginComponent } from './components/pages/sigin/sigin.component';
 import { MatSelectModule } from '@angular/material/select';
 import { UserinfoComponent } from './components/poup/userinfo/userinfo.component';
 import { environment } from 'src/environments/environment';
+import {
+  AngularFireAuth,
+  AngularFireAuthModule,
+} from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MatSelectModule,
   ],
   providers: [],

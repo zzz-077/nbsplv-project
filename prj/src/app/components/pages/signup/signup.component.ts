@@ -82,4 +82,21 @@ export class SignupComponent {
     });
     this.router.navigate(['/login']);
   }
+
+  signUpByGoogle() {
+    this.usersServ.addUserByGoogle().subscribe((userData) => {
+      if (userData) {
+        console.log('Registered successfully');
+        this.usersServ.addUser({
+          name: userData.name as string,
+          email: userData.email as string,
+          password: userData.password as string,
+          img: userData.img as string,
+        });
+        this.router.navigate(['/login']);
+      } else {
+        console.log('USER ALREADY EXISTS');
+      }
+    });
+  }
 }

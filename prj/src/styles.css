@@ -4,15 +4,15 @@
     rgba(0, 122, 150) 1%,
     rgba(7, 67, 81) 47%,
     rgba(7, 62, 74) 54.5%,
-    #061e23 100%
+    #061114 100%
   );
   /* --darker_bg_color: linear-gradient(
     270deg,
     rgba(0, 123, 151, 0) 0%,
     #01242c 0.01%
   ); */
-  --darker_bg_color: #01242c;
-  --card_bg_color: #020707;
+  --darker_bg_color: #020707;
+  --card_bg_color: #092a35;
   --main_font_family: "Poppins", sans-serif;
   --main_font_light_color: whitesmoke;
   --button_bg_color: #074b57;

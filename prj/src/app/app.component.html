@@ -20,7 +20,7 @@
             <i class="fa-solid fa-address-book"></i>
           </div>
           <a [ngClass]="isSidebarfoldedForLogo ? 'active' : null" href="#"
-            >About</a
+            >About artist</a
           >
         </li>
         <li>
@@ -28,7 +28,7 @@
             <i class="fa-solid fa-play"></i>
           </div>
           <a [ngClass]="isSidebarfoldedForLogo ? 'active' : null" href="#"
-            >All song</a
+            >All songs</a
           >
         </li>
         <li>
@@ -59,15 +59,13 @@
           class="language_selector"
         >
           <ul *ngIf="isLanguageSelectorClicked">
-            <li (click)="languageSelectedClick('eng')">
-              <span class="flag"><img src="assets/langEng.png" alt="" /></span>
-              <p *ngIf="isSidebarfolded && !isSidebarfoldedForLang">Eng</p>
-              <p *ngIf="isSidebarfoldedForLang">English</p>
+            <li (click)="languageSelectedClick('Eng')">
+              <p *ngIf="!isSidebarfoldedForLogo">Eng</p>
+              <p *ngIf="isSidebarfoldedForLogo">English</p>
             </li>
-            <li (click)="languageSelectedClick('geo')">
-              <span class="flag"><img src="assets/langGeo.png" alt="" /></span>
-              <p *ngIf="isSidebarfolded && !isSidebarfoldedForLang">Geo</p>
-              <p *ngIf="isSidebarfoldedForLang">Georgian</p>
+            <li (click)="languageSelectedClick('Geo')">
+              <p *ngIf="!isSidebarfoldedForLogo">Geo</p>
+              <p *ngIf="isSidebarfoldedForLogo">Georgian</p>
             </li>
           </ul>
           <div
@@ -76,13 +74,10 @@
             class="Display_lang"
           >
             <li>
-              <span class="flag"
-                ><img src="assets/{{ DefaultLangSelectorFlag }}" alt=""
-              /></span>
-              <p *ngIf="isSidebarfolded && !isSidebarfoldedForLang">
+              <p *ngIf="!isSidebarfoldedForLogo">
                 {{ DefaultLangSelectorName }}
               </p>
-              <p *ngIf="isSidebarfoldedForLang">
+              <p *ngIf="isSidebarfoldedForLogo">
                 {{ DefaultLangSelectorFullName }}
               </p>
             </li>

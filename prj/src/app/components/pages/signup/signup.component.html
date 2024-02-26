@@ -37,6 +37,7 @@
           formControlName="email"
           type="email"
           placeholder="zzz@gmail.com"
+          autocomplete="new-email"
           #email
           (input)="checkEmailExists(email.value)"
         />
@@ -71,7 +72,11 @@
       </div>
       <div class="input_col">
         <label>Password</label>
-        <input formControlName="password" type="password" />
+        <input
+          formControlName="password"
+          type="password"
+          autocomplete="new-password"
+        />
         <div
           *ngIf="
             userForm.get('password')?.invalid &&
@@ -95,7 +100,11 @@
       </div>
       <div class="input_col">
         <label>Confirm password</label>
-        <input formControlName="confirmpassword" type="password" />
+        <input
+          formControlName="confirmpassword"
+          type="password"
+          autocomplete="new-password"
+        />
 
         <div
           *ngIf="
@@ -126,7 +135,7 @@
         </div>
       </div>
       <div class="input_col google_sign">
-        <button>
+        <button (click)="signUpByGoogle()">
           <img src="assets/google_icon.png" />
           <p>Sign up with Google</p>
         </button>

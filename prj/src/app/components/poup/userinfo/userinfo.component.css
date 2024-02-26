@@ -13,7 +13,8 @@
 .info_box {
   padding: 1.25rem 1rem;
   border-radius: var(--regular_cards_radius);
-  background-color: var(--darker_bg_color);
+  /* background-color: var(--darker_bg_color); */
+  background-color: var(--card_bg_color);
   display: flex;
   gap: var(--regular_cards_distance);
   align-items: center;
@@ -126,7 +127,8 @@
 .input_col input {
   padding: 0.75rem 1rem;
   border-radius: 0.25rem;
-  background-color: var(--card_bg_color);
+  /* background-color: var(--card_bg_color); */
+  background-color: var(--darker_bg_color);
   width: 100%;
   color: var(--main_font_light_color);
   height: 40px;
@@ -134,20 +136,15 @@
 .input_col h3 {
   padding: 0.75rem 1rem;
   border-radius: 0.25rem;
-  background-color: var(--card_bg_color);
+  /* background-color: var(--card_bg_color); */
+  background-color: var(--darker_bg_color);
   width: 100%;
   color: var(--main_font_light_color);
   font-size: 0.875rem;
   font-weight: 300;
   height: 40px;
 }
-.input_col input {
-  padding: 0.75rem 1rem;
-  border-radius: 0.25rem;
-  background-color: var(--card_bg_color);
-  width: 100%;
-  color: var(--main_font_light_color);
-}
+
 .pass_input {
   display: flex;
   flex-direction: column;

@@ -11,6 +11,7 @@
           formControlName="email"
           type="email"
           placeholder="zzz@gmail.com"
+          autocomplete="new-email"
         />
         <div
           *ngIf="
@@ -31,7 +32,11 @@
       </div>
       <div class="input_col">
         <label>Password</label>
-        <input formControlName="password" type="password" />
+        <input
+          formControlName="password"
+          type="password"
+          autocomplete="new-password"
+        />
         <div
           *ngIf="
             userForm.get('password')?.invalid &&
@@ -54,7 +59,7 @@
         </div>
       </div>
       <div class="input_col google_sign">
-        <button>
+        <button (click)="signinWithGoogle()">
           <img src="assets/google_icon.png" />
           <p>Continue with Google</p>
         </button>
