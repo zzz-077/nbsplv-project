@@ -55,12 +55,13 @@ export class AppComponent {
     this.localStg.isUserdata$.subscribe((data) => {
       if (data) {
         this.UserData = {
-          id: data.documentId,
+          id: data.id,
           name: data.name,
           email: data.email,
           password: data.password,
           img: data.img,
         };
+        console.log(this.UserData);
       }
     });
   }

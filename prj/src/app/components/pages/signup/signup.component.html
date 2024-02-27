@@ -134,12 +134,7 @@
           </mat-error>
         </div>
       </div>
-      <div class="input_col google_sign">
-        <button (click)="signUpByGoogle()">
-          <img src="assets/google_icon.png" />
-          <p>Sign up with Google</p>
-        </button>
-      </div>
+
       <div class="input_col click_btn">
         <button (click)="signUp()" [disabled]="!userForm.valid || isEmailExist">
           <p>Sign Up</p>

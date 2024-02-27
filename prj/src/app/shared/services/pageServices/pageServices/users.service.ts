@@ -22,51 +22,46 @@ export class UsersService {
 
   addUser(newUser: user): Promise<void> {
     const id = this.firestore.createId();
-    this.fireAuth.createUserWithEmailAndPassword(
-      newUser.email,
-      newUser.password
-    );
     return this.firestore.collection('users').doc(id).set(newUser);
   }
-  addUserByGoogle(): Observable<user> {
-    let userName: string | undefined | null = '';
-    return from(
-      this.fireAuth
-        .signInWithPopup(new GoogleAuthProvider())
-        .then((user) => {
-          if (user.user?.displayName?.split(' ')) {
-            userName = user.user?.displayName?.split(' ')[0];
-          } else if (user.user?.displayName?.split('-')) {
-            userName = user.user?.displayName?.split('-')[0];
-          } else if (user.user?.displayName?.split('_')) {
-            userName = user.user?.displayName?.split('_')[0];
-          } else if (user.user?.displayName?.split('/')) {
-            userName = user.user?.displayName?.split('/')[0];
-          } else if (user.user?.displayName?.split('.')) {
-            userName = user.user?.displayName?.split('.')[0];
-          } else {
-            userName = user.user?.displayName;
-          }
 
-          const userData = {
-            name: userName,
-            email: user.user?.email,
-            password: '000000',
-            img: user.user?.photoURL,
-          };
-          console.log(userData);
-
-          return userData;
-        })
-        .catch((errMsg) => {
-          console.log('ERROR MESSAGE WHILE SIGNUP BY GOOGLE', errMsg);
-          return errMsg;
-        })
-    );
+  addUserByGoogle(newUser: user, userID: string): Observable<void> {
+    const id = userID;
+    if (newUser.name?.split(' ')) {
+      newUser.name = newUser.name?.split(' ')[0];
+    } else if (newUser.name?.split('-')) {
+      newUser.name = newUser.name?.split('-')[0];
+    } else if (newUser.name?.split('_')) {
+      newUser.name = newUser.name?.split('_')[0];
+    } else if (newUser.name?.split('/')) {
+      newUser.name = newUser.name?.split('/')[0];
+    } else if (newUser.name?.split('.')) {
+      newUser.name = newUser.name?.split('.')[0];
+    } else {
+      newUser.name = newUser.name;
+    }
+    return from(this.firestore.collection('users').doc(id).set(newUser));
   }
 
   getUsers(): Observable<user[]> {
     return this.firestore.collection<user>('users').valueChanges();
+  }
+
+  ifUserExistsByEmail(email: string): Observable<any | null> {
+    return this.firestore
+      .collection('users', (ref) => ref.where('email', '==', email))
+      .get()
+      .pipe(
+        map((user) => {
+          if (user.size > 0) {
+            const userDoc = user.docs[0];
+            const userData = userDoc.data() as user;
+            return { user: userData, id: userDoc.id };
+          } else {
+            return null;
+          }
+        })
+      );
   }
 
   async findUserByEmailAndPassword(
@@ -83,7 +78,7 @@ export class UsersService {
     }
   }
 
-  GetUserByEmailAndPassword(email: string, password: string): Observable<any> {
+  findEnteredUserData(email: string, password: string): Observable<any> {
     return this.firestore
       .collection('users', (ref) =>
         ref.where('email', '==', email).where('password', '==', password)
@@ -97,7 +92,7 @@ export class UsersService {
             const userDoc = querySnapshot.docs[0];
             const userData = userDoc.data() as user;
             // this.userSignedIn.emit({ user: userData, documentId: userDoc.id });
-            return { user: userData, documentId: userDoc.id };
+            return { user: userData, id: userDoc.id };
           }
         })
       );

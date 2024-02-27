@@ -29,6 +29,7 @@ export class LocalstoragesService {
     localStorage.setItem('user', JSON.stringify(user));
     this.isLoggedSubject.next(user);
   }
+
   getSign() {
     return JSON.parse(localStorage.getItem('user') || 'false');
   }
@@ -37,21 +38,22 @@ export class LocalstoragesService {
     localStorage.setItem(
       'userInfo',
       JSON.stringify({
-        id: user.documentId,
-        name: user.user.name,
-        email: user.user.email,
-        password: user.user.password,
-        img: user.user.img,
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        img: user.img,
       })
     );
     this.userData.next({
-      id: user.documentId,
-      name: user.user.name,
-      email: user.user.email,
-      password: user.user.password,
-      img: user.user.img,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      img: user.img,
     });
   }
+
   getUserData() {
     return JSON.parse(localStorage.getItem('userInfo') || 'null');
   }
