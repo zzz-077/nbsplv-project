@@ -11,8 +11,6 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
   providedIn: 'root',
 })
 export class UsersService {
-  // userSignedIn = new EventEmitter<{ user: user; documentId: string }>();
-
   constructor(
     private localStg: LocalstoragesService,
     private firestore: AngularFirestore,
@@ -91,7 +89,6 @@ export class UsersService {
           } else {
             const userDoc = querySnapshot.docs[0];
             const userData = userDoc.data() as user;
-            // this.userSignedIn.emit({ user: userData, documentId: userDoc.id });
             return { user: userData, id: userDoc.id };
           }
         })

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { user } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
-import { UsersService } from 'src/app/shared/services/pageServices/pageServices/users.service';
+import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
 @Component({
   selector: 'app-sigin',
   templateUrl: './sigin.component.html',
@@ -57,24 +57,32 @@ export class SiginComponent {
     const email = this.userForm.value?.email as string,
       password = this.userForm.value?.password as string;
     this.usersServ;
-
-    this.usersServ.findEnteredUserData(email, password).subscribe((user) => {
-      this.LoginedUser = user;
-    });
+    let isUserLogined = false;
     this.usersServ
       .findUserByEmailAndPassword(email, password)
       .then((isUser) => {
-        if (isUser) {
-          this.localStg.setSign(true);
-          this.localStg.setUserData(this.LoginedUser);
-          this.router.navigate(['']);
-        } else {
-          this.isLoginError = true;
-          setTimeout(() => {
-            this.isLoginError = false;
-          }, 3000);
-        }
+        isUserLogined = isUser;
       });
+
+    this.usersServ.findEnteredUserData(email, password).subscribe((user) => {
+      if (user) {
+        this.LoginedUser = {
+          email: user.user.email as string,
+          id: user.id as string,
+          img: user.user.img as string,
+          name: user.user.name as string,
+          password: user.user.password as string,
+        };
+        this.localStg.setSign(true);
+        this.localStg.setUserData(this.LoginedUser);
+        this.router.navigate(['']);
+      } else {
+        this.isLoginError = true;
+        setTimeout(() => {
+          this.isLoginError = false;
+        }, 3000);
+      }
+    });
   }
 
   signinWithGoogle() {
@@ -119,7 +127,7 @@ export class SiginComponent {
                       name: user.displayName as string,
                       password: '000000',
                     };
-                    console.log(this.LoginedUser);
+                    // console.log(this.LoginedUser);
                     this.localStg.setSign(true);
                     this.localStg.setUserData(this.LoginedUser);
                     this.router.navigate(['']);

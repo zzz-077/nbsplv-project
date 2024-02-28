@@ -17,6 +17,8 @@ import {
   AngularFireAuth,
   AngularFireAuthModule,
 } from '@angular/fire/compat/auth';
+import { AboutComponent } from './components/pages/about/about.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {
     UndefinedpageComponent,
     SiginComponent,
     UserinfoComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import {
     AngularFirestoreModule,
     AngularFireAuthModule,
     MatSelectModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

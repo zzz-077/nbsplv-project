@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { LocalstoragesService } from './shared/services/localstorages/localstorages.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UsersService } from './shared/services/pageServices/pageServices/users.service';
+import { UsersService } from './shared/services/pageServices/usersService/users.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -61,7 +61,6 @@ export class AppComponent {
           password: data.password,
           img: data.img,
         };
-        console.log(this.UserData);
       }
     });
   }

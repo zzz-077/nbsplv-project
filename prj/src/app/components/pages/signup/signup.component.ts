@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { passwordMatch } from '../../../shared/models/passwordconfirmation';
 import { Router } from '@angular/router';
 import { user } from 'src/app/shared/models/userModel';
-import { UsersService } from 'src/app/shared/services/pageServices/pageServices/users.service';
+import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Component({
   selector: 'app-signup',

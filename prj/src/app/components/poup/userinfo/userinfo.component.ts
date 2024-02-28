@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
-import { UsersService } from 'src/app/shared/services/pageServices/pageServices/users.service';
+import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
 
 @Component({
   selector: 'app-userinfo',
@@ -33,7 +33,7 @@ export class UserinfoComponent {
     private localStg: LocalstoragesService
   ) {
     this.localStg.isUserdata$.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       if (data) {
         this.userInfo = {
           id: data.id,
@@ -73,8 +73,8 @@ export class UserinfoComponent {
   editClick(event: Event) {
     event.preventDefault();
     this.isEditClicked = true;
-    console.log(this.isEditClicked);
   }
+
   saveClick(event: Event) {
     this.usersServ.updateUser(
       this.userInfo.id,
@@ -100,14 +100,17 @@ export class UserinfoComponent {
     event.preventDefault();
     this.isEditClicked = false;
   }
+
   cancelClick(event: Event) {
     event.preventDefault();
     this.isEditClicked = false;
   }
+
   exitClick(event: Event) {
     this.closeInfopopUp.emit(false);
     event.preventDefault();
   }
+
   showPassword(value: string) {
     if (value === 'show') {
       this.showPass = true;
@@ -115,6 +118,7 @@ export class UserinfoComponent {
       this.showPass = false;
     }
   }
+
   async useImgChange(file: any) {
     const img = file.target.files[0];
     if (img) {
@@ -126,7 +130,6 @@ export class UserinfoComponent {
           const imageName = this.usersServ.getImageNameFromUrl(
             this.userInfo.img
           );
-          // console.log(imageName);
           await this.usersServ.deleteUserImgFromStorage(imageName);
         } catch (error) {
           console.error('Error deleting old image:', error);

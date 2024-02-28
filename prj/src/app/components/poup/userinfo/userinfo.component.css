@@ -152,6 +152,7 @@
 .password_box {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .pass_input .pass_col1 {
   display: flex;
@@ -162,13 +163,15 @@
 .pass_input .pass_col2 {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  position: absolute;
+  top: 31%;
+  right: 5px;
 }
 
 .pass_input div .fa-solid {
-  margin-left: 0.125rem;
   cursor: pointer;
   height: 100%;
+  font-size: 0.875rem;
 }
 .submit_edit_info_btn {
   display: flex;

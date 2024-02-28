@@ -35,6 +35,19 @@ export class LocalstoragesService {
   }
 
   setUserData(user: any) {
+    if (user.name?.split(' ')) {
+      user.name = user.name?.split(' ')[0];
+    } else if (user.name?.split('-')) {
+      user.name = user.name?.split('-')[0];
+    } else if (user.name?.split('_')) {
+      user.name = user.name?.split('_')[0];
+    } else if (user.name?.split('/')) {
+      user.name = user.name?.split('/')[0];
+    } else if (user.name?.split('.')) {
+      user.name = user.name?.split('.')[0];
+    } else {
+      user.name = user.name;
+    }
     localStorage.setItem(
       'userInfo',
       JSON.stringify({

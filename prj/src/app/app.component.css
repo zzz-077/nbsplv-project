@@ -120,7 +120,7 @@ main {
   background-color: var(--darker_bg_color);
 }
 .navbar_bottom_col2 button.active {
-  width: 80%;
+  width: 100%;
 }
 .bottom_content .links {
   display: flex;
@@ -273,20 +273,21 @@ main {
   align-items: center;
   width: 100%;
 }
+.language_selector.active {
+  width: 100%;
+}
 
 .language_selector ul {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   position: absolute;
-  top: -80px;
+  top: -75px;
   left: 0;
   justify-content: center;
   width: 100%;
 }
 .language_selector.active ul {
-  justify-content: left;
-  width: auto;
 }
 
 .Display_lang {
@@ -312,14 +313,12 @@ main {
   justify-content: center;
   position: relative;
   user-select: none;
+  height: 30px;
 }
 .language_selector.active ul li {
   justify-content: space-around;
 }
-.language_selector.active .Display_lang li {
-  padding: 0;
-  justify-content: left;
-}
+
 .language_selector ul li {
   background-color: var(--darker_bg_color);
   color: var(--main_font_light_color);
