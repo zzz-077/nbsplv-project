@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsService/artist-data.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class AboutComponent {
     img: '',
     followers: 0,
   };
+  followersValue: number = 0;
 
   constructor(private artistData: ArtistDataService) {
     this.artistData.getArtistInfo().subscribe((artistInfo) => {
@@ -19,5 +20,19 @@ export class AboutComponent {
         followers: artistInfo.followers.total,
       };
     });
+  }
+  ngOnInit() {
+    let startValue = 0;
+    let endvalue = 172901;
+    let interval = 50;
+    let duration = Math.floor(interval / endvalue);
+    let counter = setInterval(() => {
+      startValue += 550;
+      this.followersValue = startValue;
+      if (startValue >= endvalue) {
+        this.followersValue = endvalue;
+        clearInterval(counter);
+      }
+    }, duration);
   }
 }

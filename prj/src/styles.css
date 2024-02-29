@@ -20,6 +20,7 @@
   --button_red_color: #ce2525;
   --regular_cards_radius: 0.45rem;
   --regular_cards_distance: 0.5rem;
+  --about_font_lightGreen_color: #caf8e8;
 }
 * {
   padding: 0;

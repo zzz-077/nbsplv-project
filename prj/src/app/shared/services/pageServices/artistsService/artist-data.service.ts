@@ -10,6 +10,8 @@ export class ArtistDataService {
   private clientSecret = '456e1a4e4d044be5bdff4fb122cb4c0f';
   private token: string = '';
   private artistId: string = '61TQfpvTjHYQjPrvtJPwVa';
+  private albums: string =
+    'albums?include_groups=album,single,compilation,appears_on&offset=0&limit=20&locale=en-CA,en;q=0.9,ka;q=0.8';
   constructor(private http: HttpClient) {}
 
   private async getToken(): Promise<string> {
@@ -87,13 +89,13 @@ export class ArtistDataService {
     });
   }
 
-  getArtistAlbums(albumsEndpoint: string): Observable<any> {
+  getArtistAlbums(): Observable<any> {
     return new Observable<any>((observer) => {
       this.getToken()
         .then((token) => {
           this.http
             .get<any>(
-              `https://api.spotify.com/v1/artists/${this.artistId}/${albumsEndpoint}`,
+              `https://api.spotify.com/v1/artists/${this.artistId}/${this.albums}`,
               {
                 headers: new HttpHeaders({
                   Authorization: 'Bearer ' + token,

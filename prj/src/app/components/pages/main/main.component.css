@@ -76,14 +76,15 @@
 
 .albums_list {
   display: flex;
+  /* grid-template-columns: auto auto auto; */
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-evenly;
+  gap: 1.75rem;
 }
 .albums_list .card {
-  width: 410px;
-  max-width: 410px;
-  height: 160px;
+  width: 500px;
+  max-width: 500px;
+  height: 200px;
   background-color: var(--darker_bg_color);
   display: flex;
   justify-content: space-between;
@@ -118,7 +119,7 @@
 }
 .album_img {
   height: 100%;
-  width: 42%;
+  width: 204px;
   overflow: hidden;
   border-radius: var(--regular_cards_radius);
   /* padding: 0.5rem; */
@@ -131,6 +132,7 @@
 }
 .album_description {
   height: 100%;
+  width: 60%;
   /* padding: 0.25rem; */
   display: flex;
   flex-direction: column;
