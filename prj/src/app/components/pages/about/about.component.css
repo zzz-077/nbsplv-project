@@ -36,7 +36,11 @@
   width: 80%;
   gap: 6rem;
   z-index: 10;
+  width: 95%;
+  border-radius: 1rem;
+  backdrop-filter: blur(50px);
 }
+
 .top_row_col1 {
   width: 320px;
   max-width: 320px;
@@ -50,6 +54,7 @@
   height: 100%;
   object-fit: cover;
   user-select: none;
+  filter: brightness(1.8);
 }
 .top_row_col2 {
   display: flex;
@@ -57,15 +62,17 @@
   text-align: left;
   justify-content: center;
   height: 100%;
+  user-select: none;
 }
 .top_row_col2 h1 {
   font-size: 6rem;
   font-weight: 900;
   color: var(--about_font_lightGreen_color);
+  line-height: 100px;
 }
 .top_row_col2 h4 {
   font-size: 20px;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-family: var(--main_font_family);
   color: var(--about_font_lightGreen_color);
 }
@@ -74,7 +81,7 @@
 }
 .about_bottom_row {
   padding: 2rem 1rem;
-  background-color: var(--card_bg_color);
+  background-color: #092a35c8;
   width: 95%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
@@ -85,7 +92,9 @@
   margin-top: 4rem;
   z-index: 10;
 }
+
 .about_bottom_row ul {
+  z-index: 10;
   max-width: 1480px;
   margin: 0 auto;
   justify-content: center;

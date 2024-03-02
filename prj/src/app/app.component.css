@@ -154,10 +154,12 @@ main {
 }
 .bottom_content .links li .link_icons {
   font-size: 1.25rem;
+  color: var(--about_font_lightGreen_color);
 }
 .bottom_content .links li a {
   display: none;
   user-select: none;
+  color: var(--about_font_lightGreen_color);
 }
 .bottom_content .links li a.active {
   display: flex;
@@ -287,8 +289,6 @@ main {
   justify-content: center;
   width: 100%;
 }
-.language_selector.active ul {
-}
 
 .Display_lang {
   display: flex;
@@ -314,6 +314,7 @@ main {
   position: relative;
   user-select: none;
   height: 30px;
+  color: var(--about_font_lightGreen_color);
 }
 .language_selector.active ul li {
   justify-content: space-around;
@@ -321,11 +322,11 @@ main {
 
 .language_selector ul li {
   background-color: var(--darker_bg_color);
-  color: var(--main_font_light_color);
+  /* color: var(--main_font_light_color); */
   border: 0;
 }
 .language_selector ul li:hover {
-  background-color: rgb(215, 213, 213);
+  background-color: rgb(34, 34, 34);
 }
 .language_selector ul li span,
 .language_selector .Display_lang li span {

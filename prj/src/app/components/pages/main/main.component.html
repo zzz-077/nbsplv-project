@@ -1,16 +1,36 @@
 <div class="main_content">
   <div class="main_img_content">
-    <img src="assets/main_cover_img.png" alt="" />
-    <h1>NBSPLV</h1>
+    <swiper-container
+      autoplay-delay="6500"
+      autoplay-disable-on-interaction="false"
+    >
+      <swiper-slide *ngFor="let slide of sliders">
+        <div class="main_title">
+          <span>this is</span>
+          <h1>NBSPLV</h1>
+          <h2>{{ slide.quote }}</h2>
+        </div>
+        <img [src]="slide.img" alt="" />
+      </swiper-slide>
+    </swiper-container>
   </div>
   <div class="main_albums_content">
     <div class="albums_search_content">
-      <input type="search" placeholder="search albums" />
+      <input
+        type="search"
+        placeholder="search albums"
+        (input)="onSearchInput($event)"
+      />
       <h3>Popular Albums by NBSPLV</h3>
     </div>
-
+    <div class="notFoundAlbums_box" *ngIf="!isSearchedAlbums">
+      <div>
+        <h2>No albums were found</h2>
+        <p>Please change the field</p>
+      </div>
+    </div>
     <div class="albums_list">
-      <div *ngFor="let album of albums" class="card">
+      <div *ngFor="let album of filteredAlbums" class="card">
         <div class="album_img">
           <img [src]="album.img" alt="" />
         </div>

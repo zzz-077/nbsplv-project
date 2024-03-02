@@ -79,6 +79,7 @@ button p {
   color: var(--main_font_light_color);
   font-weight: 500;
   transition: all 0.5s;
+  color: var(--about_font_lightGreen_color);
 }
 button::before {
   content: " ";

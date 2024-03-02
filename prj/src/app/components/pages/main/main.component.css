@@ -10,58 +10,80 @@
   gap: var(--regular_cards_distance);
 }
 .main_img_content {
-  position: relative;
   width: 100%;
   height: 700px;
   max-height: 700px;
-  overflow: hidden;
   border-radius: var(--regular_cards_radius);
+  overflow: hidden;
 }
-.main_img_content img {
+.main_img_content swiper-container {
+  height: 100%;
+  width: 100%;
+}
+.main_img_content swiper-container swiper-slide {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main_img_content swiper-container swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   user-select: none;
+  filter: brightness(0.2);
 }
-.main_img_content h1 {
+.main_img_content swiper-container swiper-slide .main_title {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
   font-family: "Inter";
   font-style: italic;
   font-weight: 300;
-  font-size: 76px;
+  font-size: 5rem;
   line-height: 92px;
-  color: var(--main_font_light_color);
+  color: var(--about_font_lightGreen_color);
+}
+.main_img_content swiper-container swiper-slide .main_title h2 {
+  font-size: 1rem;
 }
 .main_albums_content {
-  padding: 0.875rem 1rem;
+  padding: 2rem 2rem;
   background-color: var(--card_bg_color);
   width: 100%;
   border-radius: var(--regular_cards_radius);
   display: flex;
   flex-direction: column;
-  /* gap: var(--regular_cards_distance); */
-  gap: 2rem;
 }
 .albums_search_content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 6rem;
 }
 .albums_search_content h3 {
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
-  color: var(--main_font_light_color);
+  color: var(--about_font_lightGreen_color);
   font-family: var(--main_font_family);
 }
 .albums_search_content input {
-  background: var(--button_bg_color);
-  border-radius: 0.5rem;
+  background: var(--darker_bg_color);
+  border-radius: 5rem;
   border: 0;
-  padding: 0.025rem 1rem;
+  padding: 0.45rem 1rem;
+  font-size: 1rem;
   color: var(--main_font_light_color);
 }
 .albums_search_content input::placeholder {
@@ -75,15 +97,13 @@
 /*==================================*/
 
 .albums_list {
-  display: flex;
-  /* grid-template-columns: auto auto auto; */
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 1.75rem;
+  display: grid;
+  /* grid-template-columns: auto auto; */
+  /* flex-direction: column; */
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+  gap: 2rem;
 }
-.albums_list .card {
-  width: 500px;
-  max-width: 500px;
+.card {
   height: 200px;
   background-color: var(--darker_bg_color);
   display: flex;
@@ -96,6 +116,10 @@
   position: relative;
   overflow: hidden;
 }
+.albums_list .card:hover .album_img img {
+  transform: scale(1.1);
+}
+/*
 .albums_list .card::after {
   position: absolute;
   content: " ";
@@ -106,14 +130,13 @@
   z-index: 0;
   transition: all 0.5s;
 }
-.albums_list .card:hover .album_img img {
-  transform: scale(1.1);
-}
+
 .albums_list .card:hover::after {
   width: 80px;
-  background-color: #092a35;
+  background-color: #092a35b6;
   filter: blur(20px);
-}
+} */
+
 .albums_list .card:hover .album_description .col2 i {
   transform: translateX(0);
 }
@@ -122,7 +145,6 @@
   width: 204px;
   overflow: hidden;
   border-radius: var(--regular_cards_radius);
-  /* padding: 0.5rem; */
 }
 .album_img img {
   width: 100%;
@@ -133,7 +155,6 @@
 .album_description {
   height: 100%;
   width: 60%;
-  /* padding: 0.25rem; */
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -143,6 +164,7 @@
 }
 .album_description div {
   z-index: 10;
+  color: var(--about_font_lightGreen_color);
 }
 .album_description .col1 {
   text-align: end;
@@ -167,4 +189,21 @@
   color: var(--button_bg_color);
   transform: translateX(100px);
   transition: all 0.5s;
+}
+.notFoundAlbums_box {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.notFoundAlbums_box div {
+  background-color: var(--darker_bg_color);
+  padding: 1rem 1.5rem;
+  border-radius: var(--regular_cards_radius);
+  color: var(--about_font_lightGreen_color);
+}
+.notFoundAlbums_box div h2 {
+  font-size: 2rem;
+}
+.notFoundAlbums_box div p {
+  font-size: 1.125rem;
 }

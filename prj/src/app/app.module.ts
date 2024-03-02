@@ -1,25 +1,32 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+//components
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { SignupComponent } from './components/pages/signup/signup.component';
 import { MainComponent } from './components/pages/main/main.component';
-import { UndefinedpageComponent } from './components/pages/undefinedpage/undefinedpage.component';
+import { SignupComponent } from './components/pages/signup/signup.component';
 import { SiginComponent } from './components/pages/sigin/sigin.component';
+import { AppRoutingModule } from './app-routing.module';
+import { UserinfoComponent } from './components/poup/userinfo/userinfo.component';
+import { UndefinedpageComponent } from './components/pages/undefinedpage/undefinedpage.component';
+import { AboutComponent } from './components/pages/about/about.component';
+//reactiveformas
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //material
 import { MatSelectModule } from '@angular/material/select';
-import { UserinfoComponent } from './components/poup/userinfo/userinfo.component';
+//firebase
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import {
   AngularFireAuth,
   AngularFireAuthModule,
 } from '@angular/fire/compat/auth';
-import { AboutComponent } from './components/pages/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
-
+//swipper slider
+// import { SwiperModule } from 'swiper/angular';
+import { register } from 'swiper/element/bundle';
+import { AlbumTracksComponent } from './components/pages/album-tracks/album-tracks.component';
+register();
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     SiginComponent,
     UserinfoComponent,
     AboutComponent,
+    AlbumTracksComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +47,10 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthModule,
     MatSelectModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

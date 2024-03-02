@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -134,6 +134,39 @@ export class ArtistDataService {
             .subscribe(
               (data) => {
                 observer.next(data);
+                observer.complete();
+              },
+              (error) => {
+                observer.error(error);
+              }
+            );
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
+  getFilteredAlbums(searchQuery: string): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.getToken()
+        .then((token) => {
+          const params = new HttpParams().set('q', searchQuery);
+          this.http
+            .get<any>(
+              `https://api.spotify.com/v1/artists/${this.artistId}/albums`,
+              {
+                headers: new HttpHeaders({
+                  Authorization: 'Bearer ' + token,
+                }),
+                params: params,
+              }
+            )
+            .subscribe(
+              (data) => {
+                const filteredAlbums = data.items.filter((album: any) =>
+                  album.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+                observer.next(filteredAlbums);
                 observer.complete();
               },
               (error) => {

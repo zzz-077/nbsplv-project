@@ -35,7 +35,7 @@ export class AppComponent {
     name: '',
     email: '',
     password: '',
-    img: '',
+    img: 'assets/userDefault_img.png',
   };
   constructor(
     private usersServ: UsersService,

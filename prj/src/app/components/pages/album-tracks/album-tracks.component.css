@@ -1,0 +1,10 @@
+.albumTracks_content {
+  padding: 2rem 2rem;
+  background-color: var(--card_bg_color);
+  width: 100%;
+  border-radius: var(--regular_cards_radius);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}

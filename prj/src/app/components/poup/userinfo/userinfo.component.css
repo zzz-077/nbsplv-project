@@ -39,40 +39,29 @@
   display: flex;
 }
 .info_left_col .img_edit_btn label {
-  border-radius: 0.125rem;
-  width: 100px;
-  max-width: 100px;
-  height: 30px;
+  border-radius: 5rem;
+  padding: 0.75rem;
+
   background-color: var(--button_bg_color);
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   font-size: 0.875rem;
   z-index: 10;
   transition: all 0.3s;
   cursor: pointer;
 }
-.info_left_col .img_edit_btn label::before {
-  content: " ";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: whitesmoke;
-  transition: all 0.5s;
-  opacity: 0;
-  z-index: -1;
+.info_left_col .img_edit_btn label i {
+  font-size: 1rem;
+  color: var(--about_font_lightGreen_color);
+  transition: all 0.3s;
 }
-.info_left_col .img_edit_btn label:hover::before {
-  z-index: -1;
-  animation: btn_anim 0.3s linear;
-  opacity: 1;
-}
+
 .info_left_col .img_edit_btn label:hover {
-  color: var(--card_bg_color);
-  z-index: 10;
+  background-color: var(--main_font_light_color);
+}
+.info_left_col .img_edit_btn label:hover i {
+  color: var(--darker_bg_color);
 }
 
 .img_box {
