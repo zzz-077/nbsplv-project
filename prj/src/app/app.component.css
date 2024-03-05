@@ -326,7 +326,7 @@ main {
   border: 0;
 }
 .language_selector ul li:hover {
-  background-color: rgb(34, 34, 34);
+  background-color: #03171c;
 }
 .language_selector ul li span,
 .language_selector .Display_lang li span {

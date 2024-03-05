@@ -30,7 +30,11 @@
       </div>
     </div>
     <div class="albums_list">
-      <div *ngFor="let album of filteredAlbums" class="card">
+      <div
+        (click)="albumClick(album)"
+        *ngFor="let album of filteredAlbums"
+        class="card"
+      >
         <div class="album_img">
           <img [src]="album.img" alt="" />
         </div>

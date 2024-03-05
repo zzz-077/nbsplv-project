@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArtistDataService {
+  albumSubject = new BehaviorSubject<any>(this.getClickedAlbum());
+  getAlbum$: Observable<any> = this.albumSubject.asObservable();
   private clientId = 'b3b6638a73a44662be955a3235338ef0';
   private clientSecret = '456e1a4e4d044be5bdff4fb122cb4c0f';
   private token: string = '';
   private artistId: string = '61TQfpvTjHYQjPrvtJPwVa';
-  private albums: string =
-    'albums?include_groups=album,single,compilation,appears_on&offset=0&limit=20&locale=en-CA,en;q=0.9,ka;q=0.8';
+  private artistsAlbums: string =
+    'albums?include_groups=album,single,compilation,appears_on&offset=0&limit=30&locale=en-CA,en;q=0.9,ka;q=0.8';
   constructor(private http: HttpClient) {}
 
   private async getToken(): Promise<string> {
@@ -95,7 +97,7 @@ export class ArtistDataService {
         .then((token) => {
           this.http
             .get<any>(
-              `https://api.spotify.com/v1/artists/${this.artistId}/${this.albums}`,
+              `https://api.spotify.com/v1/artists/${this.artistId}/${this.artistsAlbums}`,
               {
                 headers: new HttpHeaders({
                   Authorization: 'Bearer ' + token,
@@ -124,7 +126,7 @@ export class ArtistDataService {
         .then((token) => {
           this.http
             .get<any>(
-              `https://api.spotify.com/v1/albums/${albumId}/tracks?offset=0&limit=20&locale=en-CA,en;q=0.9,ka;q=0.8`,
+              `https://api.spotify.com/v1/albums/${albumId}/tracks?offset=0&limit=30&locale=en-CA,en;q=0.9,ka;q=0.8`,
               {
                 headers: new HttpHeaders({
                   Authorization: 'Bearer ' + token,
@@ -146,6 +148,7 @@ export class ArtistDataService {
         });
     });
   }
+
   getFilteredAlbums(searchQuery: string): Observable<any> {
     return new Observable<any>((observer) => {
       this.getToken()
@@ -178,5 +181,40 @@ export class ArtistDataService {
           observer.error(error);
         });
     });
+  }
+
+  getMusic(musicId: string): Observable<string[]> {
+    return new Observable<string[]>((observer) => {
+      this.getToken()
+        .then((token) => {
+          this.http
+            .get<any>(`https://api.spotify.com/v1/tracks/${musicId}`, {
+              headers: new HttpHeaders({
+                Authorization: 'Bearer ' + token,
+              }),
+            })
+            .subscribe(
+              (data) => {
+                observer.next(data.album.images[1].url);
+                observer.complete();
+              },
+              (error) => {
+                observer.error(error);
+              }
+            );
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
+
+  setClickedAlbum(album: any) {
+    localStorage.setItem('selectedAlbum', JSON.stringify(album));
+    this.albumSubject.next(album);
+  }
+
+  getClickedAlbum() {
+    return JSON.parse(localStorage.getItem('selectedAlbum') || 'null');
   }
 }

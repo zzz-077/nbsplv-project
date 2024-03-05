@@ -1,4 +1,5 @@
 import { Component, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, debounceTime } from 'rxjs';
 import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsService/artist-data.service';
 
@@ -28,9 +29,10 @@ export class MainComponent {
       img: 'assets/main_banner4.jpg',
     },
   ];
+  selectedAlbum: any = {};
   isSearchedAlbums: boolean = true;
   searchtestSubject: Subject<string> = new Subject<string>();
-  constructor(private artistData: ArtistDataService) {
+  constructor(private router: Router, private artistData: ArtistDataService) {
     this.searchtestSubject.pipe(debounceTime(500)).subscribe((searchText) => {
       this.filterSearch(searchText);
     });
@@ -67,9 +69,9 @@ export class MainComponent {
             this.isSearchedAlbums = true;
           } else {
             this.isSearchedAlbums = false;
-            console.log(this.isSearchedAlbums);
+            // console.log(this.isSearchedAlbums);
           }
-          console.log(this.isSearchedAlbums);
+          // console.log(this.isSearchedAlbums);
           this.filteredAlbums = [];
           this.filteredAlbums = albums.map((album: any) => {
             return {
@@ -88,7 +90,13 @@ export class MainComponent {
       );
     }
   }
+
   onSearchInput(event: any) {
     this.searchtestSubject.next(event.target.value);
+  }
+
+  albumClick(album: any) {
+    this.artistData.setClickedAlbum(album);
+    this.router.navigate([`album/${album.id}`]);
   }
 }

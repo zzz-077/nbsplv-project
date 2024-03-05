@@ -1,0 +1,22 @@
+<div class="music_card">
+  <div class="col1">
+    <div>
+      <p>{{ index }}</p>
+    </div>
+    <div>
+      <div class="song_img">
+        <img [src]="AlbumMusics.img" alt="" />
+      </div>
+      <p>{{ AlbumMusics.name }}</p>
+    </div>
+  </div>
+  <div class="col1">
+    <div>
+      <i class="fa-solid fa-user-group"></i>
+      <p>{{ AlbumMusics.duration_ms | number }}</p>
+    </div>
+    <div>
+      <p><i class="fa-solid fa-circle-plus"></i></p>
+    </div>
+  </div>
+</div>

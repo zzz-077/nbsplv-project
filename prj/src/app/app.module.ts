@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { SwiperModule } from 'swiper/angular';
 import { register } from 'swiper/element/bundle';
 import { AlbumTracksComponent } from './components/pages/album-tracks/album-tracks.component';
+import { MusicCardComponent } from './components/pages/music-card/music-card.component';
 register();
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ register();
     UserinfoComponent,
     AboutComponent,
     AlbumTracksComponent,
+    MusicCardComponent,
   ],
   imports: [
     BrowserModule,
