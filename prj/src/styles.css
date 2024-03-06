@@ -12,7 +12,7 @@
     #01242c 0.01%
   ); */
   --darker_bg_color: #020707;
-  --card_bg_color: #092a35;
+  --card_bg_color: #092a35c8;
   --main_font_family: "Poppins", sans-serif;
   --main_font_light_color: whitesmoke;
   --button_bg_color: #074b57;
@@ -67,9 +67,12 @@ button {
   overflow: hidden;
   user-select: none;
 }
+button:hover {
+  opacity: 0.6;
+}
 button:disabled {
   cursor: not-allowed;
-  background-color: #3d5458a2;
+  background-color: #545555a2;
 }
 button p {
   position: absolute;
@@ -81,7 +84,7 @@ button p {
   transition: all 0.5s;
   color: var(--about_font_lightGreen_color);
 }
-button::before {
+/* button::before {
   content: " ";
   position: absolute;
   top: 0;
@@ -91,15 +94,12 @@ button::before {
   background-color: whitesmoke;
   transition: all 0.5s;
   opacity: 0;
-}
-button:hover::before {
+} */
+/* button:hover::before {
   z-index: 0;
   animation: btn_anim 0.3s linear;
   opacity: 1;
-}
-button:hover p {
-  color: black;
-}
+} */
 
 a {
   text-decoration: none;

@@ -10,14 +10,15 @@ import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsS
 export class MusicCardComponent {
   @Input() AlbumMusics: any = {};
   @Input() index: number = 0;
+  @Input() albumImg_child: string = '';
   constructor(private artistData: ArtistDataService) {}
 
   ngOnInit() {
-    this.artistData.getMusic(this.AlbumMusics.id).subscribe((musicImg) => {
-      this.AlbumMusics = {
-        ...this.AlbumMusics,
-        img: musicImg,
-      };
-    });
+    // this.artistData.getMusic(this.AlbumMusics.id).subscribe((musicImg) => {
+    //   this.AlbumMusics = {
+    //     ...this.AlbumMusics,
+    //     img: musicImg,
+    //   };
+    // });
   }
 }

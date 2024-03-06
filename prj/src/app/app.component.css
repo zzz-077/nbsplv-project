@@ -116,7 +116,6 @@ main {
 .navbar_bottom_col2 button {
   border-radius: 4px;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0);
   background-color: var(--darker_bg_color);
 }
 .navbar_bottom_col2 button.active {

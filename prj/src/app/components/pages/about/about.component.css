@@ -18,6 +18,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  padding: 0 2rem;
 }
 .about_content::before {
   content: "";
@@ -33,10 +34,9 @@
 .about_top_row {
   display: flex;
   align-items: center;
-  width: 80%;
   gap: 6rem;
   z-index: 10;
-  width: 95%;
+  width: 100%;
   border-radius: 1rem;
   backdrop-filter: blur(50px);
 }
@@ -82,7 +82,7 @@
 .about_bottom_row {
   padding: 2rem 1rem;
   background-color: #092a35c8;
-  width: 95%;
+  width: 100%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   display: flex;
@@ -101,7 +101,6 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 0 2rem;
 }
 .about_bottom_row ul li {
   display: flex;

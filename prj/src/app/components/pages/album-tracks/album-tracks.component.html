@@ -7,6 +7,7 @@
       <img [src]="album.img" alt="" />
     </div>
     <div class="top_row_right_col">
+      <h3>Album</h3>
       <h1>{{ album.name }}</h1>
     </div>
   </div>
@@ -21,7 +22,7 @@
         </div>
       </div>
       <div class="col1">
-        <div>Listens</div>
+        <div><p>Listens</p></div>
         <div>
           <p>Add to playlist</p>
         </div>
@@ -32,6 +33,7 @@
         <app-music-card
           *ngFor="let music of albumMusics; let i = index"
           [AlbumMusics]="music"
+          [albumImg_child]="albumImg"
           [index]="i + 1"
         ></app-music-card>
       </div>

@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { register } from 'swiper/element/bundle';
 import { AlbumTracksComponent } from './components/pages/album-tracks/album-tracks.component';
 import { MusicCardComponent } from './components/pages/music-card/music-card.component';
+import { ListsComponent } from './components/pages/lists/lists.component';
 register();
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ register();
     AboutComponent,
     AlbumTracksComponent,
     MusicCardComponent,
+    ListsComponent,
   ],
   imports: [
     BrowserModule,

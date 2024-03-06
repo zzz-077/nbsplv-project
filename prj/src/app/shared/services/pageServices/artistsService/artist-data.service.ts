@@ -183,31 +183,31 @@ export class ArtistDataService {
     });
   }
 
-  getMusic(musicId: string): Observable<string[]> {
-    return new Observable<string[]>((observer) => {
-      this.getToken()
-        .then((token) => {
-          this.http
-            .get<any>(`https://api.spotify.com/v1/tracks/${musicId}`, {
-              headers: new HttpHeaders({
-                Authorization: 'Bearer ' + token,
-              }),
-            })
-            .subscribe(
-              (data) => {
-                observer.next(data.album.images[1].url);
-                observer.complete();
-              },
-              (error) => {
-                observer.error(error);
-              }
-            );
-        })
-        .catch((error) => {
-          observer.error(error);
-        });
-    });
-  }
+  // getMusic(musicId: string): Observable<string[]> {
+  //   return new Observable<string[]>((observer) => {
+  //     this.getToken()
+  //       .then((token) => {
+  //         this.http
+  //           .get<any>(`https://api.spotify.com/v1/tracks/${musicId}`, {
+  //             headers: new HttpHeaders({
+  //               Authorization: 'Bearer ' + token,
+  //             }),
+  //           })
+  //           .subscribe(
+  //             (data) => {
+  //               observer.next(data.album.images[1].url);
+  //               observer.complete();
+  //             },
+  //             (error) => {
+  //               observer.error(error);
+  //             }
+  //           );
+  //       })
+  //       .catch((error) => {
+  //         observer.error(error);
+  //       });
+  //   });
+  // }
 
   setClickedAlbum(album: any) {
     localStorage.setItem('selectedAlbum', JSON.stringify(album));

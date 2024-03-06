@@ -11,9 +11,11 @@ export class AlbumTracksComponent {
   album: any = {};
   albumMusics: any = {};
   isDataRecieved = false;
+  albumImg: string = '';
   constructor(private artistData: ArtistDataService) {
     this.artistData.getAlbum$.subscribe((albumdata) => {
       this.album = albumdata;
+      this.albumImg = albumdata.img;
       // console.log(this.album.id);
     });
     this.artistData

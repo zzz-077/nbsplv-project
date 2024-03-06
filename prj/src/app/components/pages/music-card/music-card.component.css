@@ -74,3 +74,12 @@
   align-items: center;
   gap: 0.125rem;
 }
+.music_card .col1:nth-child(2) div:nth-child(2) i {
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--main_font_light_color);
+}
+.music_card .col1:nth-child(2) div:nth-child(2) i:hover {
+  color: #848687;
+}

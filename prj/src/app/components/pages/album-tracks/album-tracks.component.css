@@ -35,6 +35,9 @@
 .albumTracks_top_row .top_row_right_col {
   font-size: 1rem;
 }
+.albumTracks_top_row .top_row_right_col h1 {
+  color: var(--about_font_lightGreen_color);
+}
 .albumTracks_top_row .top_row_left_col {
   max-width: 160px;
   height: 160px;
@@ -96,7 +99,7 @@
 }
 
 .albumTracks_bottom_row .table_header .col1 div p {
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 .albumTracks_bottom_row .table_header .col1:nth-child(1) div:nth-child(1) {

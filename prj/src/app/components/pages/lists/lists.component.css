@@ -1,0 +1,100 @@
+.lists_content {
+  padding: 2rem;
+  padding-bottom: 0;
+  width: 100%;
+  border-radius: var(--regular_cards_radius);
+  height: 100%;
+}
+
+.lists_box {
+  width: 100%;
+  height: 100%;
+  background-color: var(--card_bg_color);
+  border-radius: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.lists_top_row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-size: 1rem;
+  color: var(--about_font_lightGreen_color);
+}
+
+.lists_top_row .lists_top_left_col {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.lists_top_row .lists_top_left_col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lists_bottom_row {
+  display: flex;
+  gap: var(--regular_cards_distance);
+  width: 100%;
+  height: 600px;
+}
+
+.lists_bottom_row .lists_bottom_left_col {
+  background-color: var(--darker_bg_color);
+  border-radius: var(--regular_cards_radius);
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 1rem;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 15%;
+  padding: 1.25rem 1rem;
+  height: 100%;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box {
+  display: flex;
+  gap: 0.5rem;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box .list_img {
+  width: 60px;
+  height: 60px;
+  background-color: hsla(0, 0%, 100%, 0.49);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box .list_info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box .list_info h4 {
+  font-size: 0.875rem;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box .list_info h5 {
+  color: rgba(245, 245, 245, 0.557);
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  font-weight: 100;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box .list_info h5 span {
+  color: var(--about_font_lightGreen_color);
+}
+
+.lists_bottom_right_col {
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.lists_bottom_right_box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
