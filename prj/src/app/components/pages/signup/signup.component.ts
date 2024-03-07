@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { user } from 'src/app/shared/models/userModel';
 import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,7 +23,8 @@ export class SignupComponent {
   constructor(
     private firestorage: AngularFireStorage,
     private usersServ: UsersService,
-    private router: Router
+    private router: Router,
+    private fireAuth: AngularFireAuth
   ) {
     this.firestorage
       .ref('userDefImg/userDefaultImg.png')
@@ -74,12 +76,32 @@ export class SignupComponent {
   }
 
   signUp() {
-    this.usersServ.addUser({
-      name: this.userForm.value.name as string,
-      email: this.userForm.value.email as string,
-      password: this.userForm.value.password as string,
-      img: this.userDefaultImg,
-    });
-    this.router.navigate(['/login']);
+    const email = this.userForm.value.email as string,
+      password = this.userForm.value.password as string;
+    this.fireAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // User created successfully, now add user details to Firestore
+        const user = userCredential.user;
+        this.usersServ
+          .addUser({
+            name: this.userForm.value.name as string,
+            email: email,
+            password: password,
+            img: this.userDefaultImg,
+            playlists: {
+              liked: [],
+            },
+          })
+          .then(() => {
+            this.router.navigate(['/login']);
+          });
+      })
+      .catch((error) => {
+        console.error(
+          'Error creating user in Firebase Authentication: ',
+          error
+        );
+      });
   }
 }

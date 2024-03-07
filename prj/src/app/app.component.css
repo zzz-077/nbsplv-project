@@ -1,8 +1,8 @@
-/*========================================*/
-/*========================================*/
-/*============LANGUAGE SELECTOR===========*/
-/*========================================*/
-/*========================================*/
+/*=============================*/
+/*=============================*/
+/*============NAVBAR===========*/
+/*=============================*/
+/*=============================*/
 .container {
   height: 100vh;
   overflow: hidden;
@@ -338,4 +338,71 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.userisnotregisteredpopUp {
+  /* display: none; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  margin: 2rem;
+  background-color: var(--card_bg_color);
+  padding: 1.25rem 1.125rem;
+  border-radius: var(--regular_cards_radius);
+  animation: shake 0.875s linear 1;
+}
+
+.userisnotregisteredpopUp h3 {
+  font-size: 1rem;
+  color: var(--about_font_lightGreen_color);
+  margin-bottom: 0.25rem;
+}
+
+.userisnotregisteredpopUp p {
+  color: rgb(123, 123, 123);
+  font-size: 0.875rem;
+  font-family: var(--main_font_family);
+}
+
+@keyframes shake {
+  10% {
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  20% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+
+  30% {
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  40% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateX(2px) rotate(1deg);
+  }
+
+  60% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+
+  70% {
+    transform: translateX(2px) rotate(1deg);
+  }
+
+  80% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+
+  90% {
+    transform: translateX(1px) rotate(0);
+  }
+
+  100% {
+    transform: translateX(-1px) rotate(0);
+  }
 }

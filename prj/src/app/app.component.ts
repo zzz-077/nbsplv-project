@@ -30,6 +30,7 @@ export class AppComponent {
   DefaultLangSelectorFullName = '';
   isUserInfoclicked = false;
   isUserLogged = false;
+  userIsNotLogged = false;
   UserData = {
     id: '',
     name: '',
@@ -79,6 +80,7 @@ export class AppComponent {
     );
     this.router.navigate(['']);
   }
+
   /*======================================*/
   /*======================================*/
   /*============POPUP FUNCTIONS===========*/
@@ -93,6 +95,17 @@ export class AppComponent {
 
   selectTarget(fromElement: HTMLElement, selector: string): HTMLElement | null {
     return fromElement.querySelector(selector);
+  }
+
+  playlistClick() {
+    if (this.isUserLogged) {
+      this.router.navigate(['playlists']);
+    } else {
+      this.userIsNotLogged = true;
+      setTimeout(() => {
+        this.userIsNotLogged = false;
+      }, 2000);
+    }
   }
   /*=======================================*/
   /*=======================================*/

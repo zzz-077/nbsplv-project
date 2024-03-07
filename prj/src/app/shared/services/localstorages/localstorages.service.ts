@@ -56,6 +56,7 @@ export class LocalstoragesService {
         email: user.email,
         password: user.password,
         img: user.img,
+        playlists: user.playlists,
       })
     );
     this.userData.next({
@@ -64,6 +65,7 @@ export class LocalstoragesService {
       email: user.email,
       password: user.password,
       img: user.img,
+      playlists: user.playlists,
     });
   }
 

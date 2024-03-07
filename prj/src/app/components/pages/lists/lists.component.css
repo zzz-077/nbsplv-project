@@ -32,6 +32,16 @@
   overflow: hidden;
 }
 
+.lists_top_row .lists_top_right_col {
+  font-size: 1rem;
+}
+.lists_top_row .lists_top_right_col h1 {
+  color: var(--about_font_lightGreen_color);
+}
+.lists_top_row .lists_top_right_col h3 {
+  color: var(--main_font_light_color);
+}
+
 .lists_top_row .lists_top_left_col img {
   width: 100%;
   height: 100%;

@@ -94,6 +94,8 @@
 }
 .sign_content form .google_sign button:hover {
   border: 2px solid rgba(0, 0, 0, 0);
+  background-color: rgba(240, 248, 255, 0.124);
+  opacity: 1;
 }
 .sign_content form .google_sign button p {
   width: 100%;

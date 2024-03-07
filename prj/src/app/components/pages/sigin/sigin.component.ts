@@ -25,6 +25,9 @@ export class SiginComponent {
     img: '',
     name: '',
     password: '',
+    playlists: {
+      liked: [],
+    },
   };
   constructor(
     private localStg: LocalstoragesService,
@@ -65,6 +68,8 @@ export class SiginComponent {
       });
 
     this.usersServ.findEnteredUserData(email, password).subscribe((user) => {
+      console.log(user);
+
       if (user) {
         this.LoginedUser = {
           email: user.user.email as string,
@@ -72,7 +77,10 @@ export class SiginComponent {
           img: user.user.img as string,
           name: user.user.name as string,
           password: user.user.password as string,
+          playlists: user.user.playlists,
         };
+        console.log(this.LoginedUser);
+
         this.localStg.setSign(true);
         this.localStg.setUserData(this.LoginedUser);
         this.router.navigate(['']);
@@ -100,6 +108,9 @@ export class SiginComponent {
                 img: userData.user.img as string,
                 name: userData.user.name as string,
                 password: '000000',
+                playlists: {
+                  liked: [],
+                },
               };
               console.log('SIGNED EXISTING USER', this.LoginedUser);
               this.localStg.setSign(true);
@@ -116,6 +127,9 @@ export class SiginComponent {
                       email: user.email as string,
                       password: '000000',
                       img: user.photoURL as string,
+                      playlists: {
+                        liked: [],
+                      },
                     },
                     id
                   )
@@ -126,6 +140,9 @@ export class SiginComponent {
                       img: user.photoURL as string,
                       name: user.displayName as string,
                       password: '000000',
+                      playlists: {
+                        liked: [],
+                      },
                     };
                     // console.log(this.LoginedUser);
                     this.localStg.setSign(true);

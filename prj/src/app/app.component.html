@@ -31,7 +31,7 @@
             >All songs</a
           >
         </li> -->
-        <li routerLink="playlists">
+        <li (click)="playlistClick()">
           <div class="link_icons">
             <i class="fa-solid fa-list"></i>
           </div>
@@ -114,4 +114,8 @@
 </div>
 <div *ngIf="isUserInfoclicked">
   <app-userinfo (closeInfopopUp)="closePopup($event)"></app-userinfo>
+</div>
+<div *ngIf="userIsNotLogged" class="userisnotregisteredpopUp">
+  <h3>Something went wrong!</h3>
+  <p>Sign in to create your own playlist</p>
 </div>

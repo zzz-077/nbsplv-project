@@ -3,4 +3,7 @@ export interface user {
   email: string;
   password: string;
   img: string;
+  playlists: {
+    liked: string[];
+  };
 }
