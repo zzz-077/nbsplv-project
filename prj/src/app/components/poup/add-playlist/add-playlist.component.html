@@ -1,0 +1,23 @@
+<div class="addPlaylist_popup">
+  <div class="top_col">
+    <input type="text" placeholder="Add playlist" />
+    <i class="fa-solid fa-circle-plus"></i>
+  </div>
+  <div class="middle_col">
+    <div class="playlist_card">
+      <div class="playlist_card_left">
+        <div class="list_img">
+          <i class="fa-solid fa-icons"></i>
+        </div>
+        <h3>Liked</h3>
+      </div>
+      <div class="playlist_card_right">
+        <mat-checkbox> </mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="bottom_col">
+    <button (click)="playlistPopUpCancelClick()"><p>Cancel</p></button>
+    <button (click)="playlistPopUpDoneClick()"><p>Done</p></button>
+  </div>
+</div>

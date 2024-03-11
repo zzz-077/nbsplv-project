@@ -20,6 +20,19 @@ export class SignupComponent {
   users: user[] = [];
   isEmailExist = false;
   userDefaultImg: string = '';
+  playlistIcons = [
+    'fa-music',
+    'fa-icons',
+    'fa-headphones',
+    'fa-play',
+    'fa-record-vinyl',
+    'fa-radio',
+    'fa-volume-off',
+    'fa-guitar',
+    'fa-compact-disc',
+    'fa-circle-play',
+    'fa-sliders',
+  ];
   constructor(
     private firestorage: AngularFireStorage,
     private usersServ: UsersService,
@@ -75,6 +88,11 @@ export class SignupComponent {
     });
   }
 
+  randomPlaylistIconGenerator() {
+    let randomIcons = Math.floor(Math.random() * 11);
+    return randomIcons;
+  }
+
   signUp() {
     const email = this.userForm.value.email as string,
       password = this.userForm.value.password as string;
@@ -83,6 +101,7 @@ export class SignupComponent {
       .then((userCredential) => {
         // User created successfully, now add user details to Firestore
         const user = userCredential.user;
+        let randomIconIndex = this.randomPlaylistIconGenerator();
         this.usersServ
           .addUser({
             name: this.userForm.value.name as string,
@@ -90,7 +109,11 @@ export class SignupComponent {
             password: password,
             img: this.userDefaultImg,
             playlists: {
-              liked: [],
+              liked: {
+                playlistName: 'liked',
+                playlistIcon: this.playlistIcons[randomIconIndex],
+                playlistSongs: [],
+              },
             },
           })
           .then(() => {

@@ -23,6 +23,7 @@ export class UserinfoComponent {
     email: '',
     password: '',
     img: '',
+    playlists: {},
   };
   isEditClicked = false;
   showPass = false;
@@ -33,7 +34,7 @@ export class UserinfoComponent {
     private localStg: LocalstoragesService
   ) {
     this.localStg.isUserdata$.subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       if (data) {
         this.userInfo = {
           id: data.id,
@@ -41,6 +42,7 @@ export class UserinfoComponent {
           email: data.email,
           password: data.password,
           img: data.img,
+          playlists: data.playlists,
         };
       }
     });

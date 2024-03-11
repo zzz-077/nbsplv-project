@@ -6,6 +6,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { user } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
 import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
+// import { SignupComponent } from '../signup/signup.component';
 @Component({
   selector: 'app-sigin',
   templateUrl: './sigin.component.html',
@@ -25,15 +26,26 @@ export class SiginComponent {
     img: '',
     name: '',
     password: '',
-    playlists: {
-      liked: [],
-    },
+    playlists: {},
   };
+  playlistIcons = [
+    'fa-music',
+    'fa-icons',
+    'fa-headphones',
+    'fa-play',
+    'fa-record-vinyl',
+    'fa-radio',
+    'fa-volume-off',
+    'fa-guitar',
+    'fa-compact-disc',
+    'fa-circle-play',
+    'fa-sliders',
+  ];
   constructor(
     private localStg: LocalstoragesService,
     private router: Router,
     private usersServ: UsersService,
-    private fireAuth: AngularFireAuth
+    private fireAuth: AngularFireAuth // private signUpComp: SignupComponent
   ) {}
   /*================================*/
   /*================================*/
@@ -68,7 +80,7 @@ export class SiginComponent {
       });
 
     this.usersServ.findEnteredUserData(email, password).subscribe((user) => {
-      console.log(user);
+      // console.log(user);
 
       if (user) {
         this.LoginedUser = {
@@ -79,7 +91,7 @@ export class SiginComponent {
           password: user.user.password as string,
           playlists: user.user.playlists,
         };
-        console.log(this.LoginedUser);
+        // console.log(this.LoginedUser);
 
         this.localStg.setSign(true);
         this.localStg.setUserData(this.LoginedUser);
@@ -93,11 +105,17 @@ export class SiginComponent {
     });
   }
 
+  randomPlaylistIconGenerator() {
+    let randomIcons = Math.floor(Math.random() * 11);
+    return randomIcons;
+  }
+
   signinWithGoogle() {
     this.fireAuth
       .signInWithPopup(new GoogleAuthProvider())
       .then((userCredential) => {
         const user = userCredential.user;
+        let randomIconIndex = this.randomPlaylistIconGenerator();
         this.usersServ
           .ifUserExistsByEmail(user?.email as string)
           .subscribe((userData) => {
@@ -109,7 +127,11 @@ export class SiginComponent {
                 name: userData.user.name as string,
                 password: '000000',
                 playlists: {
-                  liked: [],
+                  liked: {
+                    playlistName: 'liked',
+                    playlistIcon: this.playlistIcons[randomIconIndex],
+                    playlistSongs: [],
+                  },
                 },
               };
               console.log('SIGNED EXISTING USER', this.LoginedUser);
@@ -128,7 +150,11 @@ export class SiginComponent {
                       password: '000000',
                       img: user.photoURL as string,
                       playlists: {
-                        liked: [],
+                        liked: {
+                          playlistName: 'liked',
+                          playlistIcon: this.playlistIcons[randomIconIndex],
+                          playlistSongs: [],
+                        },
                       },
                     },
                     id

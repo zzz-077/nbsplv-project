@@ -4,6 +4,10 @@ export interface user {
   password: string;
   img: string;
   playlists: {
-    liked: string[];
+    liked: {
+      playlistName: string;
+      playlistIcon: string;
+      playlistSongs: string[];
+    };
   };
 }

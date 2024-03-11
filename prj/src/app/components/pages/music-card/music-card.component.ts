@@ -12,13 +12,14 @@ export class MusicCardComponent {
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
   constructor(private artistData: ArtistDataService) {}
+  isAddinPlaylistClicked = false;
+  ngOnInit() {}
 
-  ngOnInit() {
-    // this.artistData.getMusic(this.AlbumMusics.id).subscribe((musicImg) => {
-    //   this.AlbumMusics = {
-    //     ...this.AlbumMusics,
-    //     img: musicImg,
-    //   };
-    // });
+  addInPlaylist() {
+    this.isAddinPlaylistClicked = true;
+  }
+
+  PopupCancelled() {
+    this.isAddinPlaylistClicked = false;
   }
 }

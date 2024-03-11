@@ -11,8 +11,9 @@ export class ListsComponent {
     id: '',
     name: '',
     img: 'assets/userDefault_img.png',
-    playlists: {},
   };
+  playlists: any[] = [];
+
   constructor(private localStg: LocalstoragesService) {
     this.localStg.isUserdata$.subscribe((data) => {
       if (data) {
@@ -20,14 +21,12 @@ export class ListsComponent {
           id: data.id,
           name: data.name,
           img: data.img,
-          playlists: data.playlists,
         };
       }
-      console.log(this.UserData.playlists);
-      console.log(this.UserData);
+
+      this.playlists = data.playlists;
+      this.playlists = Object.values(data.playlists);
+      // console.log(this.playlists);
     });
-  }
-  getPlaylistNames(): string[] {
-    return Object.keys(this.UserData.playlists);
   }
 }

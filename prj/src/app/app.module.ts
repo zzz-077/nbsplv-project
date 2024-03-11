@@ -13,6 +13,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //material
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -28,6 +29,7 @@ import { register } from 'swiper/element/bundle';
 import { AlbumTracksComponent } from './components/pages/album-tracks/album-tracks.component';
 import { MusicCardComponent } from './components/pages/music-card/music-card.component';
 import { ListsComponent } from './components/pages/lists/lists.component';
+import { AddPlaylistComponent } from './components/poup/add-playlist/add-playlist.component';
 register();
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ register();
     AlbumTracksComponent,
     MusicCardComponent,
     ListsComponent,
+    AddPlaylistComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ register();
     AngularFirestoreModule,
     AngularFireAuthModule,
     MatSelectModule,
+    MatCheckboxModule,
     HttpClientModule,
     FormsModule,
   ],

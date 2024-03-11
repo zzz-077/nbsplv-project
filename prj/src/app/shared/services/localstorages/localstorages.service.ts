@@ -19,6 +19,7 @@ export class LocalstoragesService {
   setLang(lang: string) {
     localStorage.setItem('lang', lang);
   }
+
   getLang() {
     return localStorage.getItem('lang');
   }
@@ -35,6 +36,8 @@ export class LocalstoragesService {
   }
 
   setUserData(user: any) {
+    console.log(user.playlists);
+
     if (user.name?.split(' ')) {
       user.name = user.name?.split(' ')[0];
     } else if (user.name?.split('-')) {
@@ -48,6 +51,7 @@ export class LocalstoragesService {
     } else {
       user.name = user.name;
     }
+
     localStorage.setItem(
       'userInfo',
       JSON.stringify({
@@ -59,6 +63,7 @@ export class LocalstoragesService {
         playlists: user.playlists,
       })
     );
+
     this.userData.next({
       id: user.id,
       name: user.name,

@@ -1,0 +1,113 @@
+.addPlaylist_popup {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  border-radius: var(--regular_cards_radius);
+  background-color: var(--darker_bg_color);
+  justify-content: space-between;
+  box-shadow: 1px -3px 18px rgba(111, 110, 110, 0.296);
+  height: 250px;
+}
+
+.addPlaylist_popup .bottom_col {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-top: 1px solid rgba(106, 106, 106, 0.73);
+}
+.addPlaylist_popup .bottom_col button {
+  width: 60px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(106, 106, 106, 0.73);
+  border-radius: 0.25rem;
+  color: white;
+}
+.addPlaylist_popup .bottom_col button:nth-child(2) {
+  background-color: var(--main_font_light_color);
+  border: 0;
+}
+.addPlaylist_popup .bottom_col button:nth-child(1) p {
+  color: white;
+}
+.addPlaylist_popup .bottom_col button:nth-child(2) p {
+  color: var(--darker_bg_color);
+}
+
+.addPlaylist_popup .top_col {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(106, 106, 106, 0.73);
+  margin-bottom: 1rem;
+}
+
+.addPlaylist_popup .top_col input {
+  font-size: 1rem;
+  color: var(--main_font_light_color);
+  border: 0;
+  background-color: rgba(240, 248, 255, 0);
+  padding: 0.125rem 0.25rem;
+}
+
+.addPlaylist_popup .top_col i {
+  font-size: 1.25rem;
+  color: var(--main_font_light_color);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.addPlaylist_popup .top_col i:hover {
+  color: #848687;
+}
+
+.addPlaylist_popup .middle_col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  overflow: hidden;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.addPlaylist_popup .middle_col .playlist_card {
+  padding: 0 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addPlaylist_popup .middle_col .playlist_card .playlist_card_left {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.addPlaylist_popup .middle_col .playlist_card .playlist_card_left div {
+  width: 30px;
+  height: 30px;
+  background-color: var(--card_bg_color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.addPlaylist_popup .middle_col .playlist_card .playlist_card_left div i {
+  font-size: 1rem;
+  box-shadow: 1px -1px 10px white;
+  border-radius: 50%;
+}
+.addPlaylist_popup .middle_col .playlist_card .playlist_card_left h3 {
+  font-size: 1rem;
+}
+
+.addPlaylist_popup .middle_col .playlist_card .playlist_card_left {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
