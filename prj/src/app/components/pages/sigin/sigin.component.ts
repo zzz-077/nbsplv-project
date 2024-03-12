@@ -80,7 +80,7 @@ export class SiginComponent {
       });
 
     this.usersServ.findEnteredUserData(email, password).subscribe((user) => {
-      // console.log(user);
+      console.log(user);
 
       if (user) {
         this.LoginedUser = {
@@ -91,7 +91,7 @@ export class SiginComponent {
           password: user.user.password as string,
           playlists: user.user.playlists,
         };
-        // console.log(this.LoginedUser);
+        console.log(this.LoginedUser);
 
         this.localStg.setSign(true);
         this.localStg.setUserData(this.LoginedUser);

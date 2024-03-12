@@ -9,5 +9,10 @@ export interface user {
       playlistIcon: string;
       playlistSongs: string[];
     };
+    [key: string]: {
+      playlistName: string;
+      playlistIcon: string;
+      playlistSongs: string[];
+    };
   };
 }

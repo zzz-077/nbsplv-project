@@ -26,7 +26,6 @@ export class ListsComponent {
 
       this.playlists = data.playlists;
       this.playlists = Object.values(data.playlists);
-      // console.log(this.playlists);
     });
   }
 }

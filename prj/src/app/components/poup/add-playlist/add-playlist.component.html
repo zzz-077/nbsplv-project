@@ -1,18 +1,25 @@
 <div class="addPlaylist_popup">
   <div class="top_col">
-    <input type="text" placeholder="Add playlist" />
-    <i class="fa-solid fa-circle-plus"></i>
+    <input type="text" placeholder="Add playlist" #input />
+    <i
+      class="fa-solid fa-circle-plus"
+      (click)="addNewPlaylictClick(input.value)"
+    ></i>
   </div>
   <div class="middle_col">
-    <div class="playlist_card">
+    <div *ngFor="let playlist of playlists" class="playlist_card">
       <div class="playlist_card_left">
         <div class="list_img">
-          <i class="fa-solid fa-icons"></i>
+          <i class="fa-solid {{ playlist.playlistIcon }}"></i>
         </div>
-        <h3>Liked</h3>
+        <h3>{{ playlist.playlistName }}</h3>
       </div>
       <div class="playlist_card_right">
-        <mat-checkbox> </mat-checkbox>
+        <mat-checkbox
+          #value
+          (click)="selectedPlaylists(value, playlist.playlistName)"
+        >
+        </mat-checkbox>
       </div>
     </div>
   </div>

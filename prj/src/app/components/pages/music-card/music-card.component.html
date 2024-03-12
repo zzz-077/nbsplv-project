@@ -16,10 +16,19 @@
       <p>{{ AlbumMusics.duration_ms | number }}</p>
     </div>
     <div>
-      <p><i class="fa-solid fa-circle-plus" (click)="addInPlaylist()"></i></p>
+      <p>
+        <i
+          class="fa-solid fa-circle-plus"
+          (click)="addInPlaylist(AlbumMusics.id)"
+        ></i>
+      </p>
     </div>
   </div>
+
   <div *ngIf="isAddinPlaylistClicked" class="playlist_popup">
-    <app-add-playlist (isPopupCancelled)="PopupCancelled()"></app-add-playlist>
+    <app-add-playlist
+      [musicId]="addPlaylistMusicId"
+      (isPopupCancelled)="PopupCancelled()"
+    ></app-add-playlist>
   </div>
 </div>

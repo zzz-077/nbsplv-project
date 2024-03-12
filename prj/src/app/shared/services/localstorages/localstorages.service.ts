@@ -36,8 +36,6 @@ export class LocalstoragesService {
   }
 
   setUserData(user: any) {
-    console.log(user.playlists);
-
     if (user.name?.split(' ')) {
       user.name = user.name?.split(' ')[0];
     } else if (user.name?.split('-')) {

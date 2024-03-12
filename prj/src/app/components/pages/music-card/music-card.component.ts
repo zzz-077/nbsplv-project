@@ -11,11 +11,14 @@ export class MusicCardComponent {
   @Input() AlbumMusics: any = {};
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
+  addPlaylistMusicId: string = '';
   constructor(private artistData: ArtistDataService) {}
+
   isAddinPlaylistClicked = false;
   ngOnInit() {}
 
-  addInPlaylist() {
+  addInPlaylist(musicId: string) {
+    this.addPlaylistMusicId = musicId;
     this.isAddinPlaylistClicked = true;
   }
 
