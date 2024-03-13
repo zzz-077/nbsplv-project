@@ -46,31 +46,30 @@ export class PlaylistsService {
     songID: string
   ): Observable<void[]> {
     const userDocRef = this.firestore.collection('users').doc(userId);
+    const observables = from(userDocRef.get()).pipe(
+      mergeMap((doc) => {
+        const userData = doc.data() as user;
+        const playlists = userData.playlists || {};
 
-    const observables = selectedPlaylistsArr.map((playlistName) => {
-      return from(userDocRef.get()).pipe(
-        mergeMap((doc) => {
-          const userData = doc.data() as user;
-          const playlists = userData.playlists || {};
-          const updatedPlaylists = {
-            ...playlists,
-            [playlistName]: {
-              ...playlists[playlistName],
-              playlistSongs: [
-                ...(playlists[playlistName]?.playlistSongs || []),
-                songID,
-              ],
-            },
+        // Update each playlist in the local copy of playlists
+        selectedPlaylistsArr.forEach((playlistName) => {
+          playlists[playlistName] = {
+            ...playlists[playlistName],
+            playlistSongs: [
+              ...(playlists[playlistName]?.playlistSongs || []),
+              songID,
+            ],
           };
+        });
 
-          return from(userDocRef.update({ playlists: updatedPlaylists }));
-        }),
-        catchError((error) => {
-          console.log('ERROR CAUGHT IN addMusicInPlaylists()', error);
-          throw error;
-        })
-      );
-    });
+        // Update the entire playlists object in the database
+        return from(userDocRef.update({ playlists }));
+      }),
+      catchError((error) => {
+        console.log('ERROR CAUGHT IN addMusicInPlaylists()', error);
+        throw error;
+      })
+    );
 
     return forkJoin(observables);
   }

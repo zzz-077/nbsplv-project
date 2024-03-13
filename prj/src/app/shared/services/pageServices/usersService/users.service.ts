@@ -1,5 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  DocumentSnapshot,
+} from '@angular/fire/compat/firestore';
 import { Observable, from, map } from 'rxjs';
 import { user } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from '../../localstorages/localstorages.service';
@@ -21,6 +24,22 @@ export class UsersService {
   addUser(newUser: user): Promise<void> {
     const id = this.firestore.createId();
     return this.firestore.collection('users').doc(id).set(newUser);
+  }
+
+  getUser(userID: string): Observable<user | null> {
+    return this.firestore
+      .collection('users')
+      .doc(userID)
+      .get()
+      .pipe(
+        map((doc) => {
+          if (doc.exists) {
+            return doc.data() as user;
+          } else {
+            return null;
+          }
+        })
+      );
   }
 
   addUserByGoogle(newUser: user, userID: string): Observable<void> {

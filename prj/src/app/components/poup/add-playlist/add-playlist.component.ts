@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
+import { randomIcons } from 'src/app/shared/models/RandomIcons';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
 import { PlaylistsService } from 'src/app/shared/services/pageServices/playlists/playlists.service';
+import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
 
 @Component({
   selector: 'app-add-playlist',
@@ -12,23 +14,15 @@ export class AddPlaylistComponent {
   @Input() musicId: string = '';
   userId: string = '';
   playlists: any[] = [];
-  playlistIcons = [
-    'fa-music',
-    'fa-icons',
-    'fa-headphones',
-    'fa-play',
-    'fa-record-vinyl',
-    'fa-radio',
-    'fa-volume-off',
-    'fa-guitar',
-    'fa-compact-disc',
-    'fa-circle-play',
-    'fa-sliders',
-  ];
+
+  isCheckBoxClicked: boolean = false;
+  isInputEmpty: boolean = false;
   selectedPlaylistsArr: string[] = [];
   constructor(
     private playlistsServ: PlaylistsService,
-    private localStg: LocalstoragesService
+    private localStg: LocalstoragesService,
+    private randicons: randomIcons,
+    private usersServ: UsersService
   ) {
     this.localStg.isUserdata$.subscribe((userData) => {
       this.userId = userData.id;
@@ -37,9 +31,7 @@ export class AddPlaylistComponent {
       this.playlists = Object.values(userData.playlists);
     });
   }
-  ngOnInit() {
-    console.log(this.musicId);
-  }
+  ngOnInit() {}
 
   playlistPopUpCancelClick() {
     this.isPopupCancelled.emit(true);
@@ -49,20 +41,32 @@ export class AddPlaylistComponent {
     this.playlistsServ
       .addMusicInPlaylists(this.userId, this.selectedPlaylistsArr, this.musicId)
       .subscribe((sub) => {
-        console.log('works');
+        this.isCheckBoxClicked = false;
+        this.selectedPlaylistsArr = [];
+        this.isPopupCancelled.emit(true);
+        this.usersServ.getUser(this.userId).subscribe((userData) => {
+          let userDataFromLS = JSON.parse(
+            localStorage.getItem('userInfo') || 'null'
+          );
+          (userDataFromLS = {
+            ...userDataFromLS,
+            playlists: userData?.playlists,
+          }),
+            localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
+          this.localStg.userData.next(userDataFromLS);
+        });
       });
   }
 
-  randomPlaylistIconGenerator() {
-    let randomIcons = Math.floor(Math.random() * 11);
-    return randomIcons;
-  }
-
   addNewPlaylictClick(input: string) {
-    console.log(input);
-    const randomIconNumber = this.randomPlaylistIconGenerator();
+    const randomIconNumber = this.randicons.randomPlaylistIconGenerator();
+
     this.playlistsServ
-      .createPlaylist(this.userId, input, this.playlistIcons[randomIconNumber])
+      .createPlaylist(
+        this.userId,
+        input,
+        this.randicons.playlistIcons[randomIconNumber]
+      )
       .subscribe((sub) => {
         let userDataFromLS = JSON.parse(
           localStorage.getItem('userInfo') || 'null'
@@ -72,7 +76,7 @@ export class AddPlaylistComponent {
           playlists: {
             ...userDataFromLS.playlists,
             [input]: {
-              playlistIcon: this.playlistIcons[randomIconNumber],
+              playlistIcon: this.randicons.playlistIcons[randomIconNumber],
               playlistName: input,
               playlistSongs: [],
             },
@@ -83,18 +87,29 @@ export class AddPlaylistComponent {
       });
   }
 
+  checkInput(input: string) {
+    if (input.trim() !== '') {
+      this.isInputEmpty = true;
+    } else {
+      this.isInputEmpty = false;
+    }
+  }
+
   selectedPlaylists(value: any, playlistName: string) {
     if (value.checked) {
-      console.log(playlistName);
+      this.isCheckBoxClicked = true;
       if (!this.selectedPlaylistsArr.includes(playlistName)) {
         this.selectedPlaylistsArr.push(playlistName);
-        console.log('ADDED:', this.selectedPlaylistsArr);
+        // console.log('ADDED:', this.selectedPlaylistsArr);
       }
     } else {
       this.selectedPlaylistsArr = this.selectedPlaylistsArr.filter(
         (name) => name !== playlistName
       );
-      console.log('REMOVED:', this.selectedPlaylistsArr);
+      // console.log('REMOVED:', this.selectedPlaylistsArr);
+    }
+    if (this.selectedPlaylistsArr.length == 0) {
+      this.isCheckBoxClicked = false;
     }
   }
 }

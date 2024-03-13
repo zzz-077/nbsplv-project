@@ -3,10 +3,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { randomIcons } from 'src/app/shared/models/RandomIcons';
 import { user } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
 import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
-// import { SignupComponent } from '../signup/signup.component';
 @Component({
   selector: 'app-sigin',
   templateUrl: './sigin.component.html',
@@ -28,24 +28,12 @@ export class SiginComponent {
     password: '',
     playlists: {},
   };
-  playlistIcons = [
-    'fa-music',
-    'fa-icons',
-    'fa-headphones',
-    'fa-play',
-    'fa-record-vinyl',
-    'fa-radio',
-    'fa-volume-off',
-    'fa-guitar',
-    'fa-compact-disc',
-    'fa-circle-play',
-    'fa-sliders',
-  ];
   constructor(
     private localStg: LocalstoragesService,
     private router: Router,
     private usersServ: UsersService,
-    private fireAuth: AngularFireAuth // private signUpComp: SignupComponent
+    private fireAuth: AngularFireAuth,
+    private randicons: randomIcons
   ) {}
   /*================================*/
   /*================================*/
@@ -78,7 +66,6 @@ export class SiginComponent {
       .then((isUser) => {
         isUserLogined = isUser;
       });
-
     this.usersServ.findEnteredUserData(email, password).subscribe((user) => {
       console.log(user);
 
@@ -105,17 +92,12 @@ export class SiginComponent {
     });
   }
 
-  randomPlaylistIconGenerator() {
-    let randomIcons = Math.floor(Math.random() * 11);
-    return randomIcons;
-  }
-
   signinWithGoogle() {
     this.fireAuth
       .signInWithPopup(new GoogleAuthProvider())
       .then((userCredential) => {
         const user = userCredential.user;
-        let randomIconIndex = this.randomPlaylistIconGenerator();
+        let randomIconIndex = this.randicons.randomPlaylistIconGenerator();
         this.usersServ
           .ifUserExistsByEmail(user?.email as string)
           .subscribe((userData) => {
@@ -126,13 +108,7 @@ export class SiginComponent {
                 img: userData.user.img as string,
                 name: userData.user.name as string,
                 password: '000000',
-                playlists: {
-                  liked: {
-                    playlistName: 'liked',
-                    playlistIcon: this.playlistIcons[randomIconIndex],
-                    playlistSongs: [],
-                  },
-                },
+                playlists: userData.user.playlists,
               };
               console.log('SIGNED EXISTING USER', this.LoginedUser);
               this.localStg.setSign(true);
@@ -152,7 +128,8 @@ export class SiginComponent {
                       playlists: {
                         liked: {
                           playlistName: 'liked',
-                          playlistIcon: this.playlistIcons[randomIconIndex],
+                          playlistIcon:
+                            this.randicons.playlistIcons[randomIconIndex],
                           playlistSongs: [],
                         },
                       },

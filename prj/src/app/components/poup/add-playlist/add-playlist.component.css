@@ -25,6 +25,9 @@
   border-radius: 0.25rem;
   color: white;
 }
+.addPlaylist_popup .bottom_col button:disabled {
+  opacity: 0.4;
+}
 .addPlaylist_popup .bottom_col button:nth-child(2) {
   background-color: var(--main_font_light_color);
   border: 0;
@@ -59,6 +62,10 @@
   color: var(--main_font_light_color);
   transition: all 0.2s;
   cursor: pointer;
+}
+.addPlaylist_popup .top_col i.active {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .addPlaylist_popup .top_col i:hover {
@@ -102,6 +109,7 @@
   box-shadow: 1px -1px 10px white;
   border-radius: 50%;
 }
+
 .addPlaylist_popup .middle_col .playlist_card .playlist_card_left h3 {
   font-size: 1rem;
 }

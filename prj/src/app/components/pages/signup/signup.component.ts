@@ -6,6 +6,7 @@ import { user } from 'src/app/shared/models/userModel';
 import { UsersService } from 'src/app/shared/services/pageServices/usersService/users.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { randomIcons } from 'src/app/shared/models/RandomIcons';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -20,24 +21,12 @@ export class SignupComponent {
   users: user[] = [];
   isEmailExist = false;
   userDefaultImg: string = '';
-  playlistIcons = [
-    'fa-music',
-    'fa-icons',
-    'fa-headphones',
-    'fa-play',
-    'fa-record-vinyl',
-    'fa-radio',
-    'fa-volume-off',
-    'fa-guitar',
-    'fa-compact-disc',
-    'fa-circle-play',
-    'fa-sliders',
-  ];
   constructor(
     private firestorage: AngularFireStorage,
     private usersServ: UsersService,
     private router: Router,
-    private fireAuth: AngularFireAuth
+    private fireAuth: AngularFireAuth,
+    private randicons: randomIcons
   ) {
     this.firestorage
       .ref('userDefImg/userDefaultImg.png')
@@ -88,11 +77,6 @@ export class SignupComponent {
     });
   }
 
-  randomPlaylistIconGenerator() {
-    let randomIcons = Math.floor(Math.random() * 11);
-    return randomIcons;
-  }
-
   signUp() {
     const email = this.userForm.value.email as string,
       password = this.userForm.value.password as string;
@@ -101,7 +85,7 @@ export class SignupComponent {
       .then((userCredential) => {
         // User created successfully, now add user details to Firestore
         const user = userCredential.user;
-        let randomIconIndex = this.randomPlaylistIconGenerator();
+        let randomIconIndex = this.randicons.randomPlaylistIconGenerator();
         this.usersServ
           .addUser({
             name: this.userForm.value.name as string,
@@ -111,7 +95,7 @@ export class SignupComponent {
             playlists: {
               liked: {
                 playlistName: 'liked',
-                playlistIcon: this.playlistIcons[randomIconIndex],
+                playlistIcon: this.randicons.playlistIcons[randomIconIndex],
                 playlistSongs: [],
               },
             },

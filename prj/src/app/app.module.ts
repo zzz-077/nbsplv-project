@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 //components
+import { randomIcons } from 'src/app/shared/models/RandomIcons';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/pages/main/main.component';
 import { SignupComponent } from './components/pages/signup/signup.component';
@@ -57,7 +58,7 @@ register();
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [randomIcons],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

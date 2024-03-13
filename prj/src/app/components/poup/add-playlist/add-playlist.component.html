@@ -1,15 +1,21 @@
 <div class="addPlaylist_popup">
   <div class="top_col">
-    <input type="text" placeholder="Add playlist" #input />
+    <input
+      (input)="checkInput(input.value)"
+      type="text"
+      placeholder="Add playlist"
+      #input
+    />
     <i
       class="fa-solid fa-circle-plus"
       (click)="addNewPlaylictClick(input.value)"
+      [ngClass]="!isInputEmpty ? 'active' : null"
     ></i>
   </div>
   <div class="middle_col">
     <div *ngFor="let playlist of playlists" class="playlist_card">
       <div class="playlist_card_left">
-        <div class="list_img">
+        <div>
           <i class="fa-solid {{ playlist.playlistIcon }}"></i>
         </div>
         <h3>{{ playlist.playlistName }}</h3>
@@ -25,6 +31,8 @@
   </div>
   <div class="bottom_col">
     <button (click)="playlistPopUpCancelClick()"><p>Cancel</p></button>
-    <button (click)="playlistPopUpDoneClick()"><p>Done</p></button>
+    <button [disabled]="!isCheckBoxClicked" (click)="playlistPopUpDoneClick()">
+      <p>Done</p>
+    </button>
   </div>
 </div>
