@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, catchError, forkJoin, from, merge, mergeMap } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  forkJoin,
+  from,
+  map,
+  merge,
+  mergeMap,
+} from 'rxjs';
 import { user } from 'src/app/shared/models/userModel';
 
 @Injectable({
@@ -51,7 +59,6 @@ export class PlaylistsService {
         const userData = doc.data() as user;
         const playlists = userData.playlists || {};
 
-        // Update each playlist in the local copy of playlists
         selectedPlaylistsArr.forEach((playlistName) => {
           playlists[playlistName] = {
             ...playlists[playlistName],
@@ -62,7 +69,6 @@ export class PlaylistsService {
           };
         });
 
-        // Update the entire playlists object in the database
         return from(userDocRef.update({ playlists }));
       }),
       catchError((error) => {
@@ -72,5 +78,28 @@ export class PlaylistsService {
     );
 
     return forkJoin(observables);
+  }
+
+  getUserPlaylistSongs(
+    userId: string,
+    playlistName: string
+  ): Observable<string[] | null> {
+    const userDocRef = this.firestore.collection('users').doc(userId);
+    return userDocRef.get().pipe(
+      map((doc) => {
+        if (doc.exists) {
+          const userData = doc.data() as user;
+          const playlists = userData.playlists;
+          const selectedPlaylists = playlists[playlistName];
+          if (selectedPlaylists) {
+            return selectedPlaylists.playlistSongs;
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
+      })
+    );
   }
 }

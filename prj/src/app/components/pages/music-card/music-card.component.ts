@@ -9,13 +9,21 @@ import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsS
 })
 export class MusicCardComponent {
   @Input() AlbumMusics: any = {};
+  @Input() UsersListMusicID: string = '';
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
   addPlaylistMusicId: string = '';
   constructor(private artistData: ArtistDataService) {}
 
   isAddinPlaylistClicked = false;
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.UsersListMusicID) {
+      this.artistData.getMusic(this.UsersListMusicID).subscribe((musicData) => {
+        this.AlbumMusics = musicData;
+        this.albumImg_child = this.AlbumMusics.album.images[1].url;
+      });
+    }
+  }
 
   addInPlaylist(musicId: string) {
     this.addPlaylistMusicId = musicId;

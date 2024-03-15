@@ -31,17 +31,16 @@ export class AddPlaylistComponent {
       this.playlists = Object.values(userData.playlists);
     });
   }
-  ngOnInit() {}
 
   playlistPopUpCancelClick() {
     this.isPopupCancelled.emit(true);
   }
 
   playlistPopUpDoneClick() {
+    this.isCheckBoxClicked = false;
     this.playlistsServ
       .addMusicInPlaylists(this.userId, this.selectedPlaylistsArr, this.musicId)
       .subscribe((sub) => {
-        this.isCheckBoxClicked = false;
         this.selectedPlaylistsArr = [];
         this.isPopupCancelled.emit(true);
         this.usersServ.getUser(this.userId).subscribe((userData) => {

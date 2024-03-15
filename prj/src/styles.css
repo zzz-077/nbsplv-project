@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --main_bg_color: radial-gradient(
     47.2% 124.55% at 49.54% 53.47%,
@@ -6,11 +12,6 @@
     rgba(7, 62, 74) 54.5%,
     #061114 100%
   );
-  /* --darker_bg_color: linear-gradient(
-    270deg,
-    rgba(0, 123, 151, 0) 0%,
-    #01242c 0.01%
-  ); */
   --darker_bg_color: #020707;
   --card_bg_color: #092a35c8;
   --main_font_family: "Poppins", sans-serif;
@@ -22,11 +23,7 @@
   --regular_cards_distance: 0.5rem;
   --about_font_lightGreen_color: #caf8e8;
 }
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 ul {
   list-style: none;
 }

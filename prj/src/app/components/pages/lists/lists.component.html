@@ -11,12 +11,21 @@
     </div>
     <div class="lists_bottom_row">
       <div class="lists_bottom_left_col">
-        <div *ngFor="let playlist of playlists" class="list_box">
+        <div
+          (click)="playlistClick(playlist.playlistName)"
+          *ngFor="let playlist of playlists"
+          class="list_box"
+        >
           <div class="list_img">
             <i class="fa-solid {{ playlist.playlistIcon }}"></i>
           </div>
           <div class="list_info">
-            <h4>{{ playlist.playlistName }}'s Songs</h4>
+            <h4 *ngIf="playlist.playlistName.length > 10">
+              {{ playlist.playlistName | slice : 0 : 10 }}...
+            </h4>
+            <h4 *ngIf="playlist.playlistName.length <= 10">
+              {{ playlist.playlistName }}
+            </h4>
             <h5>
               <span>{{ playlist.playlistSongs.length }}</span
               >songs
@@ -26,14 +35,15 @@
       </div>
       <div class="lists_bottom_right_col">
         <div class="list_box_bar">
-          <h3>GYM's Songs</h3>
-          <i class="fa-solid fa-trash-can"></i>
+          <h3 *ngIf="chosenPlaylistName">{{ chosenPlaylistName }}'s Songs</h3>
+          <i *ngIf="chosenPlaylistName" class="fa-solid fa-trash-can"></i>
         </div>
         <div class="list_box_content">
-          <app-music-card></app-music-card>
-          <app-music-card></app-music-card>
-          <app-music-card></app-music-card>
-          <app-music-card></app-music-card>
+          <app-music-card
+            *ngFor="let song of chosenPlaylistSongs; let i = index"
+            [UsersListMusicID]="song"
+            [index]="i + 1"
+          ></app-music-card>
         </div>
       </div>
     </div>
