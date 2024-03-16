@@ -31,6 +31,7 @@ import { AlbumTracksComponent } from './components/pages/album-tracks/album-trac
 import { MusicCardComponent } from './components/pages/music-card/music-card.component';
 import { ListsComponent } from './components/pages/lists/lists.component';
 import { AddPlaylistComponent } from './components/poup/add-playlist/add-playlist.component';
+import { PlaylistDeleteComponent } from './components/poup/playlist-delete/playlist-delete.component';
 register();
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ register();
     MusicCardComponent,
     ListsComponent,
     AddPlaylistComponent,
+    PlaylistDeleteComponent,
   ],
   imports: [
     BrowserModule,

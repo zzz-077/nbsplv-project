@@ -117,7 +117,6 @@
 
 .lists_bottom_right_col {
   width: 100%;
-  overflow: hidden;
 }
 .lists_bottom_right_col .list_box_content {
   overflow-y: auto;
@@ -140,6 +139,7 @@
   justify-content: space-between;
   align-items: center;
   height: 10.82%;
+  position: relative;
 }
 .lists_bottom_right_col .list_box_bar i {
   font-size: 1.25rem;
@@ -148,4 +148,10 @@
 }
 .lists_bottom_right_col .list_box_bar i:hover {
   color: var(--button_red_color);
+}
+
+.delete_playlist_cont {
+  position: absolute;
+  top: -173px;
+  right: 0;
 }

@@ -17,6 +17,8 @@ export class ListsComponent {
   chosenPlaylistName: string = '';
   chosenPlaylistSongs: any[] = [];
   ifAlbumisClicked: boolean = false;
+  isPlaylistsDeleteClicked: boolean = false;
+
   constructor(
     private localStg: LocalstoragesService,
     private playlistsServ: PlaylistsService
@@ -34,6 +36,7 @@ export class ListsComponent {
       this.playlists = Object.values(userData.playlists);
     });
   }
+
   playlistClick(playlistName: string) {
     this.ifAlbumisClicked = true;
     this.chosenPlaylistName = playlistName;
@@ -50,5 +53,11 @@ export class ListsComponent {
     //     .subscribe((playlistsMusics) => {
     //       console.log(playlistsMusics);
     //     });
+  }
+  deletePlaylistsClick(playlistName: string) {
+    this.isPlaylistsDeleteClicked = true;
+  }
+  canceledDeletingfromPopup() {
+    this.isPlaylistsDeleteClicked = false;
   }
 }

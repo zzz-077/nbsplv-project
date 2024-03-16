@@ -1,0 +1,15 @@
+<div class="delete_card">
+  <div class="col">
+    <i class="fa-regular fa-trash-can"></i>
+    <p>
+      Delete playlist <strong>{{ playlistname }}</strong>
+    </p>
+  </div>
+  <div class="col">
+    <p>Are you sure you want to delete this content?</p>
+  </div>
+  <div class="col">
+    <button (click)="cancelDeleting()"><p>Cancel</p></button>
+    <button (click)="DeletePlaylist()"><p>Delete</p></button>
+  </div>
+</div>

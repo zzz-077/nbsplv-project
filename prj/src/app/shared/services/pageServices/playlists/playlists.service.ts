@@ -8,6 +8,8 @@ import {
   map,
   merge,
   mergeMap,
+  switchMap,
+  throwError,
 } from 'rxjs';
 import { user } from 'src/app/shared/models/userModel';
 
@@ -99,6 +101,33 @@ export class PlaylistsService {
         } else {
           return null;
         }
+      })
+    );
+  }
+
+  deleteUserPlaylist(userId: string, playlistName: string): Observable<user> {
+    const userDocRef = this.firestore.collection('users').doc(userId);
+    return from(userDocRef.get()).pipe(
+      mergeMap((doc) => {
+        if (doc.exists) {
+          const userData = doc.data() as user;
+          const playlists = userData.playlists || {};
+
+          if (playlistName in playlists) {
+            delete playlists[playlistName];
+
+            return from(userDocRef.update({ playlists })).pipe(
+              map(() => userData)
+            );
+          } else {
+            return throwError(`Playlist '${playlistName}' not found.`);
+          }
+        } else {
+          return throwError(`User document not found.`);
+        }
+      }),
+      catchError((error) => {
+        throw error;
       })
     );
   }

@@ -1,0 +1,59 @@
+.delete_card {
+  background-color: var(--darker_bg_color);
+  border-radius: var(--regular_cards_radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 1px -3px 18px rgba(111, 110, 110, 0.296);
+}
+.delete_card .col:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.875rem;
+  border-bottom: 1px solid rgba(106, 106, 106, 0.73);
+}
+.delete_card .col:nth-child(1) p strong {
+  font-style: italic;
+}
+.delete_card .col:nth-child(1) i {
+  font-size: 1.125rem;
+  color: var(--button_red_color);
+}
+.delete_card .col:nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0.25rem;
+  padding: 0.875rem;
+  border-top: 1px solid rgba(106, 106, 106, 0.73);
+}
+
+.delete_card .col:nth-child(3) button {
+  width: 60px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(106, 106, 106, 0.73);
+  border-radius: 0.25rem;
+  color: white;
+}
+.delete_card .col:nth-child(3) button:disabled {
+  opacity: 0.4;
+}
+.delete_card .col:nth-child(3) button:nth-child(2) {
+  background-color: var(--main_font_light_color);
+  border: 0;
+}
+.delete_card .col:nth-child(3) button:nth-child(1) p {
+  color: white;
+}
+.delete_card .col:nth-child(3) button:nth-child(2) p {
+  color: var(--darker_bg_color);
+}
+.delete_card .col:nth-child(2) {
+  gap: 0.25rem;
+  padding: 0.875rem;
+  max-width: 300px;
+  font-size: 0.875rem;
+  text-align: center;
+}

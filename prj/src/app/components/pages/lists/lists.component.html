@@ -36,7 +36,18 @@
       <div class="lists_bottom_right_col">
         <div class="list_box_bar">
           <h3 *ngIf="chosenPlaylistName">{{ chosenPlaylistName }}'s Songs</h3>
-          <i *ngIf="chosenPlaylistName" class="fa-solid fa-trash-can"></i>
+          <i
+            *ngIf="chosenPlaylistName"
+            (click)="deletePlaylistsClick(chosenPlaylistName)"
+            class="fa-solid fa-trash-can"
+          ></i>
+          <div class="delete_playlist_cont" *ngIf="isPlaylistsDeleteClicked">
+            <app-playlist-delete
+              [playlistname]="chosenPlaylistName"
+              [userId]="UserData.id"
+              (isDeletingcanceled)="canceledDeletingfromPopup()"
+            ></app-playlist-delete>
+          </div>
         </div>
         <div class="list_box_content">
           <app-music-card
