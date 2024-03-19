@@ -21,8 +21,23 @@ nav {
   gap: var(--regular_cards_distance);
 }
 main {
+  height: 100%;
   padding: 0.25rem;
-  overflow-x: hidden;
+  overflow: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+main .playBar_content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  backdrop-filter: blur(30px);
+  z-index: 100;
+}
+main .playBar_content.sticky {
+  position: sticky;
 }
 .top_content,
 .bottom_content {
@@ -321,7 +336,6 @@ main {
 
 .language_selector ul li {
   background-color: var(--darker_bg_color);
-  /* color: var(--main_font_light_color); */
   border: 0;
 }
 .language_selector ul li:hover {

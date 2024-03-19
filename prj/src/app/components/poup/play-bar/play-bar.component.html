@@ -1,0 +1,56 @@
+<div class="playBar_content">
+  <div class="left_col">
+    <div class="img">
+      <img [src]="selectedMusic.albumImg" alt="" />
+    </div>
+    <h4>{{ selectedMusic.musicName }}</h4>
+  </div>
+  <div class="middle_col">
+    <div class="top_row">
+      <i class="fa-solid fa-backward-step"></i>
+      <div>
+        <i
+          *ngIf="isSoundPaused"
+          (click)="songPauseClick()"
+          class="fa-solid fa-pause"
+        ></i>
+        <i
+          *ngIf="!isSoundPaused"
+          (click)="songPauseClick()"
+          class="fa-solid fa-play"
+        ></i>
+      </div>
+      <i class="fa-solid fa-forward-step"></i>
+    </div>
+    <div class="bottom_row">
+      <p>
+        {{ audio.currentTime | number : "1.2-2" }}/{{
+          selectedMusic.duration / 60000 | number : "1.2-2"
+        }}
+      </p>
+      <mat-slider
+        color="primary"
+        min="0"
+        [max]="selectedMusic.duration / 1000 / 6"
+      >
+        <input
+          [value]="audio.currentTime"
+          (input)="updateCurrentTime($event.target)"
+          matSliderThumb
+        />
+      </mat-slider>
+    </div>
+  </div>
+  <div class="right_col">
+    <i
+      *ngIf="!isSoundMuted"
+      (click)="songMuteClick()"
+      class="fa-solid fa-volume-high"
+    ></i>
+    <i
+      *ngIf="isSoundMuted"
+      (click)="songMuteClick()"
+      class="fa-solid fa-volume-xmark"
+    ></i>
+  </div>
+</div>

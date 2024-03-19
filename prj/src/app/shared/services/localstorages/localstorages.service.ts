@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { user } from '../../models/userModel';
+import { SelectedMusic, user } from '../../models/userModel';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,10 @@ export class LocalstoragesService {
 
   userData = new BehaviorSubject<any>(this.getUserData());
   isUserdata$: Observable<any> = this.userData.asObservable();
+
+  music = new BehaviorSubject<SelectedMusic>(this.getSelectedMusic());
+  selectedMusic$: Observable<SelectedMusic> = this.music.asObservable();
+
   constructor() {}
 
   /*=================================*/
@@ -74,5 +78,15 @@ export class LocalstoragesService {
 
   getUserData() {
     return JSON.parse(localStorage.getItem('userInfo') || 'null');
+  }
+
+  setSelectedMusic(music: SelectedMusic) {
+    localStorage.setItem('selectedMusic', JSON.stringify(music));
+
+    this.music.next(music);
+  }
+
+  getSelectedMusic() {
+    return JSON.parse(localStorage.getItem('selectedMusic') || 'null');
   }
 }

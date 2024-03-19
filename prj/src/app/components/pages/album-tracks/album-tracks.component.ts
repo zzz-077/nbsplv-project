@@ -23,6 +23,7 @@ export class AlbumTracksComponent {
       .subscribe((musicsData) => {
         this.albumMusics = musicsData.items;
         this.isDataRecieved = true;
+        // console.log(this.albumMusics);
       });
   }
 }

@@ -16,3 +16,9 @@ export interface user {
     };
   };
 }
+export interface SelectedMusic {
+  albumImg: string;
+  musicName: string;
+  duration: number;
+  musicUrl: string;
+}

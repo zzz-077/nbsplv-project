@@ -1,8 +1,16 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { LocalstoragesService } from './shared/services/localstorages/localstorages.service';
-import { Router } from '@angular/router';
+import { Router, Scroll } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UsersService } from './shared/services/pageServices/usersService/users.service';
+import { ScrollbarEvents } from 'swiper/types';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,6 +39,7 @@ export class AppComponent {
   isUserInfoclicked = false;
   isUserLogged = false;
   userIsNotLogged = false;
+  isScrolledDown: boolean = false;
   UserData = {
     id: '',
     name: '',
@@ -38,7 +47,10 @@ export class AppComponent {
     password: '',
     img: 'assets/userDefault_img.png',
   };
+
   constructor(
+    private elRef: ElementRef,
+    private renderer: Renderer2,
     private usersServ: UsersService,
     private router: Router,
     private localStg: LocalstoragesService
@@ -65,6 +77,7 @@ export class AppComponent {
       }
     });
   }
+
   logOutClick() {
     this.localStg.setSign(false);
     this.isUserLogged = this.localStg.getSign();
@@ -81,14 +94,24 @@ export class AppComponent {
     this.router.navigate(['']);
   }
 
+  mainScroll(e: any) {
+    if (e.target.scrollTop > 0) {
+      this.isScrolledDown = true;
+    } else {
+      this.isScrolledDown = false;
+    }
+  }
+
   /*======================================*/
   /*======================================*/
   /*============POPUP FUNCTIONS===========*/
   /*======================================*/
   /*======================================*/
+
   userClick() {
     this.isUserInfoclicked = true;
   }
+
   closePopup(event: any) {
     this.isUserInfoclicked = event;
   }
@@ -107,6 +130,7 @@ export class AppComponent {
       }, 2000);
     }
   }
+
   /*=======================================*/
   /*=======================================*/
   /*============RESIZABLE NAVBAR===========*/

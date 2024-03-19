@@ -108,10 +108,17 @@
     </div>
   </nav>
   <div class="resize-handle--x" data-target="nav"></div>
-  <main>
+  <main (scroll)="mainScroll($event)">
     <router-outlet> </router-outlet>
+    <div
+      ngClass="{{ isScrolledDown ? 'sticky' : null }}"
+      class="playBar_content"
+    >
+      <app-play-bar></app-play-bar>
+    </div>
   </main>
 </div>
+
 <div *ngIf="isUserInfoclicked">
   <app-userinfo (closeInfopopUp)="closePopup($event)"></app-userinfo>
 </div>

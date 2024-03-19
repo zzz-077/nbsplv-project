@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //material
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -32,6 +33,7 @@ import { MusicCardComponent } from './components/pages/music-card/music-card.com
 import { ListsComponent } from './components/pages/lists/lists.component';
 import { AddPlaylistComponent } from './components/poup/add-playlist/add-playlist.component';
 import { PlaylistDeleteComponent } from './components/poup/playlist-delete/playlist-delete.component';
+import { PlayBarComponent } from './components/poup/play-bar/play-bar.component';
 register();
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ register();
     ListsComponent,
     AddPlaylistComponent,
     PlaylistDeleteComponent,
+    PlayBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ register();
     AngularFireAuthModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSliderModule,
     HttpClientModule,
     FormsModule,
   ],

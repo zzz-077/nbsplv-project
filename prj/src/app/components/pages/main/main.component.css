@@ -196,7 +196,6 @@
   text-align: center;
 }
 .notFoundAlbums_box div {
-  background-color: var(--darker_bg_color);
   padding: 1rem 1.5rem;
   border-radius: var(--regular_cards_radius);
   color: var(--about_font_lightGreen_color);

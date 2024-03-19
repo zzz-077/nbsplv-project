@@ -32,6 +32,7 @@ export class MainComponent {
   selectedAlbum: any = {};
   isSearchedAlbums: boolean = true;
   searchtestSubject: Subject<string> = new Subject<string>();
+
   constructor(private router: Router, private artistData: ArtistDataService) {
     this.searchtestSubject.pipe(debounceTime(500)).subscribe((searchText) => {
       this.filterSearch(searchText);

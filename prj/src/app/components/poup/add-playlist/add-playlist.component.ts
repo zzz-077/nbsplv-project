@@ -83,6 +83,7 @@ export class AddPlaylistComponent {
         };
         localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
         this.localStg.userData.next(userDataFromLS);
+        this.isPopupCancelled.emit(true);
       });
   }
 

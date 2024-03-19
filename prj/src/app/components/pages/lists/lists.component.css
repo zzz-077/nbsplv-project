@@ -155,3 +155,20 @@
   top: -173px;
   right: 0;
 }
+.empty_playlist {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.empty_playlist div {
+  padding: 1rem 1.5rem;
+  border-radius: var(--regular_cards_radius);
+  color: var(--about_font_lightGreen_color);
+  width: 60%;
+}
+.empty_playlist div h2 {
+  font-size: 2rem;
+}
+.empty_playlist div p {
+  font-size: 1.125rem;
+}

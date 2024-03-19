@@ -36,6 +36,7 @@ export class PlaylistDeleteComponent {
         };
         localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
         this.localStg.userData.next(userDataFromLS);
+        this.isDeletingcanceled.emit(true);
       });
   }
 }

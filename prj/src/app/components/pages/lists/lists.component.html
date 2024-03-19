@@ -50,11 +50,19 @@
           </div>
         </div>
         <div class="list_box_content">
-          <app-music-card
-            *ngFor="let song of chosenPlaylistSongs; let i = index"
-            [UsersListMusicID]="song"
-            [index]="i + 1"
-          ></app-music-card>
+          <div class="empty_playlist" *ngIf="chosenPlaylistSongs.length == 0">
+            <div>
+              <h2>Playlist is empty!</h2>
+              <p>Add songs to see content</p>
+            </div>
+          </div>
+          <div *ngIf="chosenPlaylistSongs.length != 0">
+            <app-music-card
+              *ngFor="let song of chosenPlaylistSongs; let i = index"
+              [UsersListMusicID]="song"
+              [index]="i + 1"
+            ></app-music-card>
+          </div>
         </div>
       </div>
     </div>
