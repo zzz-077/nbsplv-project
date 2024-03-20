@@ -56,7 +56,7 @@
               <p>Add songs to see content</p>
             </div>
           </div>
-          <div *ngIf="chosenPlaylistSongs.length != 0">
+          <div class="music_display" *ngIf="chosenPlaylistSongs.length != 0">
             <app-music-card
               *ngFor="let song of chosenPlaylistSongs; let i = index"
               [UsersListMusicID]="song"

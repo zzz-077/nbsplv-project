@@ -24,15 +24,11 @@
     </div>
     <div class="bottom_row">
       <p>
-        {{ audio.currentTime | number : "1.2-2" }}/{{
+        {{ audio.currentTime / 100 | number : "1.2-2" }}/{{
           selectedMusic.duration / 60000 | number : "1.2-2"
         }}
       </p>
-      <mat-slider
-        color="primary"
-        min="0"
-        [max]="selectedMusic.duration / 1000 / 6"
-      >
+      <mat-slider color="primary" min="0" [max]="29">
         <input
           [value]="audio.currentTime"
           (input)="updateCurrentTime($event.target)"
