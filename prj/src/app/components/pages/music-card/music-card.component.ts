@@ -11,6 +11,7 @@ import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsS
 })
 export class MusicCardComponent {
   @Input() AlbumMusics: any = {};
+  @Input() allMusicId: string[] = [];
   @Input() UsersListMusicID: string = '';
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
@@ -29,29 +30,28 @@ export class MusicCardComponent {
         this.AlbumMusics = musicData;
         this.albumImg_child = this.AlbumMusics.album.images[1].url;
       });
+      // console.log(this.AlbumMusics);
     }
   }
 
   musicClick(music: any) {
+    // console.log('index', this.AlbumMusics);
     let selectedMusic: SelectedMusic = {
-      albumImg: '',
-      musicName: '',
-      duration: 0,
-      musicUrl: '',
+      index: 0,
+      musicId: '',
+      albumMusicIds: [],
     };
     if (this.UsersListMusicID) {
       selectedMusic = {
-        albumImg: music.album.images[2].url,
-        musicName: music.name,
-        duration: music.duration_ms as number,
-        musicUrl: music.preview_url,
+        index: this.index - 1,
+        musicId: music.id,
+        albumMusicIds: this.allMusicId,
       };
     } else {
       selectedMusic = {
-        albumImg: this.albumImg_child,
-        musicName: music.name,
-        duration: music.duration_ms as number,
-        musicUrl: music.preview_url,
+        index: this.index - 1,
+        musicId: music.id,
+        albumMusicIds: this.allMusicId,
       };
     }
     this.localStg.setSelectedMusic(selectedMusic);

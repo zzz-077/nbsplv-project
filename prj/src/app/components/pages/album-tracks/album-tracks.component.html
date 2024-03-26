@@ -33,6 +33,7 @@
         <app-music-card
           *ngFor="let music of albumMusics; let i = index"
           [AlbumMusics]="music"
+          [allMusicId]="musicIds"
           [albumImg_child]="albumImg"
           [index]="i + 1"
         ></app-music-card>

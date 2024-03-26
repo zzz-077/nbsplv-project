@@ -18,6 +18,7 @@ export class ListsComponent {
   chosenPlaylistSongs: any[] = [];
   ifAlbumisClicked: boolean = false;
   isPlaylistsDeleteClicked: boolean = false;
+  musicIds: string[] = [];
 
   constructor(
     private localStg: LocalstoragesService,
@@ -31,10 +32,18 @@ export class ListsComponent {
           img: userData.img,
         };
       }
-
       this.playlists = userData.playlists;
       this.playlists = Object.values(userData.playlists);
     });
+  }
+
+  userPlaylistClick(playlist: any) {
+    let playlistMusics = playlist.playlistSongs;
+    if (Array.isArray(playlistMusics)) {
+      playlistMusics.forEach((elem) => {
+        this.musicIds.push(elem);
+      });
+    }
   }
 
   playlistClick(playlistName: string) {

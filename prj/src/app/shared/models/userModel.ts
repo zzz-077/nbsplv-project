@@ -17,8 +17,13 @@ export interface user {
   };
 }
 export interface SelectedMusic {
-  albumImg: string;
-  musicName: string;
-  duration: number;
-  musicUrl: string;
+  index: number;
+  musicId: string;
+  albumMusicIds: string[];
 }
+// export interface SelectedMusic {
+//   albumImg: string;
+//   musicName: string;
+//   duration: number;
+//   musicUrl: string;
+// }

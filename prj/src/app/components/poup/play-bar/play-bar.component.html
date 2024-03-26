@@ -1,13 +1,13 @@
 <div class="playBar_content">
   <div class="left_col">
     <div class="img">
-      <img [src]="selectedMusic.albumImg" alt="" />
+      <img [src]="musicData.albumImg" alt="" />
     </div>
-    <h4>{{ selectedMusic.musicName }}</h4>
+    <h4>{{ musicData.musicName }}</h4>
   </div>
   <div class="middle_col">
     <div class="top_row">
-      <i class="fa-solid fa-backward-step"></i>
+      <i (click)="prevMusicClick()" class="fa-solid fa-backward-step"></i>
       <div>
         <i
           *ngIf="isSoundPaused"
@@ -20,12 +20,12 @@
           class="fa-solid fa-play"
         ></i>
       </div>
-      <i class="fa-solid fa-forward-step"></i>
+      <i (click)="nextMusicClick()" class="fa-solid fa-forward-step"></i>
     </div>
     <div class="bottom_row">
       <p>
         {{ audio.currentTime / 100 | number : "1.2-2" }}/{{
-          selectedMusic.duration / 60000 | number : "1.2-2"
+          musicData.duration / 60000 | number : "1.2-2"
         }}
       </p>
       <mat-slider color="primary" min="0" [max]="29">

@@ -17,6 +17,7 @@ i:hover {
 .left_col {
   display: flex;
   gap: 0.5rem;
+  width: 180px;
 }
 .right_col {
   padding-right: 2rem;

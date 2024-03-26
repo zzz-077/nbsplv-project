@@ -17,6 +17,9 @@
 .music_card .col1:nth-child(2) {
   position: relative;
 }
+.music_card .col1:nth-child(1) {
+  cursor: pointer;
+}
 .music_card .playlist_popup {
   position: absolute;
   top: 0;
@@ -89,6 +92,7 @@
   cursor: pointer;
   transition: all 0.2s;
   color: var(--main_font_light_color);
+  z-index: 1;
 }
 .music_card .col1:nth-child(2) div:nth-child(2) i:hover {
   color: #848687;

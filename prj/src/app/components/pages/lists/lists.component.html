@@ -15,6 +15,7 @@
           (click)="playlistClick(playlist.playlistName)"
           *ngFor="let playlist of playlists"
           class="list_box"
+          (click)="userPlaylistClick(playlist)"
         >
           <div class="list_img">
             <i class="fa-solid {{ playlist.playlistIcon }}"></i>
@@ -60,6 +61,7 @@
             <app-music-card
               *ngFor="let song of chosenPlaylistSongs; let i = index"
               [UsersListMusicID]="song"
+              [allMusicId]="musicIds"
               [index]="i + 1"
             ></app-music-card>
           </div>
