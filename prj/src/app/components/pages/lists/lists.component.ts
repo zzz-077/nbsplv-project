@@ -17,6 +17,8 @@ export class ListsComponent {
   chosenPlaylistName: string = '';
   chosenPlaylistSongs: any[] = [];
   ifAlbumisClicked: boolean = false;
+  isLoading: boolean = false;
+
   isPlaylistsDeleteClicked: boolean = false;
   musicIds: string[] = [];
 
@@ -47,6 +49,7 @@ export class ListsComponent {
   }
 
   playlistClick(playlistName: string) {
+    this.isLoading = true;
     this.ifAlbumisClicked = true;
     this.chosenPlaylistName = playlistName;
     const chosenPlaylist = this.playlists.find((obj) => {
@@ -57,11 +60,16 @@ export class ListsComponent {
     } else {
       this.chosenPlaylistSongs = [];
     }
-    //   this.playlistsServ
-    //     .getUserPlaylistSongs(this.UserData.id, playlistName)
-    //     .subscribe((playlistsMusics) => {
-    //       console.log(playlistsMusics);
-    //     });
+    // if (this.UserData) {
+    //   console.log(this.UserData);
+    //   setTimeout(() => {
+    //     this.isLoading = false;
+    //   }, 1000);
+    // } else {
+    //   console.log(this.UserData);
+    //   this.isLoading = false;
+    // }
+    this.isLoading = false;
   }
   deletePlaylistsClick(playlistName: string) {
     this.isPlaylistsDeleteClicked = true;

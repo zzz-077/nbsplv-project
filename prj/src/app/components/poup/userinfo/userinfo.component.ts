@@ -27,6 +27,8 @@ export class UserinfoComponent {
   };
   isEditClicked = false;
   showPass = false;
+  isLoader: boolean = false;
+
   constructor(
     private firestorage: AngularFireStorage,
     private usersServ: UsersService,
@@ -78,6 +80,7 @@ export class UserinfoComponent {
   }
 
   saveClick(event: Event) {
+    this.isLoader = true;
     this.usersServ.updateUser(
       this.userInfo.id,
       this.userForm.value.name as string,
@@ -100,6 +103,7 @@ export class UserinfoComponent {
     // }
 
     event.preventDefault();
+    this.isLoader = false;
     this.isEditClicked = false;
   }
 
@@ -122,6 +126,7 @@ export class UserinfoComponent {
   }
 
   async useImgChange(file: any) {
+    this.isLoader = true;
     const img = file.target.files[0];
     if (img) {
       const path = `userImgBase/${img.name}`;
@@ -153,6 +158,7 @@ export class UserinfoComponent {
       } else {
         console.log('ERROR');
       }
+      this.isLoader = false;
     }
   }
 }

@@ -3,6 +3,11 @@
 /*============NAVBAR===========*/
 /*=============================*/
 /*=============================*/
+
+:host >>> .user-img-loader-cont ngx-skeleton-loader .skeleton-loader {
+  height: 35px;
+  width: 35px;
+}
 .container {
   height: 100vh;
   overflow: hidden;

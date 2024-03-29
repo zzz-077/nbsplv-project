@@ -29,7 +29,10 @@
         <p>Please change the field</p>
       </div>
     </div>
-    <div class="albums_list">
+    <div class="album-loader-cont">
+      <ngx-skeleton-loader *ngIf="isLoading" count="30" appearance="line" />
+    </div>
+    <div *ngIf="!isLoading" class="albums_list">
       <div
         (click)="albumClick(album)"
         *ngFor="let album of filteredAlbums"

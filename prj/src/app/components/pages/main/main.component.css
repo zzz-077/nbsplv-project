@@ -3,6 +3,18 @@
 /*============MAIN BANNER===========*/
 /*==================================*/
 /*==================================*/
+:host >>> .album-loader-cont ngx-skeleton-loader {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+  gap: 2rem;
+}
+
+:host >>> .album-loader-cont ngx-skeleton-loader .skeleton-loader {
+  border-radius: var(--regular_cards_radius);
+  height: 200px;
+  filter: opacity(0.5);
+}
+
 .main_content {
   overflow: hidden;
   display: flex;

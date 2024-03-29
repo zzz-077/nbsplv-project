@@ -28,16 +28,17 @@
         </div>
       </div>
     </div>
-    <div class="table_content">
-      <div *ngIf="isDataRecieved">
-        <app-music-card
-          *ngFor="let music of albumMusics; let i = index"
-          [AlbumMusics]="music"
-          [allMusicId]="musicIds"
-          [albumImg_child]="albumImg"
-          [index]="i + 1"
-        ></app-music-card>
-      </div>
+    <div *ngIf="isLoading" class="musicCard-loader-cont">
+      <ngx-skeleton-loader count="6" appearance="line" />
+    </div>
+    <div *ngIf="!isLoading" class="table_content">
+      <app-music-card
+        *ngFor="let music of albumMusics; let i = index"
+        [AlbumMusics]="music"
+        [allMusicId]="musicIds"
+        [albumImg_child]="albumImg"
+        [index]="i + 1"
+      ></app-music-card>
     </div>
   </div>
 </div>

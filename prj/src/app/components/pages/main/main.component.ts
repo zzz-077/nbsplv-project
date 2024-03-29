@@ -2,7 +2,6 @@ import { Component, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, debounceTime } from 'rxjs';
 import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsService/artist-data.service';
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -31,9 +30,12 @@ export class MainComponent {
   ];
   selectedAlbum: any = {};
   isSearchedAlbums: boolean = true;
+  isLoading: boolean = false;
+  isLoadingBanner: boolean = false;
   searchtestSubject: Subject<string> = new Subject<string>();
 
   constructor(private router: Router, private artistData: ArtistDataService) {
+    this.isLoading = true;
     this.searchtestSubject.pipe(debounceTime(500)).subscribe((searchText) => {
       this.filterSearch(searchText);
     });
@@ -56,6 +58,7 @@ export class MainComponent {
           });
         });
       }
+      this.isLoading = false;
     });
   }
 

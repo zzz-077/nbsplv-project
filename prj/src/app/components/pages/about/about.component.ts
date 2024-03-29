@@ -12,13 +12,16 @@ export class AboutComponent {
     followers: 0,
   };
   followersValue: number = 0;
+  isLoading: boolean = false;
 
   constructor(private artistData: ArtistDataService) {
+    this.isLoading = true;
     this.artistData.getArtistInfo().subscribe((artistInfo) => {
       this.artist = {
         img: artistInfo.images[1].url,
         followers: artistInfo.followers.total,
       };
+      this.isLoading = false;
     });
   }
   ngOnInit() {

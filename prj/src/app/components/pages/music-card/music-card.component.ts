@@ -16,13 +16,12 @@ export class MusicCardComponent {
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
   addPlaylistMusicId: string = '';
-
+  isAddinPlaylistClicked: boolean = false;
   constructor(
     private localStg: LocalstoragesService,
     private artistData: ArtistDataService
   ) {}
 
-  isAddinPlaylistClicked = false;
   // for User playlists
   ngOnInit() {
     if (this.UsersListMusicID) {
@@ -30,7 +29,6 @@ export class MusicCardComponent {
         this.AlbumMusics = musicData;
         this.albumImg_child = this.AlbumMusics.album.images[1].url;
       });
-      // console.log(this.AlbumMusics);
     }
   }
 

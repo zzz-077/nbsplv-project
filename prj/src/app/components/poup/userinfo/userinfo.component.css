@@ -182,3 +182,7 @@
 .buttons_box .btns_secondRow button:nth-child(1):disabled {
   border: 1px solid #3d5458a2;
 }
+.spinner {
+  width: 20px;
+  height: 20px;
+}

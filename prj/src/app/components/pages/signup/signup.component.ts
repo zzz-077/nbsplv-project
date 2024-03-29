@@ -21,6 +21,7 @@ export class SignupComponent {
   users: user[] = [];
   isEmailExist = false;
   userDefaultImg: string = '';
+  isLoader: boolean = false;
   constructor(
     private firestorage: AngularFireStorage,
     private usersServ: UsersService,
@@ -32,6 +33,7 @@ export class SignupComponent {
       .ref('userDefImg/userDefaultImg.png')
       .getDownloadURL()
       .subscribe((url) => {
+        console.log(url);
         this.userDefaultImg = url;
       });
   }
@@ -78,6 +80,7 @@ export class SignupComponent {
   }
 
   signUp() {
+    this.isLoader = true;
     const email = this.userForm.value.email as string,
       password = this.userForm.value.password as string;
     this.fireAuth
@@ -101,6 +104,7 @@ export class SignupComponent {
             },
           })
           .then(() => {
+            this.isLoader = false;
             this.router.navigate(['/login']);
           });
       })

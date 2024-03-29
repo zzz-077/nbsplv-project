@@ -100,6 +100,11 @@
 .sign_content form .google_sign button p {
   width: 100%;
 }
+.sign_content form .click_btn button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .sign_content form .click_btn button p {
   font-size: 22px;
   z-index: 10;

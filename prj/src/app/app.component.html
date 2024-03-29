@@ -23,14 +23,7 @@
             >About artist</a
           >
         </li>
-        <!-- <li>
-          <div class="link_icons">
-            <i class="fa-solid fa-play"></i>
-          </div>
-          <a [ngClass]="isSidebarfoldedForLogo ? 'active' : null" href="#"
-            >All songs</a
-          >
-        </li> -->
+
         <li (click)="playlistClick()">
           <div class="link_icons">
             <i class="fa-solid fa-list"></i>
@@ -48,7 +41,10 @@
           class="user_link"
         >
           <div class="link_icons">
-            <img [src]="UserData.img" alt="" />
+            <div *ngIf="isLoader" class="user-img-loader-cont">
+              <ngx-skeleton-loader count="1" appearance="line" />
+            </div>
+            <img *ngIf="!isLoader" [src]="UserData.img" alt="" />
           </div>
           <a [ngClass]="isSidebarfoldedForLogo ? 'active' : null" href="#"
             >{{ UserData.name }}
@@ -110,7 +106,7 @@
   <div class="resize-handle--x" data-target="nav"></div>
   <main (scroll)="mainScroll($event)">
     <router-outlet> </router-outlet>
-    <div class="playBar_content">
+    <div *ngIf="isUserLogged" class="playBar_content">
       <app-play-bar></app-play-bar>
     </div>
   </main>

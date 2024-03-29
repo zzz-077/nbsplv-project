@@ -66,7 +66,10 @@
       </div>
       <div class="input_col click_btn">
         <button (click)="submitSignIn()" [disabled]="!userForm.valid">
-          <p>Log in</p>
+          <div class="spinner" *ngIf="isLoader">
+            <app-spinner></app-spinner>
+          </div>
+          <p *ngIf="!isLoader">Log in</p>
         </button>
         <p class="have_account">
           Do't have an account? <a href="/signup">Sign up here</a>

@@ -40,6 +40,7 @@ export class AppComponent {
   isUserLogged = false;
   userIsNotLogged = false;
   isScrolledDown: boolean = false;
+  isLoader: boolean = false;
   UserData = {
     id: '',
     name: '',
@@ -55,6 +56,7 @@ export class AppComponent {
     private router: Router,
     private localStg: LocalstoragesService
   ) {
+    this.isLoader = true;
     if (localStg.getLang() === 'Eng') {
       this.DefaultLangSelectorName = this.localStg.getLang();
       this.DefaultLangSelectorFullName = 'English';
@@ -75,6 +77,7 @@ export class AppComponent {
           img: data.img,
         };
       }
+      this.isLoader = false;
     });
   }
 

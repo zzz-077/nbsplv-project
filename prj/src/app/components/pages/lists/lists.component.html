@@ -57,7 +57,13 @@
               <p>Add songs to see content</p>
             </div>
           </div>
-          <div class="music_display" *ngIf="chosenPlaylistSongs.length != 0">
+          <div
+            *ngIf="isLoading && chosenPlaylistSongs.length != 0"
+            class="musicCard-loader-cont"
+          >
+            <ngx-skeleton-loader count="6" appearance="line" />
+          </div>
+          <div class="music_display" *ngIf="!isLoading">
             <app-music-card
               *ngFor="let song of chosenPlaylistSongs; let i = index"
               [UsersListMusicID]="song"

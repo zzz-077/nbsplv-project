@@ -1,5 +1,8 @@
 <div class="about_content">
-  <div class="about_top_row">
+  <div *ngIf="isLoading" class="about-loader-cont">
+    <ngx-skeleton-loader count="2" appearance="line" />
+  </div>
+  <div *ngIf="!isLoading" class="about_top_row">
     <div class="top_row_col1">
       <img [src]="artist.img" alt="" />
     </div>

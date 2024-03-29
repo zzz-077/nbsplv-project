@@ -20,6 +20,8 @@ export class SiginComponent {
   /*================================*/
   // @Output() LoginedUser = new EventEmitter<user>();
   isLoginError = false;
+  isLoader: boolean = false;
+
   LoginedUser = {
     email: '',
     id: '',
@@ -57,6 +59,7 @@ export class SiginComponent {
   /*================================*/
   /*================================*/
   submitSignIn() {
+    this.isLoader = true;
     const email = this.userForm.value?.email as string,
       password = this.userForm.value?.password as string;
     this.usersServ;
@@ -82,6 +85,7 @@ export class SiginComponent {
 
         this.localStg.setSign(true);
         this.localStg.setUserData(this.LoginedUser);
+        this.isLoader = false;
         this.router.navigate(['']);
       } else {
         this.isLoginError = true;
@@ -93,6 +97,7 @@ export class SiginComponent {
   }
 
   signinWithGoogle() {
+    this.isLoader = true;
     this.fireAuth
       .signInWithPopup(new GoogleAuthProvider())
       .then((userCredential) => {
@@ -150,6 +155,7 @@ export class SiginComponent {
                     // console.log(this.LoginedUser);
                     this.localStg.setSign(true);
                     this.localStg.setUserData(this.LoginedUser);
+                    this.isLoader = false;
                     this.router.navigate(['']);
                   });
               }

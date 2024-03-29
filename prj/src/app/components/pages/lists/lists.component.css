@@ -1,3 +1,12 @@
+:host >>> .musicCard-loader-cont {
+  width: 100%;
+  height: 78px;
+}
+
+:host >>> .musicCard-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 100%;
+  height: 100%;
+}
 .lists_content {
   padding: 2rem;
   padding-bottom: 0;

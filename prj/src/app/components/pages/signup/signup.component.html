@@ -137,7 +137,10 @@
 
       <div class="input_col click_btn">
         <button (click)="signUp()" [disabled]="!userForm.valid || isEmailExist">
-          <p>Sign Up</p>
+          <div class="spinner" *ngIf="isLoader">
+            <app-spinner></app-spinner>
+          </div>
+          <p *ngIf="!isLoader">Sign Up</p>
         </button>
         <p class="have_account">
           Already have an account? <a href="/login">log in here</a>

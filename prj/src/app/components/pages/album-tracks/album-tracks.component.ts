@@ -11,9 +11,10 @@ export class AlbumTracksComponent {
   album: any = {};
   albumMusics: any = {};
   musicIds: string[] = [];
-  isDataRecieved = false;
+  isLoading: boolean = false;
   albumImg: string = '';
   constructor(private artistData: ArtistDataService) {
+    this.isLoading = true;
     this.artistData.getAlbum$.subscribe((albumdata) => {
       this.album = albumdata;
       this.albumImg = albumdata.img;
@@ -24,13 +25,13 @@ export class AlbumTracksComponent {
       .getArtistAlbumsTracks(this.album.id)
       .subscribe((musicsData) => {
         this.albumMusics = musicsData.items;
-        this.isDataRecieved = true;
 
         if (Array.isArray(this.albumMusics)) {
           this.albumMusics.forEach((elem) => {
             this.musicIds.push(elem.id);
           });
         }
+        this.isLoading = false;
       });
   }
 }

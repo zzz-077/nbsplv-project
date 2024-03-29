@@ -4,7 +4,10 @@
       <div class="img_box"><img [src]="userInfo.img" alt="" /></div>
       <div class="img_edit_btn">
         <label for="imgId">
-          <i class="fa-solid fa-pen-fancy"></i>
+          <div class="spinner" *ngIf="isLoader">
+            <app-spinner></app-spinner>
+          </div>
+          <i *ngIf="!isLoader" class="fa-solid fa-pen-fancy"></i>
           <input
             (change)="useImgChange($event)"
             style="display: none"
@@ -110,7 +113,10 @@
                 class="save_btn"
                 (click)="saveClick($event)"
               >
-                <p>Save</p>
+                <div class="spinner" *ngIf="isLoader">
+                  <app-spinner></app-spinner>
+                </div>
+                <p *ngIf="!isLoader">Save</p>
               </button>
               <button (click)="cancelClick($event)"><p>Cancel</p></button>
             </div>

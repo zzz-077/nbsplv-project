@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -34,6 +36,7 @@ import { ListsComponent } from './components/pages/lists/lists.component';
 import { AddPlaylistComponent } from './components/poup/add-playlist/add-playlist.component';
 import { PlaylistDeleteComponent } from './components/poup/playlist-delete/playlist-delete.component';
 import { PlayBarComponent } from './components/poup/play-bar/play-bar.component';
+import { SpinnerComponent } from './components/poup/spinner/spinner.component';
 register();
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ register();
     AddPlaylistComponent,
     PlaylistDeleteComponent,
     PlayBarComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +65,13 @@ register();
     MatSelectModule,
     MatCheckboxModule,
     MatSliderModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     FormsModule,
+    NgxSkeletonLoaderModule.forRoot({
+      animation: 'pulse',
+      loadingText: 'This item is actually loading...',
+    }),
   ],
   providers: [randomIcons],
   bootstrap: [AppComponent],
