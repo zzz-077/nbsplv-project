@@ -14,7 +14,7 @@ export class AddPlaylistComponent {
   @Input() musicId: string = '';
   userId: string = '';
   playlists: any[] = [];
-
+  isLoader: boolean = false;
   isCheckBoxClicked: boolean = false;
   isInputEmpty: boolean = false;
   selectedPlaylistsArr: string[] = [];
@@ -37,6 +37,7 @@ export class AddPlaylistComponent {
   }
 
   playlistPopUpDoneClick() {
+    this.isLoader = true;
     this.isCheckBoxClicked = false;
     this.playlistsServ
       .addMusicInPlaylists(this.userId, this.selectedPlaylistsArr, this.musicId)
@@ -51,7 +52,8 @@ export class AddPlaylistComponent {
             ...userDataFromLS,
             playlists: userData?.playlists,
           }),
-            localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
+            (this.isLoader = false);
+          localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
           this.localStg.userData.next(userDataFromLS);
         });
       });

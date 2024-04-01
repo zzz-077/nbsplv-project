@@ -18,9 +18,9 @@ export class ListsComponent {
   chosenPlaylistSongs: any[] = [];
   ifAlbumisClicked: boolean = false;
   isLoading: boolean = false;
-
   isPlaylistsDeleteClicked: boolean = false;
   musicIds: string[] = [];
+  chosenPlaylist: any = null;
 
   constructor(
     private localStg: LocalstoragesService,
@@ -48,27 +48,21 @@ export class ListsComponent {
     }
   }
 
-  playlistClick(playlistName: string) {
+  playlistClick(playlist: any) {
+    this.chosenPlaylist = playlist;
+
     this.isLoading = true;
     this.ifAlbumisClicked = true;
-    this.chosenPlaylistName = playlistName;
+    this.chosenPlaylistName = playlist.playlist;
     const chosenPlaylist = this.playlists.find((obj) => {
-      return obj.playlistName === playlistName;
+      return obj.playlistName === playlist.playlistName;
     });
     if (chosenPlaylist) {
       this.chosenPlaylistSongs = chosenPlaylist.playlistSongs;
     } else {
       this.chosenPlaylistSongs = [];
     }
-    // if (this.UserData) {
-    //   console.log(this.UserData);
-    //   setTimeout(() => {
-    //     this.isLoading = false;
-    //   }, 1000);
-    // } else {
-    //   console.log(this.UserData);
-    //   this.isLoading = false;
-    // }
+
     this.isLoading = false;
   }
   deletePlaylistsClick(playlistName: string) {

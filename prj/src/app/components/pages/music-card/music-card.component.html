@@ -1,4 +1,4 @@
-<div class="music_card">
+<div [ngClass]="{ active: clickedCard === AlbumMusics }" class="music_card">
   <div class="col1" (click)="musicClick(AlbumMusics)">
     <div>
       <p>{{ index }}</p>

@@ -38,6 +38,8 @@
         [allMusicId]="musicIds"
         [albumImg_child]="albumImg"
         [index]="i + 1"
+        [isActive]="activeMusicCardIndex === i + 1"
+        (cardClicked)="setActiveMusicCard(i + 1)"
       ></app-music-card>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { SelectedMusic } from 'src/app/shared/models/userModel';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
@@ -15,8 +15,10 @@ export class MusicCardComponent {
   @Input() UsersListMusicID: string = '';
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
+  @Output() cardClicked: EventEmitter<void> = new EventEmitter<void>();
   addPlaylistMusicId: string = '';
   isAddinPlaylistClicked: boolean = false;
+  clickedCard: any = null;
   constructor(
     private localStg: LocalstoragesService,
     private artistData: ArtistDataService
@@ -33,6 +35,12 @@ export class MusicCardComponent {
   }
 
   musicClick(music: any) {
+    this.cardClicked.emit();
+    if (this.clickedCard === music) {
+      this.clickedCard = null;
+    } else {
+      this.clickedCard = music;
+    }
     // console.log('index', this.AlbumMusics);
     let selectedMusic: SelectedMusic = {
       index: 0,

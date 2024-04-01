@@ -43,6 +43,9 @@
 .delete_card .col:nth-child(3) button:nth-child(2) {
   background-color: var(--main_font_light_color);
   border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .delete_card .col:nth-child(3) button:nth-child(1) p {
   color: white;
@@ -56,4 +59,8 @@
   max-width: 300px;
   font-size: 0.875rem;
   text-align: center;
+}
+.spinner {
+  width: 18px;
+  height: 18px;
 }

@@ -7,7 +7,6 @@
 }
 i {
   font-size: 1.25rem;
-
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -23,11 +22,24 @@ i:hover {
   padding-right: 2rem;
   width: 25px;
 }
+:host >>> .name-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 100px;
+  height: 20px;
+}
+:host >>> .duration-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 60px;
+  height: 18px;
+}
 
-.left_col .img {
+.left_col .img,
+:host >>> .img-loader-cont ngx-skeleton-loader .skeleton-loader {
   width: 60px;
   height: 60px;
   overflow: hidden;
+  border-radius: 0;
+}
+:host >>> .skeleton-loader.pulse {
+  margin: 0;
 }
 .left_col .img img {
   width: 100%;
@@ -61,8 +73,8 @@ i:hover {
 }
 .middle_col .bottom_row mat-slider {
   width: 100%;
-  /* padding: 0.25rem 0; */
 }
+
 .middle_col .bottom_row mat-slider input {
   padding: 0.5rem 0;
   height: 32px;

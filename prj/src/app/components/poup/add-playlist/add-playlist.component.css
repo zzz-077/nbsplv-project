@@ -24,6 +24,9 @@
   border: 1px solid rgba(106, 106, 106, 0.73);
   border-radius: 0.25rem;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .addPlaylist_popup .bottom_col button:disabled {
   opacity: 0.4;
@@ -112,10 +115,15 @@
 
 .addPlaylist_popup .middle_col .playlist_card .playlist_card_left h3 {
   font-size: 1rem;
+  color: var(--main_font_light_color);
 }
 
 .addPlaylist_popup .middle_col .playlist_card .playlist_card_left {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+.spinner {
+  width: 18px;
+  height: 18px;
 }

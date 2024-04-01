@@ -84,9 +84,25 @@
   cursor: pointer;
   height: 50px;
   transition: all 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
+
+.active {
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+  height: 50px;
+  transition: all 0.2s;
+  background-color: #27545e;
+  color: var(--about_font_lightGreen_color);
+  border: 1px solid rgb(52, 114, 128);
+}
+
 .lists_bottom_row .lists_bottom_left_col .list_box:hover {
   background-color: #03171c;
+}
+.lists_bottom_row .lists_bottom_left_col .list_box.active:hover {
+  background-color: #27545e;
 }
 .lists_bottom_row .lists_bottom_left_col .list_box .list_img {
   width: 45%;

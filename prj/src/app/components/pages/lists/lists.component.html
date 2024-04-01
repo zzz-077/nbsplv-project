@@ -12,10 +12,11 @@
     <div class="lists_bottom_row">
       <div class="lists_bottom_left_col">
         <div
-          (click)="playlistClick(playlist.playlistName)"
+          (click)="playlistClick(playlist)"
           *ngFor="let playlist of playlists"
           class="list_box"
           (click)="userPlaylistClick(playlist)"
+          [ngClass]="{ active: chosenPlaylist === playlist }"
         >
           <div class="list_img">
             <i class="fa-solid {{ playlist.playlistIcon }}"></i>
@@ -38,7 +39,7 @@
         <div class="list_box_bar">
           <h3 *ngIf="chosenPlaylistName">{{ chosenPlaylistName }}'s Songs</h3>
           <i
-            *ngIf="chosenPlaylistName"
+            *ngIf="chosenPlaylistName && chosenPlaylistName !== 'liked'"
             (click)="deletePlaylistsClick(chosenPlaylistName)"
             class="fa-solid fa-trash-can"
           ></i>

@@ -1,6 +1,6 @@
 <div class="playBar_content">
   <div class="left_col">
-    <div class="img">
+    <div *ngIf="!isLoader" class="img">
       <img
         onerror="this.src='assets/userDefault_img.png'"
         on
@@ -8,7 +8,13 @@
         alt=""
       />
     </div>
-    <h4>{{ musicData.musicName }}</h4>
+    <div *ngIf="isLoader" class="img-loader-cont">
+      <ngx-skeleton-loader count="1" appearance="line" />
+    </div>
+    <h4 *ngIf="!isLoader">{{ musicData.musicName }}</h4>
+    <div *ngIf="isLoader" class="name-loader-cont">
+      <ngx-skeleton-loader count="1" appearance="line" />
+    </div>
   </div>
   <div class="middle_col">
     <div class="top_row">
@@ -28,11 +34,14 @@
       <i (click)="nextMusicClick()" class="fa-solid fa-forward-step"></i>
     </div>
     <div class="bottom_row">
-      <p>
+      <p *ngIf="!isLoader">
         {{ audio.currentTime / 100 | number : "1.2-2" }}/{{
           musicData.duration / 60000 | number : "1.2-2"
         }}
       </p>
+      <div *ngIf="isLoader" class="duration-loader-cont">
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </div>
       <mat-slider color="primary" min="0" [max]="29">
         <input
           [value]="audio.currentTime"

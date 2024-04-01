@@ -11,7 +11,7 @@ export class PlaylistDeleteComponent {
   @Output() isDeletingcanceled = new EventEmitter<boolean>();
   @Input() playlistname: string = '';
   @Input() userId: string = '';
-
+  isLoader: boolean = false;
   constructor(
     private localStg: LocalstoragesService,
     private playlistsServ: PlaylistsService
@@ -22,6 +22,7 @@ export class PlaylistDeleteComponent {
   }
 
   DeletePlaylist() {
+    this.isLoader = true;
     this.playlistsServ
       .deleteUserPlaylist(this.userId, this.playlistname)
       .subscribe((userData) => {
@@ -34,6 +35,7 @@ export class PlaylistDeleteComponent {
             ...userData.playlists,
           },
         };
+        this.isLoader = false;
         localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
         this.localStg.userData.next(userDataFromLS);
         this.isDeletingcanceled.emit(true);

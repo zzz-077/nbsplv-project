@@ -23,11 +23,13 @@ export class PlayBarComponent {
   isSoundMuted: boolean = false;
   isSoundPaused: boolean = false;
   audio: HTMLAudioElement = new Audio();
+  isLoader: boolean = false;
 
   constructor(
     private localStg: LocalstoragesService,
     private artistData: ArtistDataService
   ) {
+    this.isLoader = true;
     this.localStg.selectedMusic$.subscribe((selectedMusic) => {
       this.selectedMusic = selectedMusic;
       this.artistData
@@ -39,6 +41,7 @@ export class PlayBarComponent {
             duration: musicData.duration_ms,
             musicUrl: musicData.preview_url,
           };
+          this.isLoader = false;
           this.audio.src = this.musicData.musicUrl;
         });
       this.isSoundPaused = false;
@@ -59,6 +62,7 @@ export class PlayBarComponent {
   }
 
   nextMusicClick() {
+    this.isLoader = true;
     const AlbumMusics = this.selectedMusic.albumMusicIds;
     const musicId = this.selectedMusic.index;
     let nextMusicId;
@@ -78,11 +82,13 @@ export class PlayBarComponent {
         musicId: nextMusicId,
         albumMusicIds: AlbumMusics,
       };
+      this.isLoader = false;
       this.localStg.setSelectedMusic(this.selectedMusic);
     }
   }
 
   prevMusicClick() {
+    this.isLoader = true;
     const AlbumMusics = this.selectedMusic.albumMusicIds;
     const musicId = this.selectedMusic.index;
     let prevMusicId;
@@ -105,6 +111,7 @@ export class PlayBarComponent {
         musicId: prevMusicId,
         albumMusicIds: AlbumMusics,
       };
+      this.isLoader = false;
       this.localStg.setSelectedMusic(this.selectedMusic);
     }
   }

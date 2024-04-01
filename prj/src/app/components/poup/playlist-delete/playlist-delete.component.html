@@ -10,6 +10,11 @@
   </div>
   <div class="col">
     <button (click)="cancelDeleting()"><p>Cancel</p></button>
-    <button (click)="DeletePlaylist()"><p>Delete</p></button>
+    <button (click)="DeletePlaylist()">
+      <p *ngIf="isLoader">Delete</p>
+      <div class="spinner" *ngIf="!isLoader">
+        <app-spinner></app-spinner>
+      </div>
+    </button>
   </div>
 </div>

@@ -32,7 +32,10 @@
   <div class="bottom_col">
     <button (click)="playlistPopUpCancelClick()"><p>Cancel</p></button>
     <button [disabled]="!isCheckBoxClicked" (click)="playlistPopUpDoneClick()">
-      <p>Done</p>
+      <p *ngIf="!isLoader">Done</p>
+      <div class="spinner" *ngIf="isLoader">
+        <app-spinner></app-spinner>
+      </div>
     </button>
   </div>
 </div>
