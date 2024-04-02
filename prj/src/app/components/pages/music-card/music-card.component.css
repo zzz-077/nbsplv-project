@@ -102,6 +102,7 @@
   align-items: center;
   gap: 0.125rem;
 }
+
 .music_card .col1:nth-child(2) div:nth-child(2) i {
   font-size: 1.25rem;
   cursor: pointer;
@@ -118,4 +119,26 @@
 }
 .music_card .col1:nth-child(2) div:nth-child(2) i:hover {
   color: #848687;
+}
+
+:host >>> .img-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  filter: opacity(0.5);
+}
+:host >>> .name-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 10px;
+  height: 20px;
+  margin: 0;
+  filter: opacity(0.5);
+}
+
+:host >>> .listens-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 100px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 0;
+  margin: 0;
+  filter: opacity(0.5);
 }

@@ -25,10 +25,12 @@ i:hover {
 :host >>> .name-loader-cont ngx-skeleton-loader .skeleton-loader {
   width: 100px;
   height: 20px;
+  filter: opacity(0.5);
 }
 :host >>> .duration-loader-cont ngx-skeleton-loader .skeleton-loader {
   width: 60px;
   height: 18px;
+  filter: opacity(0.5);
 }
 
 .left_col .img,
@@ -37,6 +39,7 @@ i:hover {
   height: 60px;
   overflow: hidden;
   border-radius: 0;
+  filter: opacity(0.5);
 }
 :host >>> .skeleton-loader.pulse {
   margin: 0;

@@ -53,7 +53,7 @@ export class ListsComponent {
 
     this.isLoading = true;
     this.ifAlbumisClicked = true;
-    this.chosenPlaylistName = playlist.playlist;
+    this.chosenPlaylistName = playlist.playlistName;
     const chosenPlaylist = this.playlists.find((obj) => {
       return obj.playlistName === playlist.playlistName;
     });

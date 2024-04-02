@@ -13,7 +13,6 @@ export class AlbumTracksComponent {
   musicIds: string[] = [];
   isLoading: boolean = false;
   albumImg: string = '';
-  activeMusicCardIndex: number | null = null;
   constructor(private artistData: ArtistDataService) {
     this.isLoading = true;
     this.artistData.getAlbum$.subscribe((albumdata) => {
@@ -34,9 +33,5 @@ export class AlbumTracksComponent {
         }
         this.isLoading = false;
       });
-  }
-
-  setActiveMusicCard(index: number) {
-    this.activeMusicCardIndex = index;
   }
 }

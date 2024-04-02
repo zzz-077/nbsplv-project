@@ -15,10 +15,11 @@ export class MusicCardComponent {
   @Input() UsersListMusicID: string = '';
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
-  @Output() cardClicked: EventEmitter<void> = new EventEmitter<void>();
   addPlaylistMusicId: string = '';
   isAddinPlaylistClicked: boolean = false;
   clickedCard: any = null;
+  isActive: boolean = false;
+  isLoader: boolean = false;
   constructor(
     private localStg: LocalstoragesService,
     private artistData: ArtistDataService
@@ -26,22 +27,25 @@ export class MusicCardComponent {
 
   // for User playlists
   ngOnInit() {
+    this.isLoader = true;
     if (this.UsersListMusicID) {
       this.artistData.getMusic(this.UsersListMusicID).subscribe((musicData) => {
         this.AlbumMusics = musicData;
         this.albumImg_child = this.AlbumMusics.album.images[1].url;
+        this.isLoader = false;
       });
+    } else {
+      this.isLoader = false;
     }
   }
 
   musicClick(music: any) {
-    this.cardClicked.emit();
+    this.isActive = false;
     if (this.clickedCard === music) {
       this.clickedCard = null;
     } else {
       this.clickedCard = music;
     }
-    // console.log('index', this.AlbumMusics);
     let selectedMusic: SelectedMusic = {
       index: 0,
       musicId: '',

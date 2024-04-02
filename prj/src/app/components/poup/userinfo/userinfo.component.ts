@@ -75,6 +75,7 @@ export class UserinfoComponent {
   /*==============================*/
 
   editClick(event: Event) {
+    this.showPass = false;
     event.preventDefault();
     this.isEditClicked = true;
   }

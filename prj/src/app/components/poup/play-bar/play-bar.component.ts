@@ -69,6 +69,8 @@ export class PlayBarComponent {
     nextMusicId = AlbumMusics.find((music, index) => {
       return index === musicId + 1;
     });
+    console.log(AlbumMusics);
+
     if (nextMusicId === undefined) {
       this.selectedMusic = {
         index: 0,
