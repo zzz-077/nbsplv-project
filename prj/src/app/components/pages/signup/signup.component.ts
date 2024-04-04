@@ -33,7 +33,6 @@ export class SignupComponent {
       .ref('userDefImg/userDefaultImg.png')
       .getDownloadURL()
       .subscribe((url) => {
-        console.log(url);
         this.userDefaultImg = url;
       });
   }

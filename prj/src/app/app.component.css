@@ -425,3 +425,64 @@ main .playBar_content.sticky {
     transform: translateX(-1px) rotate(0);
   }
 }
+
+/*====================================*/
+/*====================================*/
+/*============MOBILE NAVBAR===========*/
+/*====================================*/
+/*====================================*/
+
+.mobile_navbar {
+  display: none;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background-color: var(--darker_bg_color);
+}
+
+.mobile_navbar ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.mobile_navbar ul li {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mobile_navbar ul li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobile_navbar ul li i {
+  font-size: 24px;
+  color: var(--about_font_lightGreen_color);
+}
+
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+@media (max-width: 768px) {
+  .mobile_navbar {
+    display: block;
+  }
+  .container {
+    flex-direction: column;
+  }
+  nav,
+  .resize-handle--x {
+    display: none;
+  }
+}

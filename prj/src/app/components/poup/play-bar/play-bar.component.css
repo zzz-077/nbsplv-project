@@ -82,3 +82,60 @@ i:hover {
   padding: 0.5rem 0;
   height: 32px;
 }
+
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+@media (max-width: 768px) {
+  .playBar_content {
+    padding: 0.25rem 0.5rem;
+  }
+  .left_col .img,
+  :host >>> .img-loader-cont ngx-skeleton-loader .skeleton-loader {
+    width: 40px;
+    height: 40px;
+  }
+
+  .left_col h4 {
+    font-size: 0.875rem;
+  }
+  .left_col h4 {
+    width: auto;
+  }
+
+  .middle_col .top_row {
+    gap: 0.5rem;
+  }
+
+  .middle_col .top_row i {
+    font-size: 1.125rem;
+  }
+
+  .middle_col .top_row div i {
+    font-size: 1.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .right_col {
+    width: 25px;
+    display: flex;
+    margin-left: 1rem;
+  }
+  .right_col i {
+    font-size: 1rem;
+  }
+  .bottom_row p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .bottom_row p,
+  .duration-loader-cont {
+    display: none;
+  }
+}

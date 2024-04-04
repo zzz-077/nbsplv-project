@@ -131,23 +131,6 @@
 .albums_list .card:hover .album_img img {
   transform: scale(1.1);
 }
-/*
-.albums_list .card::after {
-  position: absolute;
-  content: " ";
-  top: 0;
-  right: 0;
-  width: 0px;
-  height: 100%;
-  z-index: 0;
-  transition: all 0.5s;
-}
-
-.albums_list .card:hover::after {
-  width: 80px;
-  background-color: #092a35b6;
-  filter: blur(20px);
-} */
 
 .albums_list .card:hover .album_description .col2 i {
   transform: translateX(0);
@@ -217,4 +200,88 @@
 }
 .notFoundAlbums_box div p {
   font-size: 1.125rem;
+}
+
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+@media (max-width: 768px) {
+  .main_img_content {
+    height: 600px;
+    max-height: 600px;
+  }
+  .main_img_content swiper-container swiper-slide .main_title {
+    font-size: 10vw;
+    line-height: 12vw;
+  }
+  .main_img_content swiper-container swiper-slide .main_title h2 {
+    font-size: 3vw;
+  }
+  .main_albums_content {
+    padding: 1rem;
+  }
+  .albums_search_content {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .albums_search_content h3 {
+    font-size: 1rem;
+  }
+  .albums_search_content input {
+    font-size: 0.875rem;
+  }
+  .albums_list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .card {
+    width: 100%;
+    height: 180px;
+  }
+  .card .album_img {
+    width: 150px;
+    height: 150px;
+  }
+  .album_description {
+    height: 100%;
+    width: 60%;
+  }
+}
+@media (max-width: 500px) {
+  .albums_search_content {
+    flex-direction: column-reverse;
+    align-items: start;
+  }
+  .albums_search_content h3 {
+    font-size: 0.875rem;
+  }
+  .albums_search_content h3 {
+    font-size: 1rem;
+  }
+  .albums_search_content input {
+    font-size: 0.875rem;
+  }
+
+  .card {
+    width: 100%;
+    height: 150px;
+  }
+  .card .album_img {
+    width: 135px;
+    height: 135px;
+  }
+  .album_description {
+    height: 100%;
+    width: 60%;
+  }
+  .album_description .col1 h2 {
+    font-size: 1.45rem;
+  }
+  .album_description .col1 h3 {
+    font-size: 0.875rem;
+  }
 }

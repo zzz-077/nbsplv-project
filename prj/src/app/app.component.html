@@ -110,6 +110,34 @@
       <app-play-bar></app-play-bar>
     </div>
   </main>
+  <div *ngIf="isUserLogged" class="mobile_navbar">
+    <ul>
+      <li routerLink="">
+        <img src="assets/siteLogo.png" alt="" />
+      </li>
+      <li routerLink="aboutArtist">
+        <i class="fa-solid fa-address-book"></i>
+      </li>
+      <li (click)="playlistClick()">
+        <i class="fa-solid fa-list"></i>
+      </li>
+      <li>
+        <div
+          *ngIf="isUserLogged"
+          (click)="userClick()"
+          [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
+          class="user_link"
+        >
+          <div class="link_icons">
+            <div *ngIf="isLoader" class="user-img-loader-cont">
+              <ngx-skeleton-loader count="1" appearance="line" />
+            </div>
+            <img *ngIf="!isLoader" [src]="UserData.img" alt="" />
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div *ngIf="isUserInfoclicked">

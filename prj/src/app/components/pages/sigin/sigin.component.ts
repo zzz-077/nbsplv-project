@@ -89,6 +89,7 @@ export class SiginComponent {
         this.router.navigate(['']);
       } else {
         this.isLoginError = true;
+        this.isLoader = false;
         setTimeout(() => {
           this.isLoginError = false;
         }, 3000);
