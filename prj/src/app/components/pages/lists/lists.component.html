@@ -69,6 +69,7 @@
               *ngFor="let song of chosenPlaylistSongs; let i = index"
               [UsersListMusicID]="song"
               [allMusicId]="musicIds"
+              [isActive]="savedClickedMusicId === song"
               [index]="i + 1"
             ></app-music-card>
           </div>

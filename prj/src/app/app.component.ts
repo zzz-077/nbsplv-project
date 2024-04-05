@@ -41,6 +41,7 @@ export class AppComponent {
   userIsNotLogged = false;
   isScrolledDown: boolean = false;
   isLoader: boolean = false;
+  isMusic: boolean = false;
   UserData = {
     id: '',
     name: '',
@@ -79,6 +80,13 @@ export class AppComponent {
       }
       this.isLoader = false;
     });
+    this.localStg.selectedMusic$.subscribe((music) => {
+      if (music.musicId === '') {
+        this.isMusic = false;
+      } else {
+        this.isMusic = true;
+      }
+    });
   }
 
   logOutClick() {
@@ -94,6 +102,11 @@ export class AppComponent {
         img: '',
       })
     );
+    this.localStg.setSelectedMusic({
+      albumMusicIds: [],
+      index: 0,
+      musicId: '',
+    });
     this.router.navigate(['']);
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
 import { PlaylistsService } from 'src/app/shared/services/pageServices/playlists/playlists.service';
 
@@ -7,7 +7,7 @@ import { PlaylistsService } from 'src/app/shared/services/pageServices/playlists
   templateUrl: './lists.component.html',
   styleUrls: ['./lists.component.css'],
 })
-export class ListsComponent {
+export class ListsComponent implements OnInit {
   UserData = {
     id: '',
     name: '',
@@ -21,7 +21,7 @@ export class ListsComponent {
   isPlaylistsDeleteClicked: boolean = false;
   musicIds: string[] = [];
   chosenPlaylist: any = null;
-
+  savedClickedMusicId: string = '';
   constructor(
     private localStg: LocalstoragesService,
     private playlistsServ: PlaylistsService
@@ -36,6 +36,14 @@ export class ListsComponent {
       }
       this.playlists = userData.playlists;
       this.playlists = Object.values(userData.playlists);
+    });
+  }
+
+  ngOnInit() {
+    this.localStg.selectedMusic$.subscribe((music) => {
+      if (music) {
+        this.savedClickedMusicId = music.musicId;
+      }
     });
   }
 

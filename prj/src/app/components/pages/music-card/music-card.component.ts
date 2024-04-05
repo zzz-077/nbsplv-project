@@ -9,16 +9,16 @@ import { ArtistDataService } from 'src/app/shared/services/pageServices/artistsS
   templateUrl: './music-card.component.html',
   styleUrls: ['./music-card.component.css'],
 })
-export class MusicCardComponent {
+export class MusicCardComponent implements OnInit {
   @Input() AlbumMusics: any = {};
   @Input() allMusicId: string[] = [];
   @Input() UsersListMusicID: string = '';
   @Input() index: number = 0;
   @Input() albumImg_child: string = '';
+  @Input() isActive: boolean = false;
   addPlaylistMusicId: string = '';
   isAddinPlaylistClicked: boolean = false;
-  clickedCard: any = null;
-  isActive: boolean = false;
+  // isActive: boolean = false;
   isLoader: boolean = false;
   constructor(
     private localStg: LocalstoragesService,
@@ -40,12 +40,16 @@ export class MusicCardComponent {
   }
 
   musicClick(music: any) {
-    this.isActive = false;
-    if (this.clickedCard === music) {
-      this.clickedCard = null;
-    } else {
-      this.clickedCard = music;
-    }
+    // const ClickedMusic = this.localStg.getSelectedMusic();
+    // console.log('musicIdfromclick:' + music.id);
+    // console.log('musicIdfromlocalstg:' + ClickedMusic.musicId);
+    // if (ClickedMusic.musicId !== music.id) {
+    //   console.log(music.id);
+    //   this.isActive = true;
+    // } else {
+    //   this.isActive = false;
+    // }
+
     let selectedMusic: SelectedMusic = {
       index: 0,
       musicId: '',

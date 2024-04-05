@@ -106,7 +106,7 @@
   <div class="resize-handle--x" data-target="nav"></div>
   <main (scroll)="mainScroll($event)">
     <router-outlet> </router-outlet>
-    <div *ngIf="isUserLogged" class="playBar_content">
+    <div *ngIf="isUserLogged && isMusic" class="playBar_content">
       <app-play-bar></app-play-bar>
     </div>
   </main>

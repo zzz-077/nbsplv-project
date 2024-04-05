@@ -18,6 +18,7 @@ export class AddPlaylistComponent {
   isCheckBoxClicked: boolean = false;
   isInputEmpty: boolean = false;
   selectedPlaylistsArr: string[] = [];
+
   constructor(
     private playlistsServ: PlaylistsService,
     private localStg: LocalstoragesService,

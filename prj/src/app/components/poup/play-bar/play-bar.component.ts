@@ -24,7 +24,6 @@ export class PlayBarComponent {
   isSoundPaused: boolean = false;
   audio: HTMLAudioElement = new Audio();
   isLoader: boolean = false;
-
   constructor(
     private localStg: LocalstoragesService,
     private artistData: ArtistDataService
@@ -46,9 +45,6 @@ export class PlayBarComponent {
         });
       this.isSoundPaused = false;
 
-      // selectedMusic.duration = selectedMusic.duration;
-      // this.selectedMusic = selectedMusic;
-      // this.audio.src = selectedMusic.musicUrl;
       this.audio.load();
     });
   }
