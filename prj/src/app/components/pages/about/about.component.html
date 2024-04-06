@@ -1,18 +1,27 @@
 <div class="about_content">
-  <div *ngIf="isLoading" class="about-loader-cont">
-    <ngx-skeleton-loader count="2" appearance="line" />
-  </div>
-  <div *ngIf="!isLoading" class="about_top_row">
+  <div class="about_top_row">
     <div class="top_row_col1">
-      <img [src]="artist.img" alt="" />
+      <img *ngIf="!isLoading" [src]="artist.img" alt="" />
+      <div *ngIf="isLoading" class="about-img-loader-cont">
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </div>
     </div>
     <div class="top_row_col2">
-      <h1>NBSPLV</h1>
-      <h4>music artist</h4>
-      <h4>
+      <h1 *ngIf="!isLoading">NBSPLV</h1>
+      <div *ngIf="isLoading" class="about-title1-loader-cont">
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </div>
+      <h4 *ngIf="!isLoading">music artist</h4>
+      <div *ngIf="isLoading" class="about-title2-loader-cont">
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </div>
+      <h4 *ngIf="!isLoading">
         <span>{{ followersValue }}</span
         >, total Spotify followers
       </h4>
+      <div *ngIf="isLoading" class="about-title3-loader-cont">
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </div>
     </div>
   </div>
   <div class="about_bottom_row">

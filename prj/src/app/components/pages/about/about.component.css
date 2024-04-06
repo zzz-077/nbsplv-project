@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-:host >>> .about-loader-cont ngx-skeleton-loader {
+/* :host >>> .about-loader-cont ngx-skeleton-loader {
   width: 100%;
   height: 100%;
   display: flex;
@@ -17,17 +17,40 @@
   z-index: 10;
   width: 100%;
   border-radius: 1rem;
-}
+} */
 
-:host >>> .about-loader-cont ngx-skeleton-loader .skeleton-loader:nth-child(1) {
-  width: 420px;
+:host
+  >>> .about-img-loader-cont
+  ngx-skeleton-loader
+  .skeleton-loader:nth-child(1) {
+  width: 320px;
   height: 320px;
-  border-radius: 50%;
+  border-radius: 50rem;
+  filter: opacity(0.5);
 }
-
-:host >>> .about-loader-cont ngx-skeleton-loader .skeleton-loader {
-  width: 100%;
-  height: 100%;
+:host
+  >>> .about-title1-loader-cont
+  ngx-skeleton-loader
+  .skeleton-loader:nth-child(1) {
+  width: 428px;
+  height: 100px;
+  filter: opacity(0.5);
+}
+:host
+  >>> .about-title2-loader-cont
+  ngx-skeleton-loader
+  .skeleton-loader:nth-child(1) {
+  width: 120px;
+  height: 23px;
+  filter: opacity(0.5);
+}
+:host
+  >>> .about-title3-loader-cont
+  ngx-skeleton-loader
+  .skeleton-loader:nth-child(1) {
+  width: 350px;
+  height: 23px;
+  filter: opacity(0.5);
 }
 
 .about_content {
