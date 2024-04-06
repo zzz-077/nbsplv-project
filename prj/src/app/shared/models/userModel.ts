@@ -21,9 +21,3 @@ export interface SelectedMusic {
   musicId: string;
   albumMusicIds: string[];
 }
-// export interface SelectedMusic {
-//   albumImg: string;
-//   musicName: string;
-//   duration: number;
-//   musicUrl: string;
-// }

@@ -131,4 +131,35 @@ export class PlaylistsService {
       })
     );
   }
+
+  checkMusicUserPlaylist(
+    userId: string,
+    musicId: string
+  ): Observable<string[] | null> {
+    const userDocRef = this.firestore.collection('users').doc(userId);
+    return userDocRef.get().pipe(
+      map((doc) => {
+        if (doc.exists) {
+          const userData = doc.data() as user;
+          const userPlaylist = userData.playlists;
+          var musicInPlaylist: string[] = [];
+          if (userPlaylist && typeof userPlaylist === 'object') {
+            Object.values(userPlaylist).forEach((list) => {
+              let checkInPlaylist: boolean = list.playlistSongs.some(
+                (item: string) => {
+                  return item === musicId;
+                }
+              );
+              if (checkInPlaylist) {
+                musicInPlaylist.push(list.playlistName);
+              }
+            });
+          }
+          return musicInPlaylist;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
 }

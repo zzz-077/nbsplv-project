@@ -13,16 +13,23 @@
     ></i>
   </div>
   <div class="middle_col">
-    <div *ngFor="let playlist of playlists" class="playlist_card">
+    <div
+      *ngFor="let playlist of playlists; let i = index"
+      class="playlist_card"
+    >
       <div class="playlist_card_left">
         <div>
           <i class="fa-solid {{ playlist.playlistIcon }}"></i>
         </div>
         <h3>{{ playlist.playlistName }}</h3>
       </div>
-      <div class="playlist_card_right">
+      <div
+        class="playlist_card_right"
+        *ngFor="let checkbox of alreadyInPlaylist"
+      >
         <mat-checkbox
           #value
+          [checked]="checkbox == playlist.playlistName ? true : false"
           (click)="selectedPlaylists(value, playlist.playlistName)"
         >
         </mat-checkbox>

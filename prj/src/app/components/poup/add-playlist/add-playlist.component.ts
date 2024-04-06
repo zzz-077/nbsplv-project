@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/shared/services/pageServices/usersService/
   templateUrl: './add-playlist.component.html',
   styleUrls: ['./add-playlist.component.css'],
 })
-export class AddPlaylistComponent {
+export class AddPlaylistComponent implements OnInit {
   @Output() isPopupCancelled = new EventEmitter<boolean>();
   @Input() musicId: string = '';
   userId: string = '';
@@ -18,7 +18,7 @@ export class AddPlaylistComponent {
   isCheckBoxClicked: boolean = false;
   isInputEmpty: boolean = false;
   selectedPlaylistsArr: string[] = [];
-
+  alreadyInPlaylist: any[] = [];
   constructor(
     private playlistsServ: PlaylistsService,
     private localStg: LocalstoragesService,
@@ -31,6 +31,18 @@ export class AddPlaylistComponent {
       this.playlists = userData.playlists;
       this.playlists = Object.values(userData.playlists);
     });
+  }
+  ngOnInit() {
+    this.playlistsServ
+      .checkMusicUserPlaylist(this.userId, this.musicId)
+      .subscribe((playlists) => {
+        if (Array.isArray(playlists) && playlists.length > 0) {
+          this.alreadyInPlaylist = playlists;
+          console.log(this.alreadyInPlaylist);
+        } else {
+          console.log('doesnot in array');
+        }
+      });
   }
 
   playlistPopUpCancelClick() {
