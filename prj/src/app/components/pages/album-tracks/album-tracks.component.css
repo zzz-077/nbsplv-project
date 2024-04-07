@@ -141,3 +141,59 @@
   width: 100%;
   gap: 1rem;
 }
+
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+
+@media (max-width: 1024px) {
+  .albumTracks_bottom_row .table_header .col1 {
+    width: 230px;
+  }
+  .albumTracks_bottom_row .table_header .col1:nth-child(2) div:nth-child(2) {
+    width: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .albumTracks_bottom_row {
+    padding: 1rem;
+  }
+  .albumTracks_top_row {
+    padding: 0rem;
+  }
+  .albumTracks_content {
+    padding: 1rem;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .albumTracks_bottom_row .table_header .col1:nth-child(1) {
+    justify-content: start;
+  }
+  .albumTracks_bottom_row .table_header .col1:nth-child(1) div:nth-child(2) {
+    width: auto;
+  }
+  .albumTracks_bottom_row .table_header .col1:nth-child(2) div:nth-child(1) {
+    display: none;
+  }
+  .albumTracks_bottom_row .table_header .col1:nth-child(2) {
+    width: auto;
+  }
+  .albumTracks_top_row .top_row_left_col {
+    max-width: 120px;
+    height: 120px;
+  }
+  .albumTracks_content {
+    gap: 3rem;
+  }
+  .top_row_right_col h1 {
+    font-size: 1.75rem;
+  }
+  .top_row_right_col h3 {
+    font-size: 1rem;
+  }
+}

@@ -38,9 +38,9 @@ export class AddPlaylistComponent implements OnInit {
       .subscribe((playlists) => {
         if (Array.isArray(playlists) && playlists.length > 0) {
           this.alreadyInPlaylist = playlists;
-          console.log(this.alreadyInPlaylist);
+          // console.log(this.alreadyInPlaylist);
         } else {
-          console.log('doesnot in array');
+          // console.log('doesnot in array');
         }
       });
   }

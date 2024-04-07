@@ -25,6 +25,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
+  gap: 2rem;
 }
 
 .lists_top_row {
@@ -75,6 +76,7 @@
   overflow: hidden;
   overflow-y: auto;
   width: 280px;
+  max-width: 280px;
   padding: 1.25rem 1rem;
   height: 100%;
 }
@@ -195,11 +197,57 @@
   padding: 1rem 1.5rem;
   border-radius: var(--regular_cards_radius);
   color: var(--about_font_lightGreen_color);
-  width: 60%;
+  width: 100%;
 }
 .empty_playlist div h2 {
   font-size: 2rem;
 }
 .empty_playlist div p {
   font-size: 1.125rem;
+}
+
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+
+@media (max-width: 1024px) {
+  .lists_content {
+    padding: 1rem;
+  }
+
+  .lists_bottom_row {
+    flex-direction: column;
+    gap: 10rem;
+  }
+
+  .lists_bottom_row .lists_bottom_left_col {
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .lists_bottom_row .lists_bottom_left_col .list_box {
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    height: 50px;
+    transition: all 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
+
+  .lists_bottom_row .lists_bottom_left_col .list_box .list_img {
+    width: 77px;
+  }
+
+  .lists_bottom_row .lists_bottom_left_col .list_box .list_img i {
+    font-size: 1.25rem;
+    border-radius: 50%;
+    text-shadow: 1px -1px 10px #18b0d6;
+  }
 }

@@ -1,3 +1,25 @@
+:host >>> .img-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  filter: opacity(0.5);
+}
+:host >>> .name-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 10px;
+  height: 20px;
+  margin: 0;
+  filter: opacity(0.5);
+}
+
+:host >>> .listens-loader-cont ngx-skeleton-loader .skeleton-loader {
+  width: 100px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 0;
+  margin: 0;
+  filter: opacity(0.5);
+}
+
 .music_card {
   display: flex;
   justify-content: space-between;
@@ -110,35 +132,43 @@
   color: var(--main_font_light_color);
   z-index: 1;
 }
-.active .col1:nth-child(2) div:nth-child(2) i {
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  color: var(--about_font_lightGreen_color);
-  z-index: 1;
-}
+
 .music_card .col1:nth-child(2) div:nth-child(2) i:hover {
   color: #848687;
 }
 
-:host >>> .img-loader-cont ngx-skeleton-loader .skeleton-loader {
-  width: 70px;
-  height: 70px;
-  margin: 0;
-  filter: opacity(0.5);
-}
-:host >>> .name-loader-cont ngx-skeleton-loader .skeleton-loader {
-  width: 10px;
-  height: 20px;
-  margin: 0;
-  filter: opacity(0.5);
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+
+@media (max-width: 1024px) {
+  .music_card .col1 {
+    width: 230px;
+    /* background-color: red; */
+  }
+  .music_card .col1:nth-child(2) div:nth-child(2) {
+    width: 65px;
+  }
 }
 
-:host >>> .listens-loader-cont ngx-skeleton-loader .skeleton-loader {
-  width: 100px;
-  height: 20px;
-  overflow: hidden;
-  border-radius: 0;
-  margin: 0;
-  filter: opacity(0.5);
+@media (max-width: 600px) {
+  .music_card .col1:nth-child(2) div:nth-child(1) {
+    display: none;
+  }
+  .music_card .col1:nth-child(2) {
+    justify-content: end;
+    width: auto;
+  }
+  .music_card .col1:nth-child(1) div:nth-child(2) p {
+    font-size: 0.875rem;
+  }
+  .music_card .col1:nth-child(1) div:nth-child(2) .song_img {
+    width: 55px;
+    height: 55px;
+  }
+  .music_card .col1:nth-child(2) div:nth-child(2) i {
+    font-size: 1.125rem;
+  }
 }

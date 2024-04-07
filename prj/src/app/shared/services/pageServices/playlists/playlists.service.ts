@@ -143,6 +143,7 @@ export class PlaylistsService {
           const userData = doc.data() as user;
           const userPlaylist = userData.playlists;
           var musicInPlaylist: string[] = [];
+
           if (userPlaylist && typeof userPlaylist === 'object') {
             Object.values(userPlaylist).forEach((list) => {
               let checkInPlaylist: boolean = list.playlistSongs.some(

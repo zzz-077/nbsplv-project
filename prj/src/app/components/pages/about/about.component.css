@@ -8,17 +8,6 @@
   width: 100%;
 }
 
-/* :host >>> .about-loader-cont ngx-skeleton-loader {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 6rem;
-  z-index: 10;
-  width: 100%;
-  border-radius: 1rem;
-} */
-
 :host
   >>> .about-img-loader-cont
   ngx-skeleton-loader
@@ -61,7 +50,6 @@
   gap: var(--regular_cards_distance);
   height: 100%;
   align-items: center;
-  padding-top: 6rem;
   overflow: auto;
   background: url("https://i.scdn.co/image/ab6761610000e5ebd8556811e8509d9acbf42140");
   background-position: center;
@@ -93,7 +81,6 @@
 
 .top_row_col1 {
   width: 320px;
-  max-width: 320px;
   max-height: 320px;
   overflow: hidden;
   border-radius: 50%;
@@ -175,4 +162,80 @@
   color: rgb(138, 138, 142);
   font-style: italic;
   text-decoration: underline;
+}
+
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+
+@media (max-width: 1024px) {
+  .about_top_row {
+    gap: 4rem;
+  }
+  .top_row_col2 h1 {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+  .top_row_col2 h4 {
+    font-size: 1.5rem;
+  }
+
+  .about_bottom_row ul li h3 {
+    font-size: 1.5rem;
+  }
+  .about_bottom_row ul li p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .about_bottom_row ul li p span {
+    font-size: 1rem;
+  }
+  .about_bottom_row ul li a {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .about_content {
+    padding: 0 1rem;
+  }
+  .top_row_col2 h1 {
+    font-size: 2.75rem;
+    line-height: 2.75rem;
+  }
+  .top_row_col2 h4 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .about_bottom_row {
+    height: auto;
+  }
+  .about_top_row {
+    gap: 2rem;
+  }
+  .about_bottom_row {
+    margin-top: 2rem;
+  }
+  .top_row_col2 h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+  .top_row_col2 h4 {
+    font-size: 0.875rem;
+  }
+  .about_bottom_row ul li h3 {
+    font-size: 1.25rem;
+  }
+  .about_bottom_row ul li p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .about_bottom_row ul li p span {
+    font-size: 0.875rem;
+  }
+  .about_bottom_row ul li a {
+    font-size: 0.875rem;
+  }
 }
