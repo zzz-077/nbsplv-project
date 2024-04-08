@@ -42,9 +42,7 @@ main .playBar_content {
   backdrop-filter: blur(10px);
   z-index: 100;
 }
-main .playBar_content.sticky {
-  position: sticky;
-}
+
 .top_content,
 .bottom_content {
   padding: 0.875rem 1rem;
@@ -469,6 +467,23 @@ main .playBar_content.sticky {
   font-size: 24px;
   color: var(--about_font_lightGreen_color);
 }
+.mobile_navbar ul li i {
+  font-size: 24px;
+  color: var(--about_font_lightGreen_color);
+}
+.mobile_navbar ul li button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #03171c00;
+  cursor: pointer;
+}
+
+.mobile_navbar ul li button i {
+  font-size: 24px;
+  color: var(--about_font_lightGreen_color);
+}
 
 /*=================================*/
 /*=================================*/
@@ -485,5 +500,8 @@ main .playBar_content.sticky {
   nav,
   .resize-handle--x {
     display: none;
+  }
+  main .playBar_content {
+    height: 60px;
   }
 }

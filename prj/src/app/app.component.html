@@ -110,7 +110,7 @@
       <app-play-bar></app-play-bar>
     </div>
   </main>
-  <div *ngIf="isUserLogged" class="mobile_navbar">
+  <div class="mobile_navbar">
     <ul>
       <li routerLink="">
         <img src="assets/siteLogo.png" alt="" />
@@ -121,9 +121,8 @@
       <li (click)="playlistClick()">
         <i class="fa-solid fa-list"></i>
       </li>
-      <li>
+      <li *ngIf="isUserLogged">
         <div
-          *ngIf="isUserLogged"
           (click)="userClick()"
           [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
           class="user_link"
@@ -135,6 +134,14 @@
             <img *ngIf="!isLoader" [src]="UserData.img" alt="" />
           </div>
         </div>
+      </li>
+      <li *ngIf="!isUserLogged">
+        <button
+          routerLink="/login"
+          [ngClass]="isSidebarfolded ? 'active' : null"
+        >
+          <p><i class="fa-solid fa-right-to-bracket"></i></p>
+        </button>
       </li>
     </ul>
   </div>

@@ -35,7 +35,7 @@ body {
   color: var(--main_font_light_color);
   font-family: var(--main_font_family);
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {

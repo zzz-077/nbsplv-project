@@ -82,6 +82,14 @@
   align-items: center;
   gap: 0.25rem;
 }
+.buttons_box .logout_btn {
+  display: none;
+  justify-content: end;
+  margin-top: 1.25rem;
+  color: rgb(126, 125, 125);
+  text-decoration: underline;
+  font-size: 1rem;
+}
 .buttons_box div button {
   border-radius: 0.125rem;
   width: 140px;
@@ -185,4 +193,83 @@
 .spinner {
   width: 20px;
   height: 20px;
+}
+/*=================================*/
+/*=================================*/
+/*============RESPONSIVE===========*/
+/*=================================*/
+/*=================================*/
+
+@media (max-width: 768px) {
+  .buttons_box .logout_btn {
+    display: flex;
+  }
+  .infoPopUp_content {
+    padding: 0 1rem;
+  }
+  .info_box {
+    padding: 1.25rem 1rem;
+    width: 100%;
+    max-width: 100%;
+    height: 340px;
+  }
+  .submit_edit_info_btn {
+    width: 100%;
+  }
+  .submit_edit_info_btn .buttons_box {
+    width: 100%;
+  }
+
+  .buttons_box div button {
+    width: 100%;
+    max-width: 100%;
+    height: 40px;
+  }
+  .info_left_col .img_edit_btn {
+    bottom: 55px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .buttons_box .logout_btn {
+    display: flex;
+  }
+
+  .infoPopUp_content {
+    padding: 0 1rem;
+  }
+
+  .info_box {
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .info_right_col {
+    width: 100%;
+  }
+
+  .info_right_col form {
+    gap: 0.875rem;
+  }
+
+  .submit_edit_info_btn {
+    width: 100%;
+  }
+
+  .submit_edit_info_btn .buttons_box {
+    width: 100%;
+  }
+
+  .buttons_box div button {
+    width: 100%;
+    max-width: 100%;
+    height: 40px;
+  }
+  .info_left_col .img_edit_btn {
+    bottom: 15px;
+    left: 10px;
+  }
 }

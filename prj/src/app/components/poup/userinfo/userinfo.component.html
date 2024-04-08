@@ -125,6 +125,14 @@
               </button>
               <button (click)="cancelClick($event)"><p>Cancel</p></button>
             </div>
+            <a
+              class="logout_btn"
+              href=""
+              (click)="logOutClick()"
+              *ngIf="isUserLogged"
+            >
+              LogOut
+            </a>
           </div>
         </div>
       </form>

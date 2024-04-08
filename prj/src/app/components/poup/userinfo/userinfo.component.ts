@@ -28,7 +28,7 @@ export class UserinfoComponent {
   isEditClicked = false;
   showPass = false;
   isLoader: boolean = false;
-
+  isUserLogged = false;
   constructor(
     private firestorage: AngularFireStorage,
     private usersServ: UsersService,
@@ -47,6 +47,7 @@ export class UserinfoComponent {
           playlists: data.playlists,
         };
       }
+      this.isUserLogged = this.localStg.getSign();
     });
   }
 
@@ -161,5 +162,26 @@ export class UserinfoComponent {
       }
       this.isLoader = false;
     }
+  }
+
+  logOutClick() {
+    this.localStg.setSign(false);
+    this.isUserLogged = this.localStg.getSign();
+    localStorage.setItem(
+      'userInfo',
+      JSON.stringify({
+        id: '',
+        name: '',
+        email: '',
+        password: '',
+        img: '',
+      })
+    );
+    this.localStg.setSelectedMusic({
+      albumMusicIds: [],
+      index: 0,
+      musicId: '',
+    });
+    this.router.navigate(['']);
   }
 }
