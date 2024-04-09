@@ -127,12 +127,10 @@
           [ngClass]="isSidebarfoldedForLogo ? 'active' : null"
           class="user_link"
         >
-          <div class="link_icons">
-            <div *ngIf="isLoader" class="user-img-loader-cont">
-              <ngx-skeleton-loader count="1" appearance="line" />
-            </div>
-            <img *ngIf="!isLoader" [src]="UserData.img" alt="" />
+          <div *ngIf="isLoader" class="user-img-loader-cont">
+            <ngx-skeleton-loader count="1" appearance="line" />
           </div>
+          <img *ngIf="!isLoader" [src]="UserData.img" alt="" />
         </div>
       </li>
       <li *ngIf="!isUserLogged">

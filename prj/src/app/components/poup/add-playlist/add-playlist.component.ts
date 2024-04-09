@@ -19,6 +19,8 @@ export class AddPlaylistComponent implements OnInit {
   isInputEmpty: boolean = false;
   selectedPlaylistsArr: string[] = [];
   alreadyInPlaylist: any[] = [];
+  deleteFromPlaylist: any[] = [];
+
   constructor(
     private playlistsServ: PlaylistsService,
     private localStg: LocalstoragesService,
@@ -32,6 +34,7 @@ export class AddPlaylistComponent implements OnInit {
       this.playlists = Object.values(userData.playlists);
     });
   }
+
   ngOnInit() {
     this.playlistsServ
       .checkMusicUserPlaylist(this.userId, this.musicId)
@@ -50,26 +53,35 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   playlistPopUpDoneClick() {
-    this.isLoader = true;
-    this.isCheckBoxClicked = false;
-    this.playlistsServ
-      .addMusicInPlaylists(this.userId, this.selectedPlaylistsArr, this.musicId)
-      .subscribe((sub) => {
-        this.selectedPlaylistsArr = [];
-        this.isPopupCancelled.emit(true);
-        this.usersServ.getUser(this.userId).subscribe((userData) => {
-          let userDataFromLS = JSON.parse(
-            localStorage.getItem('userInfo') || 'null'
-          );
-          (userDataFromLS = {
-            ...userDataFromLS,
-            playlists: userData?.playlists,
-          }),
-            (this.isLoader = false);
-          localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
-          this.localStg.userData.next(userDataFromLS);
+    if (this.deleteFromPlaylist.length != 0) {
+      this.playlistsServ;
+    }
+    if (this.selectedPlaylistsArr.length != 0) {
+      this.isLoader = true;
+      this.isCheckBoxClicked = false;
+      this.playlistsServ
+        .addMusicInPlaylists(
+          this.userId,
+          this.selectedPlaylistsArr,
+          this.musicId
+        )
+        .subscribe((sub) => {
+          this.selectedPlaylistsArr = [];
+          this.isPopupCancelled.emit(true);
+          this.usersServ.getUser(this.userId).subscribe((userData) => {
+            let userDataFromLS = JSON.parse(
+              localStorage.getItem('userInfo') || 'null'
+            );
+            (userDataFromLS = {
+              ...userDataFromLS,
+              playlists: userData?.playlists,
+            }),
+              (this.isLoader = false);
+            localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
+            this.localStg.userData.next(userDataFromLS);
+          });
         });
-      });
+    }
   }
 
   addNewPlaylictClick(input: string) {
@@ -111,19 +123,56 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   selectedPlaylists(value: any, playlistName: string) {
-    if (value.checked) {
+    this.isCheckBoxClicked = false;
+    if (
+      this.alreadyInPlaylist.length != 0 &&
+      this.alreadyInPlaylist.includes(playlistName)
+    ) {
       this.isCheckBoxClicked = true;
-      if (!this.selectedPlaylistsArr.includes(playlistName)) {
-        this.selectedPlaylistsArr.push(playlistName);
-        // console.log('ADDED:', this.selectedPlaylistsArr);
+      if (!value.checked) {
+        this.deleteFromPlaylist.push(playlistName);
+        // console.log(this.deleteFromPlaylist);
+      } else {
+        this.deleteFromPlaylist = this.deleteFromPlaylist.filter((item) => {
+          return item !== playlistName;
+        });
+        // console.log('Unchecked:', this.deleteFromPlaylist);
       }
     } else {
-      this.selectedPlaylistsArr = this.selectedPlaylistsArr.filter(
-        (name) => name !== playlistName
-      );
-      // console.log('REMOVED:', this.selectedPlaylistsArr);
+      // console.log('new playlist');
+      this.isCheckBoxClicked = true;
+      if (value.checked) {
+        if (!this.selectedPlaylistsArr.includes(playlistName)) {
+          this.selectedPlaylistsArr.push(playlistName);
+        }
+      } else {
+        this.selectedPlaylistsArr = this.selectedPlaylistsArr.filter(
+          (name) => name !== playlistName
+        );
+      }
+      if (
+        this.selectedPlaylistsArr.length == 0 &&
+        this.alreadyInPlaylist.length == 0
+      ) {
+        this.isCheckBoxClicked = false;
+      } else if (
+        this.selectedPlaylistsArr.length == 0 &&
+        this.alreadyInPlaylist.length != 0 &&
+        !value.checked
+      ) {
+        this.isCheckBoxClicked = false;
+      } else if (this.alreadyInPlaylist.length != 0) {
+        this.isCheckBoxClicked = true;
+      } else if (this.selectedPlaylistsArr.length == 0) {
+        this.isCheckBoxClicked = false;
+      }
     }
-    if (this.selectedPlaylistsArr.length == 0) {
+    if (
+      this.deleteFromPlaylist.length == 0 &&
+      this.selectedPlaylistsArr.length > 0
+    ) {
+      this.isCheckBoxClicked = true;
+    } else if (this.deleteFromPlaylist.length == 0) {
       this.isCheckBoxClicked = false;
     }
   }
