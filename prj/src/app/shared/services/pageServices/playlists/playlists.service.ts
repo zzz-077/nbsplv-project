@@ -8,6 +8,7 @@ import {
   map,
   merge,
   mergeMap,
+  of,
   switchMap,
   throwError,
 } from 'rxjs';
@@ -164,35 +165,46 @@ export class PlaylistsService {
     );
   }
 
-  // deleteMusicUserPlaylist(
-  //   userId: string,
-  //   musicArr: []
-  // ): Observable<string[] | null> {
-  //   const userDocRef = this.firestore.collection('users').doc(userId);
-  //   return userDocRef.get().pipe(
-  //     map((doc) => {
-  //       if (doc.exists) {
-  //         const userData = doc.data() as user;
-  //         const userPlaylist = userData.playlists;
-  //         var musicInPlaylist: string[] = [];
+  deleteMusicUserPlaylist(
+    userId: string,
+    musicArr: string[],
+    musicId: string
+  ): Observable<void | null> {
+    const userDocRef = this.firestore.collection('users').doc(userId);
 
-  //         if (userPlaylist && typeof userPlaylist === 'object') {
-  //           Object.values(userPlaylist).forEach((list) => {
-  //             let checkInPlaylist: boolean = list.playlistSongs.some(
-  //               (item: string) => {
-  //                 return item === ;
-  //               }
-  //             );
-  //             if (checkInPlaylist) {
-  //               musicInPlaylist.push(list.playlistName);
-  //             }
-  //           });
-  //         }
-  //         return musicInPlaylist;
-  //       } else {
-  //         return null;
-  //       }
-  //     })
-  //   );
-  // }
+    return from(userDocRef.get()).pipe(
+      switchMap((doc) => {
+        if (doc.exists) {
+          const userData = doc.data() as user;
+          const userPlaylist = userData.playlists;
+
+          musicArr.forEach((deletePlaylist) => {
+            for (const playlistName in userPlaylist) {
+              if (userPlaylist.hasOwnProperty(playlistName)) {
+                const playlist = userPlaylist[playlistName];
+                if (
+                  playlist.playlistSongs &&
+                  playlist.playlistSongs.includes(musicId)
+                ) {
+                  playlist.playlistSongs = playlist.playlistSongs.filter(
+                    (songId) => songId !== musicId
+                  );
+                }
+              }
+            }
+          });
+
+          return from(userDocRef.update({ playlists: userPlaylist })).pipe(
+            map(() => null),
+            catchError((error) => {
+              console.error('Error updating document: ', error);
+              return of(null);
+            })
+          );
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
 }

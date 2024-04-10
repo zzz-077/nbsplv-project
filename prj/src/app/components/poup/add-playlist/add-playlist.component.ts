@@ -53,8 +53,31 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   playlistPopUpDoneClick() {
+    console.log('deletedArr:', this.deleteFromPlaylist);
+    console.log('deletedArr:', this.selectedPlaylistsArr);
+
     if (this.deleteFromPlaylist.length != 0) {
-      this.playlistsServ;
+      this.playlistsServ
+        .deleteMusicUserPlaylist(
+          this.userId,
+          this.deleteFromPlaylist,
+          this.musicId
+        )
+        .subscribe((value) => {
+          this.isPopupCancelled.emit(true);
+          this.usersServ.getUser(this.userId).subscribe((userData) => {
+            let userDataFromLS = JSON.parse(
+              localStorage.getItem('userInfo') || 'null'
+            );
+            (userDataFromLS = {
+              ...userDataFromLS,
+              playlists: userData?.playlists,
+            }),
+              (this.isLoader = false);
+            localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
+            this.localStg.userData.next(userDataFromLS);
+          });
+        });
     }
     if (this.selectedPlaylistsArr.length != 0) {
       this.isLoader = true;
