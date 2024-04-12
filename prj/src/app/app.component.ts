@@ -182,8 +182,6 @@ export class AppComponent {
     this.parentElement = handleElement.parentElement;
     this.maxWidth = handleElement.parentElement.offsetWidth - this.handleWidth;
     this.tracking = true;
-
-    console.log('tracking started');
   }
 
   @HostListener('window:mousemove', ['$event'])

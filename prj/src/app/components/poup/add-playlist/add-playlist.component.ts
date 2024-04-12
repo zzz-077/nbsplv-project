@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
+import { async } from 'rxjs';
 import { randomIcons } from 'src/app/shared/models/RandomIcons';
 import { LocalstoragesService } from 'src/app/shared/services/localstorages/localstorages.service';
 import { PlaylistsService } from 'src/app/shared/services/pageServices/playlists/playlists.service';
@@ -53,8 +54,11 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   playlistPopUpDoneClick() {
+    console.log('=======================');
+    console.log(this.musicId);
+
     console.log('deletedArr:', this.deleteFromPlaylist);
-    console.log('deletedArr:', this.selectedPlaylistsArr);
+    console.log('addedArr:', this.selectedPlaylistsArr);
 
     if (this.deleteFromPlaylist.length != 0) {
       this.playlistsServ
@@ -63,7 +67,8 @@ export class AddPlaylistComponent implements OnInit {
           this.deleteFromPlaylist,
           this.musicId
         )
-        .subscribe((value) => {
+        .subscribe((sub) => {
+          this.deleteFromPlaylist = [];
           this.isPopupCancelled.emit(true);
           this.usersServ.getUser(this.userId).subscribe((userData) => {
             let userDataFromLS = JSON.parse(
@@ -79,6 +84,7 @@ export class AddPlaylistComponent implements OnInit {
           });
         });
     }
+
     if (this.selectedPlaylistsArr.length != 0) {
       this.isLoader = true;
       this.isCheckBoxClicked = false;

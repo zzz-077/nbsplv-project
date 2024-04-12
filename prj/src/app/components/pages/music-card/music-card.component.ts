@@ -20,10 +20,15 @@ export class MusicCardComponent implements OnInit {
   isAddinPlaylistClicked: boolean = false;
   // isActive: boolean = false;
   isLoader: boolean = false;
+  isUserLogged:boolean = false;
   constructor(
     private localStg: LocalstoragesService,
     private artistData: ArtistDataService
-  ) {}
+  ) {
+    this.localStg.islogged$.subscribe(boolean =>{
+      this.isUserLogged=boolean;
+    })
+  }
 
   // for User playlists
   ngOnInit() {

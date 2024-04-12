@@ -25,7 +25,7 @@
       </div>
     </div>
     <div>
-      <p>
+      <p *ngIf="isUserLogged">
         <i
           class="fa-solid fa-circle-plus"
           (click)="addInPlaylist(AlbumMusics.id)"

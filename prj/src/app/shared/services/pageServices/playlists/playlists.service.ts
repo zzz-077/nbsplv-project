@@ -179,18 +179,19 @@ export class PlaylistsService {
           const userPlaylist = userData.playlists;
 
           musicArr.forEach((deletePlaylist) => {
-            for (const playlistName in userPlaylist) {
-              if (userPlaylist.hasOwnProperty(playlistName)) {
-                const playlist = userPlaylist[playlistName];
-                if (
-                  playlist.playlistSongs &&
-                  playlist.playlistSongs.includes(musicId)
-                ) {
-                  playlist.playlistSongs = playlist.playlistSongs.filter(
-                    (songId) => songId !== musicId
-                  );
-                }
+            // for (const playlistName in userPlaylist) {
+            console.log(deletePlaylist);
+            if (userPlaylist.hasOwnProperty(deletePlaylist)) {
+              const playlist = userPlaylist[deletePlaylist];
+              if (
+                playlist.playlistSongs &&
+                playlist.playlistSongs.includes(musicId)
+              ) {
+                playlist.playlistSongs = playlist.playlistSongs.filter(
+                  (songId) => songId !== musicId
+                );
               }
+              // }
             }
           });
 
