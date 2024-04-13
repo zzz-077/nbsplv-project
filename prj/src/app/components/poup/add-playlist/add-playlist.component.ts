@@ -54,11 +54,10 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   playlistPopUpDoneClick() {
-    console.log('=======================');
-    console.log(this.musicId);
-
-    console.log('deletedArr:', this.deleteFromPlaylist);
-    console.log('addedArr:', this.selectedPlaylistsArr);
+    // console.log('=======================');
+    // console.log(this.musicId);
+    // console.log('deletedArr:', this.deleteFromPlaylist);
+    // console.log('addedArr:', this.selectedPlaylistsArr);
 
     if (this.deleteFromPlaylist.length != 0) {
       this.playlistsServ
@@ -71,14 +70,15 @@ export class AddPlaylistComponent implements OnInit {
           this.deleteFromPlaylist = [];
           this.isPopupCancelled.emit(true);
           this.usersServ.getUser(this.userId).subscribe((userData) => {
+            // console.log(userData?.playlists);
             let userDataFromLS = JSON.parse(
               localStorage.getItem('userInfo') || 'null'
             );
-            (userDataFromLS = {
+            userDataFromLS = {
               ...userDataFromLS,
               playlists: userData?.playlists,
-            }),
-              (this.isLoader = false);
+            };
+            this.isLoader = false;
             localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
             this.localStg.userData.next(userDataFromLS);
           });
@@ -101,11 +101,11 @@ export class AddPlaylistComponent implements OnInit {
             let userDataFromLS = JSON.parse(
               localStorage.getItem('userInfo') || 'null'
             );
-            (userDataFromLS = {
+            userDataFromLS = {
               ...userDataFromLS,
               playlists: userData?.playlists,
-            }),
-              (this.isLoader = false);
+            };
+            this.isLoader = false;
             localStorage.setItem('userInfo', JSON.stringify(userDataFromLS));
             this.localStg.userData.next(userDataFromLS);
           });

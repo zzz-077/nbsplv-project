@@ -169,43 +169,36 @@ export class PlaylistsService {
     userId: string,
     musicArr: string[],
     musicId: string
-  ): Observable<void | null> {
+  ): Observable<void[]> {
     const userDocRef = this.firestore.collection('users').doc(userId);
 
-    return from(userDocRef.get()).pipe(
-      switchMap((doc) => {
-        if (doc.exists) {
-          const userData = doc.data() as user;
-          const userPlaylist = userData.playlists;
+    const observables = from(userDocRef.get()).pipe(
+      mergeMap((doc) => {
+        const userData = doc.data() as user;
+        const userPlaylist = userData.playlists;
 
-          musicArr.forEach((deletePlaylist) => {
-            // for (const playlistName in userPlaylist) {
-            console.log(deletePlaylist);
-            if (userPlaylist.hasOwnProperty(deletePlaylist)) {
-              const playlist = userPlaylist[deletePlaylist];
-              if (
-                playlist.playlistSongs &&
-                playlist.playlistSongs.includes(musicId)
-              ) {
-                playlist.playlistSongs = playlist.playlistSongs.filter(
-                  (songId) => songId !== musicId
-                );
-              }
-              // }
+        musicArr.forEach((deletePlaylist) => {
+          if (userPlaylist.hasOwnProperty(deletePlaylist)) {
+            const playlist = userPlaylist[deletePlaylist];
+            if (
+              playlist.playlistSongs &&
+              playlist.playlistSongs.includes(musicId)
+            ) {
+              // console.log('music deleted from list: ', deletePlaylist);
+              playlist.playlistSongs = playlist.playlistSongs.filter(
+                (songId) => songId !== musicId
+              );
+              // console.log('changed playlist: ', playlist);
             }
-          });
-
-          return from(userDocRef.update({ playlists: userPlaylist })).pipe(
-            map(() => null),
-            catchError((error) => {
-              console.error('Error updating document: ', error);
-              return of(null);
-            })
-          );
-        } else {
-          return of(null);
-        }
+          }
+        });
+        return from(userDocRef.update({ playlists: userPlaylist }));
+      }),
+      catchError((error) => {
+        console.log('ERROR CAUGHT IN addMusicInPlaylists()', error);
+        throw error;
       })
     );
+    return forkJoin(observables);
   }
 }
