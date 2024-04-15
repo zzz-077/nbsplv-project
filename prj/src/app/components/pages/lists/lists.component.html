@@ -2,7 +2,11 @@
   <div class="lists_box">
     <div class="lists_top_row">
       <div class="lists_top_left_col">
-        <img [src]="UserData.img" alt="" />
+        <img
+          [src]="UserData.img"
+          onerror="this.src='assets/userDefault_img.png'"
+          alt=""
+        />
       </div>
       <div class="lists_top_right_col">
         <h1>{{ UserData.name }}'s</h1>

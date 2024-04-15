@@ -36,7 +36,6 @@ export class UserinfoComponent {
     private localStg: LocalstoragesService
   ) {
     this.localStg.isUserdata$.subscribe((data) => {
-      console.log(data);
       if (data) {
         this.userInfo = {
           id: data.id,
@@ -142,9 +141,14 @@ export class UserinfoComponent {
           await this.usersServ.deleteUserImgFromStorage(imageName);
         } catch (error) {
           console.error('Error deleting old image:', error);
+        } finally {
+          this.isLoader = false;
         }
       }
-      this.usersServ.updateUserImg(this.userInfo.id, getUrl);
+      this.isLoader = true;
+      this.usersServ.updateUserImg(this.userInfo.id, getUrl).finally(() => {
+        this.isLoader = false;
+      });
       if (this.localStg.userData) {
         localStorage.setItem(
           'userInfo',
@@ -160,7 +164,6 @@ export class UserinfoComponent {
       } else {
         console.log('ERROR');
       }
-      this.isLoader = false;
     }
   }
 

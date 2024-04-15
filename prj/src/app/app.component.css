@@ -369,6 +369,7 @@ main .playBar_content {
   padding: 1.25rem 1.125rem;
   border-radius: var(--regular_cards_radius);
   animation: shake 0.875s linear 1;
+  border: 2px solid #efa2a2;
 }
 
 .userisnotregisteredpopUp h3 {

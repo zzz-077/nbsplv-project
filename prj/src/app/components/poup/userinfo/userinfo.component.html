@@ -1,7 +1,13 @@
 <div class="infoPopUp_content">
   <div class="info_box">
     <div class="info_left_col">
-      <div class="img_box"><img [src]="userInfo.img" alt="" /></div>
+      <div class="img_box">
+        <img
+          [src]="userInfo.img"
+          onerror="this.src='assets/userDefault_img.png'"
+          alt=""
+        />
+      </div>
       <div class="img_edit_btn">
         <label for="imgId">
           <div class="spinner" *ngIf="isLoader">
@@ -12,6 +18,7 @@
             (change)="useImgChange($event)"
             style="display: none"
             type="file"
+            accept="image/*"
             id="imgId"
           />
         </label>

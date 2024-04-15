@@ -105,6 +105,15 @@ export class SignupComponent {
           .then(() => {
             this.isLoader = false;
             this.router.navigate(['/login']);
+          })
+          .catch((error) => {
+            console.error(
+              'Error creating user registration in Firebase : ',
+              error
+            );
+          })
+          .finally(() => {
+            this.isLoader = false;
           });
       })
       .catch((error) => {
@@ -112,6 +121,9 @@ export class SignupComponent {
           'Error creating user in Firebase Authentication: ',
           error
         );
+      })
+      .finally(() => {
+        this.isLoader = false;
       });
   }
 }

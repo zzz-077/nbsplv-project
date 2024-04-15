@@ -44,7 +44,12 @@
             <div *ngIf="isLoader" class="user-img-loader-cont">
               <ngx-skeleton-loader count="1" appearance="line" />
             </div>
-            <img *ngIf="!isLoader" [src]="UserData.img" alt="" />
+            <img
+              *ngIf="!isLoader"
+              [src]="UserData.img"
+              alt=""
+              onerror="this.src='assets/userDefault_img.png'"
+            />
           </div>
           <a [ngClass]="isSidebarfoldedForLogo ? 'active' : null" href="#"
             >{{ UserData.name }}

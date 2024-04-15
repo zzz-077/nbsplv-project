@@ -143,7 +143,7 @@ export class AppComponent {
       this.userIsNotLogged = true;
       setTimeout(() => {
         this.userIsNotLogged = false;
-      }, 2000);
+      }, 3500);
     }
   }
 
